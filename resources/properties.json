@@ -12,6 +12,7 @@
     "redis" : {
       "url" : "redis://redis"
     },
+    "session_secret": "v49r5c**YjWaw",
     "wit" : {
       "key" : "OY5EXRBWAHCMCK2UXQZUZM2FYKMMGWAY"
     },
@@ -32,6 +33,7 @@
     "redis" : {
       "url" : "redis://redis"
     },
+    "session_secret": "v49r5c**YjWaw",
     "wit" : {
       "key" : "OY5EXRBWAHCMCK2UXQZUZM2FYKMMGWAY"
     },
