@@ -3,13 +3,14 @@ const BodyParser = require('body-parser');
 const CookieParser = require('cookie-parser');
 const Express = require('express');
 const Favicon = require('serve-favicon');
+const FS = require('fs');
 const Logger = require('morgan');
 const Mongoose = require('mongoose');
 const Path = require('path');
 const Session = require('express-session');
 const Redis = require("redis");
 
-const log = Bunyan.createLogger({ name : 'tikva:index' });
+const log = Bunyan.createLogger({ name : 'tikva:app' });
 const mode = process.env.MODE ? process.env.MODE : "local";
 PROPERTIES = JSON.parse(FS.readFileSync('./resources/properties.json', 'utf8'))[mode];
 log.info(mode, PROPERTIES);
