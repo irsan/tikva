@@ -1,9 +1,6 @@
 const Bunyan = require('bunyan');
 const Express = require('express');
 const Vasync = require('vasync');
-const YahyaCommon = require('yahya-common');
-const YahyaModel = require('yahya-model');
-const Request = require('request');
 
 const log = Bunyan.createLogger({ name : 'tikva:routes/index' });
 
