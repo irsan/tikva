@@ -15,7 +15,7 @@ const mode = process.env.MODE ? process.env.MODE : "local";
 PROPERTIES = JSON.parse(FS.readFileSync('./resources/properties.json', 'utf8'))[mode];
 log.info(mode, PROPERTIES);
 
-const redis = Redis.createClient(YAHYA_PROPERTIES.redis.url);
+const redis = Redis.createClient(PROPERTIES.redis.url);
 
 var RedisStore = require('connect-redis')(Session);
 
