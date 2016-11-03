@@ -29,7 +29,7 @@ var redisStore = new RedisStore({
 });
 
 var session = Session({
-    secret: YAHYA_PROPERTIES.session_secret,
+    secret: PROPERTIES.session_secret,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
     store: redisStore,
     resave: true,
