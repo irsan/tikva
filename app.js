@@ -36,8 +36,6 @@ var session = Session({
     saveUninitialized: true
 });
 
-app.use(session);
-
 // view engine setup
 app.set('views', Path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -49,6 +47,7 @@ app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: false}));
 app.use(CookieParser());
 app.use(Express.static(Path.join(__dirname, 'public')));
+app.use(session);
 
 app.use('/', index);
 app.use('/users', users);
