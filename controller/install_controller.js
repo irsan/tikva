@@ -32,6 +32,7 @@ function Installer() {
         installer.installed = JSON.parse(FS.readFileSync('./resources/installed.json', 'utf8')).installed;
         if(!installer.installed) {
             installer.key = RandomString.generate(7);
+            log.info("Installer Key:", installer.key);
         }
     });
 }
