@@ -1,5 +1,6 @@
 const Bunyan = require('bunyan');
 const Express = require('express');
+const Model = require('../models/model');
 const Request = require('request');
 const Vasync = require('vasync');
 
@@ -44,8 +45,19 @@ router.post('/fb_callback', (req, res, next) => {
             },
             (sender, callback) => {//parse sender detail
                 if(sender.status != 'Ok') {
-                    callback("Get Sender's info failed");
+                    return callback("Get Sender's info failed");
                 }
+
+                var user = new Model.User({
+                    name            : sender.data['first_name'] + " " + sender.data['last_name'],
+                    mobile          : String,
+                    administrator   : { type : Boolean, default : false },
+                    profileImage    : { type: String, default : "https://s3-ap-southeast-1.amazonaws.com/jie-tikva/user.svg" },
+                });
+
+                var text = "Hi " + sender.data['first_name'] + " " + sender.data['last_name'];
+
+
 
                 log.info("Name", sender.data);
                 callback();

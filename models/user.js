@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
+    fbid            : String,
     name            : String,
     mobile          : String,
     administrator   : { type : Boolean, default : false },
@@ -15,6 +16,7 @@ var User = new Schema({
     status          : { type : String, default : 'active' }
 });
 
+User.index({ fbid           : 1 });
 User.index({ name           : 1 });
 User.index({ mobile         : 1 });
 User.index({ administrator  : 1 });

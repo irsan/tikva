@@ -5,7 +5,7 @@
       "url" : "redis://redis"
     },
     "yahyaFB" : {
-      "url" : "http://fb-devt.moobicast.com"
+      "url" : "https://fb-devt.moobicast.com"
     },
     "session_secret" : "ASDrwf$H59k6Ptc["
   },
@@ -15,7 +15,7 @@
       "url" : "redis://redis"
     },
     "yahyaFB" : {
-      "url" : "http://fb-devt.moobicast.com"
+      "url" : "https://fb-devt.moobicast.com"
     },
     "session_secret" : "ASDrwf$H59k6Ptc["
   }
