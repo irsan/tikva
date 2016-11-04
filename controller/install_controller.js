@@ -3,6 +3,7 @@ const Bunyan = require('bunyan');
 const FS = require('fs');
 const Model = require('../models/model');
 const RandomString = require('randomstring');
+const Request = require('request');
 const UUID = require('node-uuid');
 const Vasync = require('vasync');
 
