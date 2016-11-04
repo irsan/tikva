@@ -20,3 +20,26 @@ MessageController.parse = (data, callback) => {
 };
 
 module.exports = MessageController;
+
+
+// {
+//     "object": "page",
+//     "entry": [{
+//     "id": "738948569577541",
+//     "time": 1478244282225,
+//     "messaging": [{
+//         "sender": {
+//             "id": "1264623113558926"
+//         },
+//         "recipient": {
+//             "id": "738948569577541"
+//         },
+//         "timestamp": 1478244282120,
+//         "message": {
+//             "mid": "mid.1478244282120:e70e83f951",
+//             "seq": 32,
+//             "text": "hi 6"
+//         }
+//     }]
+// }]
+// }
