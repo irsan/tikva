@@ -15,17 +15,46 @@ router.get('/', function (req, res, next) {
 /* GET home page. */
 router.post('/fb_callback', (req, res, next) => {
     if(!req.installed) {
-        // var key = req.query.key;
-        //
-        // var options = {
-        //     url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" +
-        // };
+        var key = req.query.key;
+        var data = req.body;
 
-        log.info("THE INFO", JSON.stringify(req.body));
+        Vasync.waterfall([
+            (callback) => {//get sender Id
+                if(data.object != "page" && data.entry.length == 0) {
+                    return callback("Parse body failed");
+                }
 
-        return res.send("Ok");
+                var senderId = data.entry[0].messaging[0].sender.id;
+
+                callback(null, senderId);
+            },
+            (senderId, callback) => {//get user info
+                var option = {
+                    url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" + senderId,
+                    method : 'GET'
+                };
+
+                Request(options, (error, response, body) => {
+                    if (!error && response.statusCode == 200) {
+                        log.info("GOT USER INFO", body);
+                        callback();
+                    } else {
+                        callback(error);
+                    }
+                });
+            }
+        ], (error, data) => {
+            if(error) {
+                log.info("PARSE ERROR", error);
+                res.status(500);
+                return res.send(error);
+            }
+
+            return res.send("Ok");
+        });
+    } else {
+        next();
     }
-    next();
 }, (req, res, next) => {
     if(req.query.key != PROPERTIES['yahya-fb-callback'].key) {
         res.status(404);
