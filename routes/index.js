@@ -13,10 +13,7 @@ router.get('/', function (req, res, next) {
 
 /* GET home page. */
 router.post('/fb_callback', (req, res, next) => {
-    if(req.query.key != PROPERTIES['yahya-fb-callback'].key) {
-        res.status(404);
-        res.send("Invalid key");
-    }
+    req.installed = false;
     next();
 }, (req, res) => {
     log.info("body", req.body);
