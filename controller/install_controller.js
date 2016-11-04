@@ -101,9 +101,18 @@ Installer.prototype.install = function(key, data, callback) {
             });
         },
         (user, callback) => {
-            callback(null, {
-                user : user,
-                message : "Hi " + user.name + ", you are now an Administrator."
+            FS.truncate("./resources/yahya-fb.json", 0, () => {
+
+                FS.writeFile("./resources/yahya-fb.json", JSON.stringify({ key : key }), (error) => {
+                    if(error) {
+                        log.error("Error writing file: " + error);
+                        return callback(error);
+                    }
+                    callback(null, {
+                        user : user,
+                        message : "Hi " + user.name + ", you are now an Administrator."
+                    });
+                });
             });
         }
     ], callback);
