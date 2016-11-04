@@ -111,6 +111,9 @@ Installer.prototype.install = function(key, data, callback) {
                         log.error("Error writing file: " + error);
                         return callback(error);
                     }
+
+                    YAHYA_FB.key = yahyaFBKey;
+
                     callback(null, {
                         user : user,
                         message : "Hi " + user.name + ", you are now an Administrator."

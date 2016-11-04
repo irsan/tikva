@@ -28,7 +28,7 @@ router.post('/fb_callback', (req, res, next) => {
             }
 
             var options = {
-                url : PROPERTIES.yahyaFB.url + "/" + key + "/send",
+                url : PROPERTIES.yahyaFB.url + "/" + YAHYA_FB.key + "/send",
                 method : 'POST',
                 headers : {
                     "Content-Type" : "application/json"
@@ -55,10 +55,10 @@ router.post('/fb_callback', (req, res, next) => {
         next();
     }
 }, (req, res, next) => {
-    if(req.query.key != PROPERTIES['yahya-fb-callback'].key) {
-        res.status(404);
-        res.send("Invalid key");
-    }
+    // if(req.query.key != PROPERTIES['yahya-fb-callback'].key) {
+    //     res.status(404);
+    //     res.send("Invalid key");
+    // }
     next();
 }, (req, res) => {
     log.info("body", req.body);
