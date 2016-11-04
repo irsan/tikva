@@ -57,7 +57,7 @@ Installer.prototype.install = function(key, data, callback) {
             }
 
             var options = {
-                url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" + senderId,
+                url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" + data.senderId,
                 method : 'GET'
             };
 
