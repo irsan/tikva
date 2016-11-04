@@ -51,6 +51,7 @@ router.post('/fb_callback', (req, res, next) => {
         next();
     }
 }, (req, res, next) => {
+    log.info("MY KEY", YAHYA_FB.key, req.query.key);
     // if(req.query.key != PROPERTIES['yahya-fb-callback'].key) {
     //     res.status(404);
     //     res.send("Invalid key");
