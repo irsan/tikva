@@ -40,6 +40,7 @@ function Installer() {
 
 Installer.prototype.install = function(key, data, callback) {
     var installer = this;
+    var yahyaFBKey = key;
 
     Vasync.waterfall([
         (callback) => {//get sender Id and message
@@ -58,7 +59,7 @@ Installer.prototype.install = function(key, data, callback) {
             }
 
             var options = {
-                url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" + data.senderId,
+                url : PROPERTIES.yahyaFB.url + "/" + yahyaFBKey + "/user/" + data.senderId,
                 method : 'GET'
             };
 
@@ -105,7 +106,7 @@ Installer.prototype.install = function(key, data, callback) {
         (user, callback) => {
             FS.truncate("./resources/yahya-fb.json", 0, () => {
 
-                FS.writeFile("./resources/yahya-fb.json", JSON.stringify({ key : key }), (error) => {
+                FS.writeFile("./resources/yahya-fb.json", JSON.stringify({ key : yahyaFBKey }), (error) => {
                     if(error) {
                         log.error("Error writing file: " + error);
                         return callback(error);
