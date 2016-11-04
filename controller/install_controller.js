@@ -65,7 +65,7 @@ Installer.prototype.install = function(key, data, callback) {
             Request(options, (error, response, body) => {
                 if (!error && response.statusCode == 200) {
                     var sender = JSON.parse(body);
-                    sender.id = senderId;
+                    sender.id = data.senderId;
                     callback(null, sender);
                 } else {
                     callback(error);
