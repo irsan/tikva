@@ -3,12 +3,18 @@
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
       "url" : "redis://redis"
+    },
+    "yahyaFB" : {
+      "url" : "http://fb-devt.moobicast.com"
     }
   },
   "river" : {
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
       "url" : "redis://redis"
+    },
+    "yahyaFB" : {
+      "url" : "http://fb-devt.moobicast.com"
     }
   }
 }
