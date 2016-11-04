@@ -1,0 +1,14 @@
+{
+  "local" : {
+    "mongodb" : "mongodb://mongo/tikva",
+    "redis" : {
+      "url" : "redis://redis"
+    }
+  },
+  "river" : {
+    "mongodb" : "mongodb://mongo/tikva",
+    "redis" : {
+      "url" : "redis://redis"
+    }
+  }
+}
