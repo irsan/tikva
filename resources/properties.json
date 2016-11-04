@@ -6,7 +6,8 @@
     },
     "yahyaFB" : {
       "url" : "http://fb-devt.moobicast.com"
-    }
+    },
+    "session_secret" : "ASDrwf$H59k6Ptc["
   },
   "river" : {
     "mongodb" : "mongodb://mongo/tikva",
@@ -15,6 +16,7 @@
     },
     "yahyaFB" : {
       "url" : "http://fb-devt.moobicast.com"
-    }
+    },
+    "session_secret" : "ASDrwf$H59k6Ptc["
   }
 }
