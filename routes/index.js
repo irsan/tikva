@@ -36,12 +36,15 @@ router.post('/fb_callback', (req, res, next) => {
 
                 Request(options, (error, response, body) => {
                     if (!error && response.statusCode == 200) {
-                        log.info("GOT USER INFO", body);
-                        callback();
+                        callback(null, body);
                     } else {
                         callback(error);
                     }
                 });
+            },
+            (sender, callback) => {//parse sender detail
+                log.info("Name", sender.data["first_name"]);
+                callback();
             }
         ], (error, data) => {
             if(error) {
