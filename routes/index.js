@@ -36,14 +36,14 @@ router.post('/fb_callback', (req, res, next) => {
 
                 Request(options, (error, response, body) => {
                     if (!error && response.statusCode == 200) {
-                        callback(null, body);
+                        callback(null, JSON.parse(body));
                     } else {
                         callback(error);
                     }
                 });
             },
             (sender, callback) => {//parse sender detail
-                log.info("Name", sender.data["first_name"]);
+                log.info("Name", sender);
                 callback();
             }
         ], (error, data) => {
