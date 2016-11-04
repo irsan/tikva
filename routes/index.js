@@ -27,6 +27,24 @@ router.post('/fb_callback', (req, res, next) => {
                 return res.send(error);
             }
 
+            var options = {
+                url : PROPERTIES.yahyaFB.url + "/" + YAHYA_FB.key + "/send",
+                method : 'POST',
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                json: {
+                    recipientId: data.user.fbid,
+                    message: data.message,
+                }
+            };
+
+            Request(options, (error, response, body) => {
+                if (!error && response.statusCode == 200) {
+                    log.info(body);
+                }
+            });
+
             return res.send("Ok");
         });
     } else {
