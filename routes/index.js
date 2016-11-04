@@ -43,7 +43,11 @@ router.post('/fb_callback', (req, res, next) => {
                 });
             },
             (sender, callback) => {//parse sender detail
-                log.info("Name", sender);
+                if(sender.status != 'Ok') {
+                    callback("Get Sender's info failed");
+                }
+
+                log.info("Name", sender.data);
                 callback();
             }
         ], (error, data) => {
