@@ -29,7 +29,7 @@ router.post('/fb_callback', (req, res, next) => {
                 callback(null, senderId);
             },
             (senderId, callback) => {//get user info
-                var option = {
+                var options = {
                     url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" + senderId,
                     method : 'GET'
                 };
