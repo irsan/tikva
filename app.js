@@ -15,6 +15,8 @@ const mode = process.env.MODE ? process.env.MODE : "local";
 PROPERTIES = JSON.parse(FS.readFileSync('./resources/properties.json', 'utf8'))[mode];
 log.info(mode, PROPERTIES);
 
+Mongoose.Promise = global.Promise;
+Mongoose.connect(PROPERTIES.mongodb); //connect to mongodb
 const redis = Redis.createClient(PROPERTIES.redis.url);
 
 var RedisStore = require('connect-redis')(Session);

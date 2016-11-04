@@ -4,9 +4,13 @@ const Model = require('../models/model');
 const Request = require('request');
 const Vasync = require('vasync');
 
+const InstallController = require('../controller/install_controller');
+
 const log = Bunyan.createLogger({ name : 'tikva:routes/index' });
 
 var router = Express.Router();
+
+var installController = new InstallController();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -15,59 +19,35 @@ router.get('/', function (req, res, next) {
 
 /* GET home page. */
 router.post('/fb_callback', (req, res, next) => {
-    if(!req.installed) {
-        var key = req.query.key;
-        var data = req.body;
-
-        Vasync.waterfall([
-            (callback) => {//get sender Id
-                if(data.object != "page" && data.entry.length == 0) {
-                    return callback("Parse body failed");
-                }
-
-                var senderId = data.entry[0].messaging[0].sender.id;
-
-                callback(null, senderId);
-            },
-            (senderId, callback) => {//get user info
-                var options = {
-                    url : PROPERTIES.yahyaFB.url + "/" + key + "/user/" + senderId,
-                    method : 'GET'
-                };
-
-                Request(options, (error, response, body) => {
-                    if (!error && response.statusCode == 200) {
-                        callback(null, JSON.parse(body));
-                    } else {
-                        callback(error);
-                    }
-                });
-            },
-            (sender, callback) => {//parse sender detail
-                if(sender.status != 'Ok') {
-                    return callback("Get Sender's info failed");
-                }
-
-                var user = new Model.User({
-                    name            : sender.data['first_name'] + " " + sender.data['last_name'],
-                    mobile          : String,
-                    administrator   : { type : Boolean, default : false },
-                    profileImage    : { type: String, default : "https://s3-ap-southeast-1.amazonaws.com/jie-tikva/user.svg" },
-                });
-
-                var text = "Hi " + sender.data['first_name'] + " " + sender.data['last_name'];
-
-
-
-                log.info("Name", sender.data);
-                callback();
-            }
-        ], (error, data) => {
+    if(!installController.installed) {
+        installController.install(req.query.key, req.body, (error, data) => {
             if(error) {
-                log.info("PARSE ERROR", error);
+                log.info("ERRORRRR", error);
                 res.status(500);
                 return res.send(error);
             }
+
+            var options = {
+                url : PROPERTIES.yahyaFB.url + "/" + key + "/send",
+                method : 'POST',
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                json: {
+                    recipientId: data.user.fbid,
+                    message: data.message,
+                }
+            };
+
+            Request(options, (error, response, body) => {
+                if (!error && response.statusCode == 200) {
+                    var sender = JSON.parse(body);
+                    sender.id = senderId;
+                    callback(null, sender);
+                } else {
+                    callback(error);
+                }
+            });
 
             return res.send("Ok");
         });
