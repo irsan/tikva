@@ -1,5 +1,5 @@
 const Bunyan = require('bunyan');
-const Model = require('../models/model');
+const Model = require('./model');
 const Vasync = require('vasync');
 
 const log = Bunyan.createLogger({ name : 'tikva:controller.MessageController' });

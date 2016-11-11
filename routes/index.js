@@ -1,6 +1,6 @@
 const Bunyan = require('bunyan');
 const Express = require('express');
-const Model = require('../models/model');
+const Model = require('./model');
 const Request = require('request');
 const Vasync = require('vasync');
 
