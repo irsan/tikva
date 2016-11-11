@@ -42,7 +42,6 @@ Vasync.waterfall([
                     console.log("PROMPT RESULT:", answer);
 
                     var properties = {
-                        adminKey : key,
                         mongodb : answer.mongo,
                         redis : {
                             url : answer.redis
