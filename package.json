@@ -10,19 +10,27 @@
     "bunyan": "^1.8.4",
     "connect-redis": "^3.1.0",
     "cookie-parser": "~1.4.3",
+    "crypto": "0.0.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
     "express-session": "^1.14.2",
     "fs": "0.0.1-security",
     "jade": "~1.11.0",
     "lodash": "^4.16.6",
-    "mongoose": "^4.6.5",
+    "mongoose": "^4.6.7",
     "morgan": "~1.7.0",
     "node-uuid": "^1.4.7",
+    "notp": "^2.0.3",
+    "prompt": "^1.0.0",
     "randomstring": "^1.1.5",
     "redis": "^2.6.3",
     "request": "^2.78.0",
     "serve-favicon": "~2.3.0",
+    "thirty-two": "^1.0.2",
     "vasync": "^1.6.4"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-nodemon": "^0.4.2"
   }
 }
