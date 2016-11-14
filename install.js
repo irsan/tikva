@@ -41,7 +41,15 @@ Vasync.waterfall([
                 (answer, callback) => {//
                     console.log("PROMPT RESULT:", answer);
 
+                    var key = RandomString.generate(32);
+                    var encoded = Base32.encode(32);
+                    var encodedForGoogle = encoded.toString().replace(/=/g,'');
+                    var uri = 'otpauth://totp/tikva?secret=' + encodedForGoogle;
+
+                    console.log("Please use the URL below for Google Authenticator");
+
                     var properties = {
+                        adminKey : key,
                         mongodb : answer.mongo,
                         redis : {
                             url : answer.redis
