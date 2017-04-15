@@ -21,10 +21,8 @@ const redis = Redis.createClient(PROPERTIES.redis.url);
 
 var RedisStore = require('connect-redis')(Session);
 
-YAHYA_FB = JSON.parse(FS.readFileSync('./resources/yahya-fb.json', 'utf8'));
-
 var index = require('./routes/index');
-var users = require('./routes/admin');
+// var users = require('./routes/admin');
 
 var app = Express();
 
