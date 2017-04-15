@@ -11,7 +11,7 @@ var router = Express.Router();
 router.get('/:key', (req, res, next) => {
     log.info(req.params);
     Vasync.waterfall([
-        (callback) => {
+        (callback) => {//check if the key is valid
             if(!req.params.key || req.params.key != PROPERTIES.slackkey) {
                 return callback("Invalid key");
             }
@@ -27,7 +27,13 @@ router.get('/:key', (req, res, next) => {
         next();
     })
 }, (req, res) => {
-    res.render('index', {title: 'Tikva'});
+    if(req.body.type == "url_verification") {
+        res.send({
+            challenge : req.body.challenge
+        });
+    } else {
+        res.render('index', {title: 'Tikva'});
+    }
 });
 
 module.exports = router;
