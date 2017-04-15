@@ -27,6 +27,7 @@ router.get('/:key', (req, res, next) => {
         next();
     })
 }, (req, res) => {
+    log.info("THE BODY: ", req.body);
     if(req.body.type == "url_verification") {
         res.send({
             challenge : req.body.challenge
