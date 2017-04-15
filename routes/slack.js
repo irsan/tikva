@@ -28,9 +28,8 @@ router.post('/:key', (req, res, next) => {
 }, (req, res) => {
     log.info("THE BODY: ", req.body);
     if(req.body.type == "url_verification") {
-        res.send({
-            challenge : req.body.challenge
-        });
+        res.header("Content-Type", "application/x-www-form-urlencoded");
+        res.send(req.body.challenge);
     } else {
         res.render('index', {title: 'Tikva'});
     }
