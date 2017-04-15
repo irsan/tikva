@@ -10,7 +10,22 @@ var router = Express.Router();
 /* GET home page. */
 router.get('/:key', (req, res, next) => {
     log.info(req.params);
-    next();
+    Vasync.waterfall([
+        (callback) => {
+            if(!req.params.key) {
+                return callback("Invalid key");
+            }
+
+            callback();
+        }
+    ], (error) => {
+        if(error) {
+            res.status(500);
+            return res.send(error);
+        }
+
+        next();
+    })
 }, (req, res) => {
     res.render('index', {title: 'Tikva'});
 });
