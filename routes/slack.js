@@ -12,7 +12,7 @@ router.get('/:key', (req, res, next) => {
     log.info(req.params);
     Vasync.waterfall([
         (callback) => {
-            if(!req.params.key) {
+            if(!req.params.key || req.params.key != PROPERTIES.slackKey) {
                 return callback("Invalid key");
             }
 
