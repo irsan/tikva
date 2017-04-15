@@ -26,6 +26,7 @@
     "redis": "^2.6.3",
     "request": "^2.78.0",
     "serve-favicon": "~2.3.0",
+    "slack": "^8.2.7",
     "thirty-two": "^1.0.2",
     "vasync": "^1.6.4"
   },

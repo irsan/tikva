@@ -2,13 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
-    fbid            : String,
+    slackid         : String,
+    slackname       : String,
     name            : String,
     mobile          : String,
     administrator   : { type : Boolean, default : false },
     profileImage    : { type: String, default : "https://s3-ap-southeast-1.amazonaws.com/jie-tikva/user.svg" },
     carecell        : { type : Schema.Types.ObjectId, ref : 'Carecell' },
     role            : { type : String, default : 'sp' },
+    color           : String,
     createdAt       : { type : Date, default : Date.now },
     updatedAt       : { type : Date, default : Date.now },
     creator         : { type : String, default : 'System' },
@@ -16,9 +18,8 @@ var User = new Schema({
     status          : { type : String, default : 'active' }
 });
 
-User.index({ fbid           : 1 });
+User.index({ slackid        : 1 });
 User.index({ name           : 1 });
-User.index({ mobile         : 1 });
 User.index({ administrator  : 1 });
 User.index({ carecell       : 1 });
 User.index({ role           : 1 });
