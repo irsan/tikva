@@ -97,9 +97,9 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-./idea
-
 offline/
 public/bower_components/
 resources/installed.json
 resources/properties.offline.json
+.idea/
+public/bower.json
