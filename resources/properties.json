@@ -4,19 +4,15 @@
     "redis" : {
       "url" : "redis://redis"
     },
-    "yahyaFB" : {
-      "url" : "https://fb-devt.moobicast.com"
-    },
+    "slackkey" : "beebob-broth-away",
     "session_secret" : "ASDrwf$H59k6Ptc["
   },
-  "river" : {
+  "tikva" : {
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
       "url" : "redis://redis"
     },
-    "yahyaFB" : {
-      "url" : "https://fb-devt.moobicast.com"
-    },
+    "slackkey" : "locke-broth-away",
     "session_secret" : "ASDrwf$H59k6Ptc["
   }
 }
