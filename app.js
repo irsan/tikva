@@ -19,18 +19,18 @@ Mongoose.Promise = global.Promise;
 Mongoose.connect(PROPERTIES.mongodb); //connect to mongodb
 const redis = Redis.createClient(PROPERTIES.redis.url);
 
-var RedisStore = require('connect-redis')(Session);
+let RedisStore = require('connect-redis')(Session);
 
-var index = require('./routes/index');
-// var users = require('./routes/admin');
+let index = require('./routes/index');
+let slack = require('./routes/slack');
 
-var app = Express();
+let app = Express();
 
-var redisStore = new RedisStore({
+let redisStore = new RedisStore({
     client: redis
 });
 
-var session = Session({
+let session = Session({
     secret: PROPERTIES.session_secret,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
     store: redisStore,
@@ -51,11 +51,12 @@ app.use(CookieParser());
 app.use(Express.static(Path.join(__dirname, 'public')));
 app.use(session);
 
+app.use('/slack', slack);
 app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
+    let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
