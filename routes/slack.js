@@ -7,8 +7,7 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/slack' });
 
 var router = Express.Router();
 
-/* GET home page. */
-router.get('/:key', (req, res, next) => {
+router.post('/:key', (req, res, next) => {
     log.info(req.params);
     Vasync.waterfall([
         (callback) => {//check if the key is valid
