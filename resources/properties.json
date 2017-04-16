@@ -4,7 +4,10 @@
     "redis" : {
       "url" : "redis://redis"
     },
-    "slackkey" : "beebob-broth-away",
+    "slack" : {
+      "key" : "",
+      "botToken" : "xoxb-169670227636-GOetGOX8N7O7FIb1KCTBqiBV"
+    },
     "session_secret" : "ASDrwf$H59k6Ptc["
   },
   "tikva" : {
@@ -12,7 +15,10 @@
     "redis" : {
       "url" : "redis://redis"
     },
-    "slackkey" : "locke-broth-away",
+    "slack" : {
+      "key" : "locke-broth-away",
+      "botToken" : "xoxb-169670227636-GOetGOX8N7O7FIb1KCTBqiBV"
+    },
     "session_secret" : "ASDrwf$H59k6Ptc["
   }
 }
