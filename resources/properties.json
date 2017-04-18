@@ -1,24 +1,36 @@
 {
   "local" : {
+    "baseURL" : "http://localhost:3001",
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
+      "queues" : {
+        "adminMO" : "tikva_admin_mo_queue"
+      },
       "url" : "redis://redis"
     },
     "slack" : {
-      "key" : "",
-      "botToken" : "xoxb-169670227636-GOetGOX8N7O7FIb1KCTBqiBV"
+      "superadmin" : "U4YTG7332",
+      "channels" : {
+        "admin" : "D4ZKQ6PU4"
+      }
     },
     "session_secret" : "ASDrwf$H59k6Ptc["
   },
   "tikva" : {
+    "baseURL" : "http://sweethope.life",
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
+      "queues" : {
+        "adminMO" : "tikva_admin_mo_queue"
+      },
       "url" : "redis://redis"
     },
     "slack" : {
-      "key" : "locke-broth-away",
-      "botToken" : "xoxb-169670227636-GOetGOX8N7O7FIb1KCTBqiBV"
+      "superadmin" : "U4YTG7332",
+      "channels" : {
+        "admin" : "D4ZKQ6PU4"
+      }
     },
-    "session_secret" : "ASDrwf$H59k6Ptc["
+    "session_secret" : "ASDrwFA$H59k6Ptc["
   }
 }

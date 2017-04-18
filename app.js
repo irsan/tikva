@@ -22,7 +22,6 @@ const redis = Redis.createClient(PROPERTIES.redis.url);
 let RedisStore = require('connect-redis')(Session);
 
 let index = require('./routes/index');
-let slack = require('./routes/slack');
 
 let app = Express();
 
@@ -51,7 +50,6 @@ app.use(CookieParser());
 app.use(Express.static(Path.join(__dirname, 'public')));
 app.use(session);
 
-app.use('/slack', slack);
 app.use('/', index);
 
 // catch 404 and forward to error handler

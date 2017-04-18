@@ -1,9 +1,96 @@
-var express = require('express');
-var router = express.Router();
+const Bunyan = require('bunyan');
+const Slack = require('slack');
+const Vasync = require('vasync');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const log = Bunyan.createLogger({ name : 'tikva:routes/admin' });
 
-module.exports = router;
+const Model = require('../model/model');
+
+class Admin {
+
+    constructor() {}
+
+    static isAdminChannel(channelId) {
+        return channelId == PROPERTIES.slack.channels.admin;
+    }
+
+    processIncoming(message) {
+        Vasync.waterfall([
+            (callback) => {
+                this.isAdminUser(message.user, callback);
+            },
+            (isAdmin, callback) => {
+                if(!isAdmin) {
+                    callback("Sorry, you are not an admin");
+                }
+
+                callback();
+            }
+        ], (error) => {
+            if(error) {
+                //TODO: reply with error
+            }
+
+            RSMQ.sendMessage({
+                qname : PROPERTIES.redis.queues.adminMO,
+                message : JSON.stringify(message)
+            }, (error, resp) => {
+                log.info("QUEUE ADMIN MO", error, resp);
+            });
+        });
+    }
+
+    isAdminUser(slackid, callback) {
+        Vasync.waterfall([
+            (callback) => {
+                Model.User.findOne({
+                    slackid, status : 'active'
+                }, callback);
+            },
+            (user, callback) => {
+                if(user) {
+                    if(user.administrator) {
+                        return callback(null, true);
+                    }
+
+                    return callback(null, false)
+                }
+
+                if(slackid != PROPERTIES.slack.superadmin) {
+                    return callabck(null, false);
+                }
+
+                Slack.users.info({
+                    token : TOKEN,
+                    user : slackid
+                }, (error, data) => {
+                    if(error) {
+                        return callback(error);
+                    }
+
+                    if(data.ok) {
+                        new Model.User({
+                            slackid         : data.user.id,
+                            slackname       : data.user.name,
+                            name            : data.user.real_name,
+                            administrator   : true,
+                            profileImage    : data.user.profile.image_512,
+                            role            : 'leader',
+                            color           : data.user.color
+                        }).save((error, user) => {
+                            if(error) {
+                                return callback(error);
+                            }
+
+                            callback(null, true);
+                        })
+                    } else {
+                        callback("Fail in getting user info");
+                    }
+                })
+            }
+        ], callback);
+    }
+}
+
+module.exports = Admin;
