@@ -30,7 +30,9 @@
     "rsmq-worker": "^0.5.2",
     "serve-favicon": "~2.3.0",
     "slack": "^8.2.7",
+    "string-template": "^1.0.0",
     "thirty-two": "^1.0.2",
+    "uuid": "^3.0.1",
     "vasync": "^1.6.4"
   },
   "devDependencies": {

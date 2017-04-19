@@ -14,13 +14,6 @@ var Carecell = new Schema({
     status          : { type : String, default : 'active' }
 });
 
-Carecell.index({ name           : 1 });
-Carecell.index({ key            : 1 });
-Carecell.index({ createdAt      : 1 });
-Carecell.index({ updatedAt      : 1 });
-Carecell.index({ creator        : 1 });
-Carecell.index({ updater        : 1 });
-Carecell.index({ status         : 1 });
 
 Carecell.index({
     name   : 1,

@@ -28,11 +28,11 @@ const AdminMOController = require('./controller/admin_mo_controller');
 const tikva = Slack.rtm.client();
 
 // logs: ws, started, close, listen, etc... in addition to the RTM event handler methods
-log.info(Object.keys(tikva));
+// log.info(Object.keys(tikva));
 
 // do something with the rtm.start payload
 tikva.started(function(payload) {
-    log.info('payload from rtm.start', payload)
+    // log.info('payload from rtm.start', payload)
     RSMQ.createQueue({
         qname : PROPERTIES.redis.queues.adminMO
     }, (error, resp) => {

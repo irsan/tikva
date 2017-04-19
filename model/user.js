@@ -6,6 +6,7 @@ var User = new Schema({
     slackname       : String,
     name            : String,
     mobile          : String,
+    email           : String,
     administrator   : { type : Boolean, default : false },
     profileImage    : { type: String, default : "https://s3-ap-southeast-1.amazonaws.com/jie-tikva/user.svg" },
     carecell        : { type : Schema.Types.ObjectId, ref : 'Carecell' },
@@ -18,16 +19,15 @@ var User = new Schema({
     status          : { type : String, default : 'active' }
 });
 
-User.index({ slackid        : 1 });
-User.index({ name           : 1 });
-User.index({ administrator  : 1 });
-User.index({ carecell       : 1 });
-User.index({ role           : 1 });
-User.index({ createdAt      : 1 });
-User.index({ updatedAt      : 1 });
-User.index({ creator        : 1 });
-User.index({ updater        : 1 });
-User.index({ status         : 1 });
+User.index({
+    email : 1,
+    status : 1
+});
+
+User.index({
+    slackid : 1,
+    status : 1
+});
 
 User.index({
     carecell : 1,

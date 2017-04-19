@@ -13,7 +13,7 @@ const Model = require('../model/model');
 const WitActions = require('../util/wit_actions');
 
 const witSession = {
-    getCreate(user, callback) {
+    getCreate(user, channel, callback) {
         let id = Crypto.createHash('sha256').update(user.id).digest('hex');
         Vasync.waterfall([
             (callback) => { // get from redis
@@ -27,7 +27,7 @@ const witSession = {
                 let now = new Date();
                 let session = {
                     id, witSessionId : "witSession-" + id + RandomString.generate(16) + now.getTime(),
-                    context: { user, data : {} }
+                    context: { user : user.toJSON(), channel, data : {} }
                 };
 
                 REDIS.set('witSession-' + id, JSON.stringify(session));
@@ -67,9 +67,10 @@ class AdminMOController {
         this.worker.start();
     }
 
-    onMessage(message, next) {
+    onMessage(message, next, id) {
         let msg = JSON.parse(message);
-        log.info("RECEIVED MO", msg);
+        log.info("RECEIVED MO", id, msg);
+        next();
 
         Vasync.waterfall([
             (callback) => {//get user
@@ -82,7 +83,7 @@ class AdminMOController {
                     return callback("Invalid administrator");
                 }
 
-                witSession.getCreate(user, callback);
+                witSession.getCreate(user, msg.channel, callback);
             },
             (session, callback) => {
                 wit.runActions(
@@ -90,12 +91,22 @@ class AdminMOController {
                     msg.text,
                     session.context
                 ).then((context) => {
-                    log.info("POST RUNNING ACTION", context);
-                    callback();
+                    callback(null, { session, context });
                 });
+            },
+            ({ session, context }, callback) => {
+                if(context.done) {
+                    witSession.deleteSession(session, callback);
+                } else {
+                    callback(null, "Ok");
+                }
             }
-        ], (error) => {
-            next();
+        ], (error, response) => {
+            if(error) {
+                return log.error("PROCCESSING MO ERROR", error);
+            }
+
+            log.info(response);
         });
     }
 }

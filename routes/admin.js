@@ -21,7 +21,7 @@ class Admin {
             },
             (isAdmin, callback) => {
                 if(!isAdmin) {
-                    callback("Sorry, you are not an admin");
+                    return callback("Sorry, you are not an admin");
                 }
 
                 callback();
@@ -31,12 +31,16 @@ class Admin {
                 //TODO: reply with error
             }
 
-            RSMQ.sendMessage({
-                qname : PROPERTIES.redis.queues.adminMO,
-                message : JSON.stringify(message)
-            }, (error, resp) => {
-                log.info("QUEUE ADMIN MO", error, resp);
-            });
+            if(message.subtype != "me_message") {
+                RSMQ.sendMessage({
+                    qname : PROPERTIES.redis.queues.adminMO,
+                    message : JSON.stringify(message)
+                }, (error, resp) => {
+                    log.info("QUEUE ADMIN MO", error, resp);
+                });
+            } else {
+                log.info("SELF MESSAGEEEEEEEEEEEEEE NO HANDLING ");
+            }
         });
     }
 
@@ -57,7 +61,7 @@ class Admin {
                 }
 
                 if(slackid != PROPERTIES.slack.superadmin) {
-                    return callabck(null, false);
+                    return callback(null, false);
                 }
 
                 Slack.users.info({
@@ -73,6 +77,7 @@ class Admin {
                             slackid         : data.user.id,
                             slackname       : data.user.name,
                             name            : data.user.real_name,
+                            email           : data.user.profile.email,
                             administrator   : true,
                             profileImage    : data.user.profile.image_512,
                             role            : 'leader',
