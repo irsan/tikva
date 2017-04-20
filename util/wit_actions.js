@@ -26,7 +26,7 @@ class WitActions {
         const {sessionId, context, entities} = request;
         const {text, quickreplies} = response;
 
-        log.info("--- WIT ACTIONS : CALLING SEND");
+        log.info("--- WIT ACTIONS : CALLING SEND", request);
         // log.info("SESSION ID: ", sessionId);
         // log.info("INCOMING TEXT: ", request.text);
 
@@ -54,6 +54,8 @@ class WitActions {
             context.addUser = true;
         } else if(intent == "add_carecell") {
             context.addCarecell = true;
+        } else if(intent == "view_carecell") {
+            context.viewCarecell = true;
         } else {
             context.oops = true;
             context.done = true;
@@ -76,38 +78,64 @@ class WitActions {
     }
 
     addCarecellSetName({context, entities}) {
-        log.info("--- WIT ACTIONS : ADD CARECELL SET NAME: ", entities);
-        let name = getFirstEntityValue(entities, "carecell_name");
+        return new Promise((resolve, reject) => {
+            delete context.addCarecellDone;
+            delete context.addCarecellFailed;
+            delete context.addCarecellFailedExist;
 
-        Vasync.waterfall([
-            (callback) => {
-                Model.Carecell.findOne({
-                    name, status : active
-                }, callback);
-            },
-            (carecell, callback) => {
-                if(carecell) {
-                    context.addCarecellFailedExist = "The carecell name '" + name + "' is already in used.  Please try again.";
-                    return callback(null, carecell);
+            log.info("--- WIT ACTIONS : ADD CARECELL SET NAME: ", entities);
+            let name = getFirstEntityValue(entities, "carecell_name");
+
+            Vasync.waterfall([
+                (callback) => {
+                    Model.Carecell.findOne({
+                        name, status: "active"
+                    }, callback);
+                },
+                (carecell, callback) => {
+                    if (carecell) {
+                        context.addCarecellFailedExist = "The carecell name '" + name + "' is already in used.  Please try again.";
+                        return callback(null, carecell);
+                    }
+
+                    new Model.Carecell({
+                        name, key: UUID()
+                    }).save((error, carecell) => {
+                        if (error) {
+                            return callback(error);
+                        }
+                        context.addCarecellDone = "Carecell '" + name + "' is added successfully.";
+                        context.done = true;
+                        callback(null, carecell);
+                    });
+                }
+            ], (error, carecell) => {
+                if (error) {
+                    context.addCarecellFailed = "Oops.  Something wrong. " + error;
+                    context.done = true;
                 }
 
-                new Model.Carecell({
-                    name, key : UUID()
-                }).save((error, carecell) => {
-                    if(error) {
-                        return callback(error);
-                    }
-                    context.addCarecellDone = "Carecell '" + name + "' is added successfully.";
-                    context.done = true;
-                    callback(null, carecell);
-                });
-            }
-        ], (error, carecell) => {
-            if(error) {
-                context.addCarecellFailed = "Oops.  Something wrong. " + error;
-            }
-            return context;
-        })
+                log.info("THE CACELL CONTEXT", context);
+
+                return resolve(context);
+            });
+        });
+    }
+
+    viewCarecell({context, entities}) {
+        return new Promise((resolve, reject) => {
+            // Vasync.waterfall([
+            //     (callback) => {
+            //         Model.Carecell.find({
+            //
+            //         });
+            //     }
+            // ], (error) => {
+            //
+            // });
+            context.done = true;
+            return resolve(context);
+        });
     }
 }
 
