@@ -1,8 +1,6 @@
 const StringTemplate = require('string-template');
 
 
-let text = StringTemplate("Hi {user.name}", {
-    "user.name" : "Irsan Jie"
-});
+let date = new Date('1492793694.702125');
 
-console.log(text);
+console.log(date);

@@ -4,33 +4,39 @@
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
       "queues" : {
-        "adminMO" : "tikva_admin_mo_queue"
+        "adminMO" : "tikva_admin_mo_queue",
+        "adminMT" : "tikva_admin_mt_queue",
+        "tikvaMO" : "tikva_tikva_mo_queue",
+        "tikvaMT" : "tikva_tikva_mt_queue"
       },
       "url" : "redis://redis"
     },
     "slack" : {
-      "superadmin" : "U4YTG7332",
+      "administrators" : [ "U4YTG7332" ],
       "channels" : {
-        "admin" : "D4ZKQ6PU4"
+        "admin" : "D4ZKQ6PU4",
+        "tikva" : "D51UDHYKT"
       }
-    },
-    "session_secret" : "ASDrwf$H59k6Ptc["
+    }
   },
   "tikva" : {
     "baseURL" : "http://sweethope.life",
     "mongodb" : "mongodb://mongo/tikva",
     "redis" : {
       "queues" : {
-        "adminMO" : "tikva_admin_mo_queue"
+        "adminMO" : "tikva_admin_mo_queue",
+        "adminMT" : "tikva_admin_mt_queue",
+        "tikvaMO" : "tikva_tikva_mo_queue",
+        "tikvaMT" : "tikva_tikva_mt_queue"
       },
       "url" : "redis://redis"
     },
     "slack" : {
-      "superadmin" : "U4YTG7332",
+      "administrators" : [ "U4YTG7332" ],
       "channels" : {
-        "admin" : "D4ZKQ6PU4"
+        "admin" : "D4ZKQ6PU4",
+        "tikva" : "D51UDHYKT"
       }
-    },
-    "session_secret" : "ASDrwFA$H59k6Ptc["
+    }
   }
 }

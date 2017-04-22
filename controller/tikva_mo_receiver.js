@@ -1,20 +1,20 @@
 const Bunyan = require('bunyan');
 const Crypto = require('crypto');
 const RandomString = require('randomstring');
-const RSMQWorker = require('rsmq-worker');
-const Slack = require('slack');
 const Vasync = require('vasync');
 const Wit = require('node-wit').Wit;
 
-const log = Bunyan.createLogger({ name : 'tikva:controller/AdminMOController' });
+const log = Bunyan.createLogger({ name : 'tikva:controller/TikvaMOReceiver' });
 
 const Model = require('../model/model');
 
-const WitActions = require('../util/wit_actions');
+const AdminActions = require('../wit/admin_actions');
+
+const MOReceiver = require('./mo_receiver');
 
 const witSession = {
-    getCreate(user, channel, callback) {
-        let id = Crypto.createHash('sha256').update(user.id).digest('hex');
+    getCreate(user, callback) {
+        let id = Crypto.createHash('sha256').update(user._id).digest('hex');
         Vasync.waterfall([
             (callback) => { // get from redis
                 REDIS.get('witSession-' + id, callback);
@@ -27,7 +27,7 @@ const witSession = {
                 let now = new Date();
                 let session = {
                     id, witSessionId : "witSession-" + id + RandomString.generate(16) + now.getTime(),
-                    context: { user : user.toJSON(), channel, data : {} }
+                    context: { user : user, data : {} }
                 };
 
                 REDIS.set('witSession-' + id, JSON.stringify(session));
@@ -36,7 +36,7 @@ const witSession = {
         ], callback);
     },
     get(user, callback) {
-        let id = Crypto.createHash('sha256').update(user.id).digest('hex');
+        let id = Crypto.createHash('sha256').update(user._id).digest('hex');
         REDIS.get('witSession-' + id, callback);
     },
     update(witSession, callback) {
@@ -46,49 +46,39 @@ const witSession = {
         REDIS.del('witSession-' + witSession.id, callback);
     },
     delete(user, callback) {
-        let id = Crypto.createHash('sha256').update(user.id).digest('hex');
+        let id = Crypto.createHash('sha256').update(user._id).digest('hex');
         REDIS.del('witSession-' + id, callback);
     }
 };
 
-let witActions = new WitActions();
-let wit = new Wit({ accessToken: process.env.TIKVA_WITAI_TOKEN, actions : witActions });
+class TikvaMOReceiver extends MOReceiver {
 
-class AdminMOController {
+    constructor(params) {
+        super(params);
+        this.witaiToken = params.witaiToken;
 
-    constructor() {
+        let moReceiver = this;
+
+        let actions = new AdminActions();
+        //need to override the sendMessage function
+        actions.sendMessage = (message) => {
+            moReceiver.queueMT(message);
+        };
+
+        this.wit = new Wit({ accessToken: this.witaiToken, actions });
     }
 
-    start() {
-        this.worker = new RSMQWorker(PROPERTIES.redis.queues.adminMO, {
-            rsmq : RSMQ
-        });
-        this.worker.on("message", this.onMessage);
-        this.worker.start();
-    }
-
-    onMessage(message, next, id) {
-        let msg = JSON.parse(message);
-        log.info("RECEIVED MO", id, msg);
-        next();
+    receiveMO({ user, message, timestamp }) {
+        let adminMOReceiver = this;
 
         Vasync.waterfall([
-            (callback) => {//get user
-                Model.User.findOne({
-                    slackid : msg.user,
-                }, callback);
-            },
-            (user, callback) => {
-                if(!user) {
-                    return callback("Invalid administrator");
-                }
-
-                witSession.getCreate(user, msg.channel, callback);
+            (callback) => {
+                witSession.getCreate(user, callback);
             },
             (session, callback) => {
-                wit.runActions(
+                adminMOReceiver.wit.runActions(
                     session.witSessionId,
-                    msg.text,
+                    message.text,
                     session.context
                 ).then((context) => {
                     callback(null, { session, context });
@@ -111,4 +101,4 @@ class AdminMOController {
     }
 }
 
-module.exports = AdminMOController;
+module.exports = TikvaMOReceiver;

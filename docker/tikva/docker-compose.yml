@@ -4,10 +4,8 @@ services:
   tikva-node:
     build: ../tikva-node
     image: tikva-node
-    command: sh -c 'grunt | bunyan -L'
+    command: /root/start.sh
     hostname: tikva-node
-    volumes:
-      - ../..:/opt/tikva
     working_dir: /opt/tikva
     ports:
       - "3000:3000"
@@ -28,11 +26,12 @@ services:
     image: tikva-vault
     cap_add:
       - IPC_LOCK
-    command: vault server -config=/vault/config/local.json
+#    command: vault server -config=/vault/config/local.json
+    command: tail -f /dev/null
     environment:
       - VAULT_ADDR=http://127.0.0.1:8200
-    volumes:
-      - ../../local/vault/file:/vault/file
+#    volumes:
+#      - ../../local/vault/file:/vault/file
     networks:
       - back-tier
 
