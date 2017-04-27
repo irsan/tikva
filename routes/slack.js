@@ -3,26 +3,22 @@ const Express = require('express');
 const Request = require('request');
 const Vasync = require('vasync');
 
-const log = Bunyan.createLogger({ name : 'tikva:routes/index' });
+const log = Bunyan.createLogger({ name : 'tikva:routes/slack' });
 
 const Model = require('../model/model');
 
 var router = Express.Router();
 
 /* GET home page. */
-router.post('/button', function (req, res, next) {
-    new Model.AuthroizedLink({
-        url : "test1", redirect : "test1"
-    }).save();
-    res.render('index', {title: 'Tikva'});
+router.post('/button', (req, res) => {
+    log.info("BUTTON PRESSED", req.body);
+    res.send("Ok");
 });
 
 /* GET home page. */
-router.post('/menu', function (req, res, next) {
-    new Model.AuthroizedLink({
-        url : "test1", redirect : "test1"
-    }).save();
-    res.render('index', {title: 'Tikva'});
+router.post('/menu', (req, res) => {
+    log.info("MENU SELECTED", req.body);
+    res.send("Ok");
 });
 
 module.exports = router;
