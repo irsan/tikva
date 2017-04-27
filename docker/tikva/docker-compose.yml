@@ -1,14 +1,12 @@
 version: "3.1"
 
 services:
-  tikva-node:
+  web:
     build: ../tikva-node
     image: tikva-node
     command: /root/start.sh
     hostname: tikva-node
     working_dir: /opt/tikva
-    ports:
-      - "3000:3000"
     links:
       - redis
       - mongo
