@@ -22,7 +22,7 @@ const TikvaBot = require('./slack/tikva_bot');
 var options = {
     apiVersion: 'v1', // default
     endpoint: 'http://vault:8200', // default
-    token: 'd72d02ea-106f-ad99-c358-5374ef493450' // optional client token; can be fetched after valid initialization of the server
+    token: process.env.TOKEN // optional client token; can be fetched after valid initialization of the server
 };
 
 // get new instance of the client
