@@ -23,6 +23,7 @@ services:
       - /data/ssh:/root/.ssh
     environment:
       - GRUNTFILE=gruntfile.js
+      - TOKEN=4c3f2b63-b1be-4a57-6d7a-fa40b5abe8ef
     links:
       - redis
       - mongo
