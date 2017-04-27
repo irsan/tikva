@@ -16,3 +16,5 @@ RUN ["npm", "install", "bunyan", "-g"]
 
 COPY start.sh /root/start.sh
 RUN chmod a+x /root/start.sh
+
+CMD /root/start.sh

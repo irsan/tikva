@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         nodemon: {
             all: {
-                script: './tikva.js',
+                script: './bin/www',
                 options: {
                     watchedExtensions: ['js'],
                     env : {
