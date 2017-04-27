@@ -1,6 +1,8 @@
 FROM nginx
 
-RUN apt-get update && apt-get upgrade
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get upgrade -y
 
 COPY tikva.sweethope.com.conf /etc/nginx/conf.d/tikva.sweethope.com.conf
 
