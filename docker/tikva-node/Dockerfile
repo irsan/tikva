@@ -13,6 +13,7 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 RUN ["npm", "install", "grunt-cli", "-g"]
 RUN ["npm", "install", "bunyan", "-g"]
+RUN ["npm", "install", "bower", "-g"]
 
 #start script
 COPY start.sh /root/start.sh
