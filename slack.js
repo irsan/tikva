@@ -25,7 +25,7 @@ var options = {
     token: process.env.TOKEN
 };
 
-// get new instance of the client
+// get new instance of the clien
 var vault = Vault(options);
 
 Vasync.waterfall([
