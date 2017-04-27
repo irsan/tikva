@@ -7,6 +7,8 @@ services:
     command: /root/start.sh
     hostname: tikva-node
     working_dir: /opt/tikva
+    volumes:
+      - /data/ssh:/root/.ssh
     environment:
       - GRUNTFILE=gruntfile.js
     links:
