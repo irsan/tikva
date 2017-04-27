@@ -4,6 +4,8 @@ services:
   nginx:
     build: ../nginx
     image: tikva-nginx
+    ports:
+      - "80:80"
     links:
       - web
     depends_on:
