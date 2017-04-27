@@ -1,6 +1,16 @@
 version: "3.1"
 
 services:
+  nginx:
+    build: ../nginx
+    image: tikva-nginx
+    links:
+      - web
+    depends_on:
+      - web
+    networks:
+      - front-tier
+
   web:
     build: ../tikva-node
     image: tikva-node
