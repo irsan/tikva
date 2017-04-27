@@ -22,6 +22,8 @@ const redis = Redis.createClient(PROPERTIES.redis.url);
 
 let RedisStore = require('connect-redis')(Session);
 
+console.log("TOKENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN", process.env.TOKEN);
+
 let vaultOptions = {
     apiVersion: 'v1', // default
     endpoint: 'http://vault:8200', // default
