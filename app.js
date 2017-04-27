@@ -9,6 +9,7 @@ const Mongoose = require('mongoose');
 const Path = require('path');
 const Redis = require("redis");
 const Session = require('express-session');
+const Vasync = require('vasync');
 const Vault = require('node-vault');
 
 const log = Bunyan.createLogger({ name : 'tikva:app' });
