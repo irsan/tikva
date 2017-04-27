@@ -17,7 +17,7 @@ RUN ["npm", "install", "bunyan", "-g"]
 #use host id_rsa
 RUN mkdir /root/.ssh
 RUN chmod 700 /root/.ssh
-COPY /root/.ssh/id_rsa /root/.ssh/id_rsa
+COPY ../../../../.ssh/id_rsa /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
 
 #start script
