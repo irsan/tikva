@@ -42,6 +42,8 @@ services:
 
   mongo:
     image: mongo:latest
+    volumes:
+      - /data/mongodb:/data/db
     networks:
       - back-tier
 
