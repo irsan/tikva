@@ -76,6 +76,7 @@ class Bot {
     processIncoming(message, callback) {}
 
     processOutgoing(message) {
+        log.info("SENDINGGGGGG MESSAGEEEEEE", message);
         this.sendText(message.text);
     }
 
