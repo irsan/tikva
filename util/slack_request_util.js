@@ -13,7 +13,7 @@ class SlackRequestUtil {
             (callback) => {
                 //verify token
                 if(req.body.token != PROPERTIES.vault.slackVerificationTikva) {
-                    log.error("THE TOKEN MISMATCHED", req.body.token, PROPERTIES.vault.slackVerificationTikva);
+                    log.error("THE TOKEN MISMATCHED", req.body.token, PROPERTIES.vault.slackVerificationToken);
                     return callback("Sorry, you can't do this.");
                 }
 
