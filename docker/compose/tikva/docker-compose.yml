@@ -36,7 +36,6 @@ services:
     networks:
       - front-tier
       - back-tier
-    command: tail -f /dev/null
 
   slack:
       build: ../../build/tikva-node
