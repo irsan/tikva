@@ -11,16 +11,14 @@ const Bot = require('./bot');
 class TikvaBot extends Bot {
 
     processIncoming(message, callback) {
-        let tikvaAdmin = this;
-
-        log.info("THE MESSAGE RECEIVED:", message);
+        let tikva = this;
 
         Vasync.waterfall([
             (callback) => {
-                tikvaAdmin.updateUser(message.user, callback);
+                tikva.updateUser(message.user, callback);
             },
             (user, callback) => {
-                tikvaAdmin.queueMO({ user, message }, callback);
+                tikva.queueMO({ user, message }, callback);
             }
         ], (error, resp) => {
             log.info("QUEUE TIKVA MO", error, resp);

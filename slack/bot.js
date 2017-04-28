@@ -84,6 +84,7 @@ class Bot {
             user,
             message : {
                 text : message.text,
+                channel : message.channel,
             },
             timestamp : new Date(parseFloat(message.ts) * 10000)
         });
