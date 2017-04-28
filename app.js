@@ -40,6 +40,7 @@ let app = Express();
 
 Vasync.waterfall([
     (callback) => {
+        log.info("UNSEALING");
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 1"] }).then((data) => {
             log.info("UNSEAL ", data);
             callback();
