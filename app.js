@@ -38,7 +38,7 @@ log.info(vaultKeys);
 // let index = require('./routes/index');
 // let slack = require('./routes/slack');
 //
-// let app = Express();
+let app = Express();
 //
 // let redisStore = new RedisStore({
 //     client: redis
