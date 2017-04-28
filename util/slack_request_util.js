@@ -9,6 +9,8 @@ const Model = require('../model/model');
 class SlackRequestUtil {
 
     static authenticate(req, res, next) {
+        let slackid = req.body.user_id;
+
         Vasync.waterfall([
             (callback) => {
                 //verify token
@@ -19,14 +21,14 @@ class SlackRequestUtil {
 
                 Slack.users.info({
                     token : PROPERTIES.vault.slackAccessToken,
-                    user : req.body.user_id
+                    user : slackid
                 }, callback);
             },
             (slackData, callback) => {
                 if(slackData.ok) {
                     let administrator = PROPERTIES.slack.administrators.indexOf(req.body.user_id) > -1;
 
-                    Model.User.findOne({ req.body.user_id, status : 'active' }, (error, user) => {
+                    Model.User.findOne({ slackid, status : 'active' }, (error, user) => {
                         if(error) {
                             return callback("Oops, " + error);
                         }
