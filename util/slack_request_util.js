@@ -9,6 +9,7 @@ const Model = require('../model/model');
 class SlackRequestUtil {
 
     static authenticate(req, res, next) {
+        log.info("THE BODY", req.body);
         let slackid = req.body.user_id;
 
         Vasync.waterfall([
