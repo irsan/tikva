@@ -57,23 +57,6 @@ Vasync.waterfall([
 
     log.info(mode, PROPERTIES);
 
-    // let tikvaAdminBot = new TikvaAdminBot({
-    //     token : PROPERTIES.vault.slackTokenTikvaAdmin,
-    //     rsmqMO : PROPERTIES.redis.queues.adminMO,
-    //     rsmqMT : PROPERTIES.redis.queues.adminMT,
-    //     channel : PROPERTIES.slack.channels.admin
-    // });
-    //
-    // let adminMOReceiver = new AdminMOReceiver({
-    //     rsmqMO : PROPERTIES.redis.queues.adminMO,
-    //     rsmqMT : PROPERTIES.redis.queues.adminMT,
-    //     witaiToken : PROPERTIES.vault.witaiAdminToken
-    // });
-    //
-    // adminMOReceiver.start(() => {
-    //     tikvaAdminBot.start();
-    // });
-
     let tikvaBot = new TikvaBot({
         token : PROPERTIES.vault.slackTokenTikva,
         rsmqMO : PROPERTIES.redis.queues.tikvaMO,
