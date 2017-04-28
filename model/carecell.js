@@ -26,4 +26,9 @@ Carecell.index({
     status : 1
 });
 
+Carecell.index({
+    slackChannel : 1,
+    status       : 1
+});
+
 module.exports = mongoose.model('Carecell', Carecell);

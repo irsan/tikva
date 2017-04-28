@@ -24,16 +24,35 @@ router.post('/menu', (req, res) => {
 });
 
 router.post('/cmd/make_cell', (req, res) => {
-    log.info("MAKE CELL", req.body, req.user);
+    log.info("MAKE CELL", req.body);
     Vasync.waterfall([
         (callback) => {
-            Slack.groups.info({
-                token : PROPERTIES.vault.slackAccessToken,
-                channel : req.body.channel_id
-            }, callback);
+            callback();
+        //     Model.Carecell.findOne({
+        //         slackChannel : req.body.channel_id,
+        //         status : 'active'
+        //     }, callback);
+        // },
+        // (carecell, callback) => {
+        //     Slack.groups.info({
+        //         token : PROPERTIES.vault.slackAccessToken,
+        //         channel : req.body.channel_id
+        //     }, (error, slackData) => {
+        //         if(error) {
+        //             return callback(error.toJSON());
+        //         }
+        //
+        //         if(!slackData.ok) {
+        //             return callback("Slack is not ok.");
+        //         }
+        //
+        //         if(carecell) {
+        //             carecell.name = channel
+        //         }
+        //     });
         }
     ], (error, message) => {
-        log.info("MAKE CELL Result", error, message);
+        // log.info("MAKE CELL Result", error, message);
         res.send("Ok, cell");
     });
 });
