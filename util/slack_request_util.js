@@ -69,10 +69,32 @@ class SlackRequestUtil {
             }
 
             req.user = user;
-
             next();
         })
 
+    }
+
+    static setCarecell(req, res) {
+        Vasync.waterfall([
+            (callback) => {
+                if(!req.body.channel_id) {
+                    return callback("Invalid Channel ID");
+                }
+
+                Model.Carecell.findOne({
+                    slackChannel : req.body.channel_id,
+                    status : 'active'
+                }, callback);
+            }
+        ], (error, carecell) => {
+            if(error || !carecell) {
+                log.error("SET CARECELL FAILED", error);
+                return res.send("No carecell");
+            }
+
+            req.carecell = carecell;
+            next();
+        });
     }
 }
 

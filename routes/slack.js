@@ -10,6 +10,8 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/slack' });
 
 const Model = require('../model/model');
 
+const SlackRequestUtil = require('../util/slack_request_util');
+
 var router = Express.Router();
 
 /* GET home page. */
@@ -59,6 +61,10 @@ router.post('/cmd/make_cell', (req, res) => {
 
         res.send("Ok, this group is now " + carecell.name + " Carecell.");
     });
+});
+
+router.post('/cmd/add/:followUp', SlackRequestUtil.setCarecell, (req, res) => {
+    res.send("Ok, Let's add ", req.params.followUp);
 });
 
 router.post('/cmd/git_pull', (req, res) => {
