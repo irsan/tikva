@@ -14,9 +14,6 @@ Mongoose.connect(PROPERTIES.mongodb); //connect to mongodb
 
 REDIS = Redis.createClient(PROPERTIES.redis.url);
 
-const TikvaAdminBot = require('./slack/tikva_admin_bot');
-const AdminMOReceiver = require('./controller/admin_mo_receiver');
-
 const TikvaBot = require('./slack/tikva_bot');
 const TikvaMOReceiver = require('./controller/tikva_mo_receiver');
 
