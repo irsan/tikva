@@ -45,6 +45,7 @@ services:
       working_dir: /opt/tikva
       volumes:
         - /data/ssh:/root/.ssh
+        - /data/keys:/var/keys
       environment:
         - MODE=tikva
         - GRUNTFILE=gruntfile_slack.js
