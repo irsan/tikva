@@ -72,6 +72,8 @@ class TikvaMOReceiver extends MOReceiver {
     }
 
     receiveMO({ user, message, timestamp }) {
+        log.info("RECEIVE MESSAVGEGGEGEGEGGE MOOOOO", message);
+
         let moReceiver = this;
 
         Vasync.waterfall([
