@@ -27,7 +27,7 @@ router.post('/cmd/make_cell', (req, res) => {
     log.info("MAKE CELL", req.body, req.user);
     Vasync.waterfall([
         (callback) => {
-            Slack.channels.info({
+            Slack.groups.info({
                 token : PROPERTIES.vault.slackAccessToken,
                 channel : req.body.channel_id
             }, callback);
