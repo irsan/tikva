@@ -14,7 +14,6 @@ class MOReceiver {
         let me = this;
 
         this.worker.on("message", (messageString, next, id) => {
-            console.log("SEEMS LIKE I RECEVEIVE 2 MESSAGES, what is this?", messageString);
             let message = JSON.parse(messageString);
             next();
             me.receiveMO(message);

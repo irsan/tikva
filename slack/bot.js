@@ -55,13 +55,6 @@ class Bot {
                     if(error) {
                         return bot.sendTextToChannel("Oops, " + error, message.channel);
                     }
-                    // log.info("THE MESSSAGEEEEEEEEEEEE", message);
-                    //
-                    // rsmq.sendMessage({
-                    //     qname : rsmqMO, message : JSON.stringify(message)
-                    // }, (error, resp) => {
-                    //     log.info("QUEUE MO", error, resp);
-                    // });
                 }
             });
         });
@@ -75,7 +68,6 @@ class Bot {
     processIncoming(message, callback) {}
 
     processOutgoing(message) {
-        log.info("SENDINGGGGGG MESSAGEEEEEE", message);
         this.sendText(message.text);
     }
 
