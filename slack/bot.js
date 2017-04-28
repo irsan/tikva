@@ -36,12 +36,16 @@ class Bot {
 
             Vasync.waterfall([
                 (callback) => {
-                    if(message.channel != channel) {
-                        return callback("Not a valid channel");
-                    }
-
+                    // if(message.channel != channel) {
+                    //     return callback("Not a valid channel");
+                    // }
+                    //
                     if(message.subtype == "me_message") {
                         return callback("Own message");
+                    }
+
+                    if(message.subtype == "bot_message") {
+                        return callback("Ignore Bot Message");
                     }
 
                     bot.processIncoming(message, callback);
