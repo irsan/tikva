@@ -20,17 +20,25 @@ const AdminMOReceiver = require('./controller/admin_mo_receiver');
 const TikvaBot = require('./slack/tikva_bot');
 const TikvaMOReceiver = require('./controller/tikva_mo_receiver');
 
-var options = {
-    apiVersion: 'v1', // default
-    endpoint: 'http://vault:8200', // default
-    token: process.env.TOKEN
-};
-
-// get new instance of the clien
-var vault = Vault(options);
+let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
 Vasync.waterfall([
-    (callback) => {//read slack tikva token from vault
+    (callback) => {
+        vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 1"] }).then((data) => {
+            callback();
+        }).catch(callback);
+    },
+    (callback) => {
+        vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 2"] }).then((data) => {
+            callback();
+        }).catch(callback);
+    },
+    (callback) => {
+        vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 3"] }).then((data) => {
+            callback();
+        }).catch(callback);
+    },
+    (callback) => {
         vault.read(mode + "/properties").then(({ data }) => {
             PROPERTIES.vault = data;
             callback();
