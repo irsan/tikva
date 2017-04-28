@@ -2,6 +2,7 @@ const Bunyan = require('bunyan');
 const Express = require('express');
 const Request = require('request');
 const SimpleGit = require('simple-git');
+const Slack = require('slack');
 const Vasync = require('vasync');
 
 const log = Bunyan.createLogger({ name : 'tikva:routes/slack' });
@@ -23,8 +24,18 @@ router.post('/menu', (req, res) => {
 });
 
 router.post('/cmd/make_cell', (req, res) => {
-    log.info("MAKE CELL", req.body, req.user);
-    res.send("Ok, cell");
+    // log.info("MAKE CELL", req.body, req.user);
+    Vasync.waterfall([
+        (callback) => {
+            Slack.channels.info({
+                token : PROPERTIES.vault.slackAccessToken,
+                channel : req.body.channel_id
+            }, callback);
+        }
+    ], (error, message) => {
+        log.info("MAKE CELL", error, message);
+        res.send("Ok, cell");
+    });
 });
 
 router.post('/cmd/git_pull', (req, res) => {
