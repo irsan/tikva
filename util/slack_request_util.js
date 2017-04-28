@@ -17,6 +17,11 @@ class SlackRequestUtil {
                     return callback("Sorry, you can't do this.");
                 }
 
+                log.info("ACCESS TOKEN", {
+                    token : PROPERTIES.vault.slackAccessTikva,
+                    user : req.body.user_id
+                });
+
                 Slack.users.info({
                     token : PROPERTIES.vault.slackAccessTikva,
                     user : req.body.user_id
