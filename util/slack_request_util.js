@@ -26,7 +26,7 @@ class SlackRequestUtil {
                 if(slackData.ok) {
                     let administrator = PROPERTIES.slack.administrators.indexOf(req.body.user_id) > -1;
 
-                    Model.User.findOne({ slackid, status : 'active' }, (error, user) => {
+                    Model.User.findOne({ req.body.user_id, status : 'active' }, (error, user) => {
                         if(error) {
                             return callback("Oops, " + error);
                         }
