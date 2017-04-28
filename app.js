@@ -22,6 +22,10 @@ const redis = Redis.createClient(PROPERTIES.redis.url);
 
 let RedisStore = require('connect-redis')(Session);
 
+let vaultKeys = JSON.pars(FS.readFileSync('/var/keys/vault.json', 'utf8'));
+
+log.info(vaultKeys);
+
 // let vaultOptions = {
 //     apiVersion: 'v1', // default
 //     endpoint: 'http://vault:8200', // default
