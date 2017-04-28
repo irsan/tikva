@@ -23,7 +23,7 @@ router.post('/menu', (req, res) => {
 });
 
 router.post('/cmd/make_cell', (req, res) => {
-    log.info("MAKE CELL", req.body, PROPERTIES.vault);
+    log.info("MAKE CELL", req.body, req.user);
     res.send("Ok, cell");
 });
 
