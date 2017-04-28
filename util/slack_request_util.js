@@ -12,7 +12,7 @@ class SlackRequestUtil {
         Vasync.waterfall([
             (callback) => {
                 //verify token
-                if(req.body.token != PROPERTIES.vault.slackVerificationTikva) {
+                if(req.body.token != PROPERTIES.vault.slackVerificationToken) {
                     log.error("THE TOKEN MISMATCHED", req.body.token, PROPERTIES.vault.slackVerificationToken);
                     return callback("Sorry, you can't do this.");
                 }
