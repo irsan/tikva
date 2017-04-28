@@ -35,6 +35,7 @@ const witSession = {
             },
             (session, callback) => {
                 session.context.channel = channel;
+                callback(session);
             }
         ], callback);
     },
