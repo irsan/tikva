@@ -24,23 +24,15 @@ router.post('/menu', (req, res) => {
 
 router.post('/cmd/make_cell', (req, res) => {
     log.info("MAKE CELL", req.body, PROPERTIES.vault);
-    if(req.body.token == PROPERTIES.vault.slackTokenTikva) {
-        res.send("Ok, cell");
-    } else {
-        res.send("Sorry, you can't do this");
-    }
+    res.send("Ok, cell");
 });
 
 router.post('/cmd/git_pull', (req, res) => {
-    if(req.body.token == PROPERTIES.vault.slackTokenTikva) {
-        let simpleGit = SimpleGit('./');
-        simpleGit.pull((error, result) => {
-            log.info("GIT PULL", error, result);
-        });
-        res.send("Ok, git pulled");
-    } else {
-        res.send("Sorry, you can't do this");
-    }
+    let simpleGit = SimpleGit('./');
+    simpleGit.pull((error, result) => {
+        log.info("GIT PULL", error, result);
+    });
+    res.send("Ok, git pulled");
 });
 
 
