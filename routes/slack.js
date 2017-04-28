@@ -24,7 +24,7 @@ router.post('/menu', (req, res) => {
 });
 
 router.post('/cmd/make_cell', (req, res) => {
-    // log.info("MAKE CELL", req.body, req.user);
+    log.info("MAKE CELL", req.body, req.user);
     Vasync.waterfall([
         (callback) => {
             Slack.channels.info({
@@ -33,7 +33,7 @@ router.post('/cmd/make_cell', (req, res) => {
             }, callback);
         }
     ], (error, message) => {
-        log.info("MAKE CELL", error, message);
+        log.info("MAKE CELL Result", error, message);
         res.send("Ok, cell");
     });
 });
