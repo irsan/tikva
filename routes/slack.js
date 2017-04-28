@@ -21,4 +21,9 @@ router.post('/menu', (req, res) => {
     res.send("Ok");
 });
 
+router.post('/make_cell', (req, res) => {
+    log.info("MAKE CELL", req);
+    res.send("Ok, cell");
+});
+
 module.exports = router;

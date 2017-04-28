@@ -30,6 +30,7 @@
     "rsmq": "^0.8.2",
     "rsmq-worker": "^0.5.2",
     "serve-favicon": "~2.3.0",
+    "simple-git": "^1.70.0",
     "slack": "^8.2.7",
     "string-template": "^1.0.0",
     "thirty-two": "^1.0.2",
