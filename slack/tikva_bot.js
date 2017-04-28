@@ -2,7 +2,7 @@ const Bunyan = require('bunyan');
 const Slack = require('slack');
 const Vasync = require('vasync');
 
-const log = Bunyan.createLogger({ name : 'tikva:routes/TikvaAdmin' });
+const log = Bunyan.createLogger({ name : 'tikva:routes/TikvaBot' });
 
 const Model = require('../model/model');
 

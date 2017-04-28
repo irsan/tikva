@@ -55,14 +55,13 @@ class Bot {
                     if(error) {
                         return bot.sendTextToChannel("Oops, " + error, message.channel);
                     }
-
-                    log.info("THE MESSSAGEEEEEEEEEEEE", message);
-
-                    rsmq.sendMessage({
-                        qname : rsmqMO, message : JSON.stringify(message)
-                    }, (error, resp) => {
-                        log.info("QUEUE MO", error, resp);
-                    });
+                    // log.info("THE MESSSAGEEEEEEEEEEEE", message);
+                    //
+                    // rsmq.sendMessage({
+                    //     qname : rsmqMO, message : JSON.stringify(message)
+                    // }, (error, resp) => {
+                    //     log.info("QUEUE MO", error, resp);
+                    // });
                 }
             });
         });
