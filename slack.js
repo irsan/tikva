@@ -22,6 +22,12 @@ const TikvaMOReceiver = require('./controller/tikva_mo_receiver');
 
 let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
+let vault = Vault({
+    apiVersion: 'v1', // default
+    endpoint: 'http://vault:8200', // default
+    token: vaultKeys["Initial Root Token"]
+});
+
 Vasync.waterfall([
     (callback) => {
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 1"] }).then((data) => {
