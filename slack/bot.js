@@ -68,7 +68,7 @@ class Bot {
     processIncoming(message, callback) {}
 
     processOutgoing(message) {
-        this.sendText(message.text);
+        this.sendTextToChannel(message);
     }
 
     queueMO({ user, message }, callback) {
@@ -84,7 +84,7 @@ class Bot {
         this.rsmq.sendMessage({ qname : this.rsmqMO, message : messageString }, callback);
     }
 
-    sendTextToChannel(text, channel) {
+    sendTextToChannel({ text, channel }) {
         let token = this.token;
         let username = this.username;
 
