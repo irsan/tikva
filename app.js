@@ -27,7 +27,7 @@ let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
 log.info(vaultKeys);
 
-const SlackRequestUtil = require('../util/slack_request_util');
+const SlackRequestUtil = require('./util/slack_request_util');
 
 let index = require('./routes/index');
 let slack = require('./routes/slack');
