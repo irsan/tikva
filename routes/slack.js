@@ -3,6 +3,7 @@ const Express = require('express');
 const Request = require('request');
 const SimpleGit = require('simple-git');
 const Slack = require('slack');
+const UUID = require('uuid/v1');
 const Vasync = require('vasync');
 
 const log = Bunyan.createLogger({ name : 'tikva:routes/slack' });
@@ -27,33 +28,36 @@ router.post('/cmd/make_cell', (req, res) => {
     log.info("MAKE CELL", req.body);
     Vasync.waterfall([
         (callback) => {
-            callback();
-        //     Model.Carecell.findOne({
-        //         slackChannel : req.body.channel_id,
-        //         status : 'active'
-        //     }, callback);
-        // },
-        // (carecell, callback) => {
-        //     Slack.groups.info({
-        //         token : PROPERTIES.vault.slackAccessToken,
-        //         channel : req.body.channel_id
-        //     }, (error, slackData) => {
-        //         if(error) {
-        //             return callback(error.toJSON());
-        //         }
-        //
-        //         if(!slackData.ok) {
-        //             return callback("Slack is not ok.");
-        //         }
-        //
-        //         if(carecell) {
-        //             carecell.name = channel
-        //         }
-        //     });
+            Model.Carecell.findOne({
+                slackChannel : req.body.channel_id,
+                status : 'active'
+            }, callback);
+        },
+        (carecell, callback) => {
+            if(carecell) {
+                return callback("This group is already a carecell called " + carecell.name + ".");
+            }
+
+            new Model.Carecell({
+                name            : req.body.text,
+                key             : "cc-" + UUID(),
+                slackChannel    : req.body.channel_id,
+                creator         : req.user.slackname,
+                updater         : req.user.slackname,
+            }).save((error, carecell) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                return callback(null, carecell);
+            })
         }
-    ], (error, message) => {
-        // log.info("MAKE CELL Result", error, message);
-        res.send("Ok, cell");
+    ], (error, carecell) => {
+        if(error) {
+            return res.send(error);
+        }
+
+        res.send("Ok, this group is now " + carecell.name + " Carecell.");
     });
 });
 
