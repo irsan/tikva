@@ -61,7 +61,7 @@ class SlackRequestUtil {
                     callback("Fail in getting slack user info");
                 }
             }
-        ], (user, error) => {
+        ], (error, user) => {
             if(error) {
                 return res.send(error);
             }
