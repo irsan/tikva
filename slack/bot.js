@@ -59,7 +59,7 @@ class Bot {
                     rsmq.sendMessage({
                         qname : rsmqMO, message : JSON.stringify(message)
                     }, (error, resp) => {
-                        log.info("QUEUE ADMIN MO", error, resp);
+                        log.info("QUEUE MO", error, resp, message);
                     });
                 }
             });
