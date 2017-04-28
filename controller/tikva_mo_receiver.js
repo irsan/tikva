@@ -76,7 +76,7 @@ class TikvaMOReceiver extends MOReceiver {
 
         Vasync.waterfall([
             (callback) => {
-                witSession.getCreate({ user, channel }, callback);
+                witSession.getCreate({ user, channel : message.channel }, callback);
             },
             (session, callback) => {
                 moReceiver.wit.runActions(
