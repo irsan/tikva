@@ -18,6 +18,7 @@ const TikvaAdminBot = require('./slack/tikva_admin_bot');
 const AdminMOReceiver = require('./controller/admin_mo_receiver');
 
 const TikvaBot = require('./slack/tikva_bot');
+const TikvaMOReceiver = require('./controller/tikva_mo_receiver');
 
 var options = {
     apiVersion: 'v1', // default
@@ -42,28 +43,35 @@ Vasync.waterfall([
 
     log.info(mode, PROPERTIES);
 
-    let tikvaAdminBot = new TikvaAdminBot({
-        token : PROPERTIES.vault.slackTokenTikvaAdmin,
-        rsmqMO : PROPERTIES.redis.queues.adminMO,
-        rsmqMT : PROPERTIES.redis.queues.adminMT,
-        channel : PROPERTIES.slack.channels.admin
-    });
-
-    let adminMOReceiver = new AdminMOReceiver({
-        rsmqMO : PROPERTIES.redis.queues.adminMO,
-        rsmqMT : PROPERTIES.redis.queues.adminMT,
-        witaiToken : PROPERTIES.vault.witaiAdminToken
-    });
-
-    adminMOReceiver.start(() => {
-        tikvaAdminBot.start();
-    });
+    // let tikvaAdminBot = new TikvaAdminBot({
+    //     token : PROPERTIES.vault.slackTokenTikvaAdmin,
+    //     rsmqMO : PROPERTIES.redis.queues.adminMO,
+    //     rsmqMT : PROPERTIES.redis.queues.adminMT,
+    //     channel : PROPERTIES.slack.channels.admin
+    // });
+    //
+    // let adminMOReceiver = new AdminMOReceiver({
+    //     rsmqMO : PROPERTIES.redis.queues.adminMO,
+    //     rsmqMT : PROPERTIES.redis.queues.adminMT,
+    //     witaiToken : PROPERTIES.vault.witaiAdminToken
+    // });
+    //
+    // adminMOReceiver.start(() => {
+    //     tikvaAdminBot.start();
+    // });
 
     let tikvaBot = new TikvaBot({
         token : PROPERTIES.vault.slackTokenTikva,
         rsmqMO : PROPERTIES.redis.queues.tikvaMO,
         rsmqMT : PROPERTIES.redis.queues.tikvaMT,
-        channel : PROPERTIES.slack.channels.tikva
+        channel : PROPERTIES.slack.channels.admin
     });
-    tikvaBot.start();
+
+    let tikvaMOReceiver = new TikvaMOReceiver({
+        rsmqMO : PROPERTIES.redis.queues.adminMO,
+        rsmqMT : PROPERTIES.redis.queues.adminMT
+    });
+    tikvaMOReceiver.start(() => {
+        tikvaBot.start();
+    });
 });

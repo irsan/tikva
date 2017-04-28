@@ -64,11 +64,7 @@ router.post('/cmd/make_cell', (req, res) => {
 });
 
 router.post('/cmd/add/:followUp', SlackRequestUtil.setCarecell, (req, res) => {
-    res.send({
-        "response_type": "ephemeral",
-        "text": "Sorry, that didn't work. Please try again."
-    });
-    // res.send("Ok, Let's add " + req.params.followUp);
+    res.send("Ok, Let's add " + req.params.followUp);
 });
 
 router.post('/cmd/git_pull', (req, res) => {
