@@ -32,7 +32,7 @@ class Bot {
         });
 
         this.slack.message((message) => {
-            log.info("THE MESSAGE: ", message);
+            console.log("THE MESSAGE: ", message);
 
             Vasync.waterfall([
                 (callback) => {
