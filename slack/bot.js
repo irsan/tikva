@@ -32,6 +32,8 @@ class Bot {
         });
 
         this.slack.message((message) => {
+            log.info("THE MESSAGE: ", message);
+
             Vasync.waterfall([
                 (callback) => {
                     if(message.channel != channel) {
