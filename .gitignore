@@ -104,3 +104,4 @@ resources/properties.offline.json
 .idea/
 public/bower.json
 /local/
+slack-test.js
