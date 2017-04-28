@@ -44,19 +44,25 @@ Vasync.waterfall([
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 1"] }).then((data) => {
             log.info("UNSEAL ", data);
             callback();
-        });
+        }).catch(callback);
     },
     (callback) => {
         log.info("UNSEALING 2");
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 2"] }).then((data) => {
             log.info("UNSEAL ", data);
             callback();
-        });
+        }).catch(callback);;
     },
     (callback) => {
         log.info("UNSEALING 3");
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 3"] }).then((data) => {
             log.info("UNSEAL ", data);
+            callback();
+        }).catch(callback);;
+    },
+    (callback) => {
+        vault.read(mode + "/properties").then(({ data }) => {
+            PROPERTIES.vault = data;
             callback();
         });
     }
@@ -64,6 +70,8 @@ Vasync.waterfall([
     if(error) {
         log.error(error);
     }
+
+    log.info(mode, PROPERTIES);
 })
 
 //
