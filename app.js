@@ -26,19 +26,31 @@ let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
 log.info(vaultKeys);
 
-// let vaultOptions = {
-//     apiVersion: 'v1', // default
-//     endpoint: 'http://vault:8200', // default
-//     token: process.env.TOKEN // optional client token; can be fetched after valid initialization of the server
-// };
+var vault = Vault({
+    apiVersion: 'v1', // default
+    endpoint: 'http://vault:8200', // default
+    token: vaultKeys["Initial Root Token"]
+});
+
 //
-// // get new instance of the client
-// var vault = Vault(vaultOptions);
-//
-// let index = require('./routes/index');
-// let slack = require('./routes/slack');
-//
+let index = require('./routes/index');
+let slack = require('./routes/slack');
+
 let app = Express();
+
+Vasync.waterfall([
+    (callback) => {
+        vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 1"] }).then((data) => {
+            log.info("UNSEAL ", data);
+            callback();
+        });
+    }
+], (error) => {
+    if(error) {
+        log.error(error);
+    }
+})
+
 //
 // let redisStore = new RedisStore({
 //     client: redis
