@@ -63,7 +63,8 @@ Vasync.waterfall([
 
     let tikvaMOReceiver = new TikvaMOReceiver({
         rsmqMO : PROPERTIES.redis.queues.tikvaMO,
-        rsmqMT : PROPERTIES.redis.queues.tikvaMO
+        rsmqMT : PROPERTIES.redis.queues.tikvaMO,
+        witaiToken : PROPERTIES.vault.witaiToken
     });
     tikvaMOReceiver.start(() => {
         tikvaBot.start();
