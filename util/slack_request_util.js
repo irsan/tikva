@@ -62,6 +62,7 @@ class SlackRequestUtil {
                 }
             }
         ], (error, user) => {
+            log.info("AUNTTTTTTTTTTTTTTTTT", error, user);
             if(error) {
                 return res.send(error);
             }
