@@ -7,17 +7,14 @@ class Actions {
         const {text, quickreplies} = response;
 
         let { user } = context;
-        console.log("SENDINGGGGGG", user);
 
         let message = {
             user,
             text : StringTemplate(text.replace(/\[\[/g, "{").replace(/\]\]/g, "}"), {
                 user_name : user.name
-            })
-        }
-
-        console.log("SENDINGGGGGG 222222222", context);
-
+            }),
+            channel : context.channel
+        };
 
         this.sendMessage(message);
     }
