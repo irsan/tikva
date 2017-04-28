@@ -18,7 +18,6 @@ const TikvaBot = require('./slack/tikva_bot');
 const TikvaMOReceiver = require('./controller/tikva_mo_receiver');
 
 let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
-
 let vault = Vault({
     apiVersion: 'v1', // default
     endpoint: 'http://vault:8200', // default

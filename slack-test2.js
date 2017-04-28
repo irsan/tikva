@@ -6,7 +6,7 @@ const log = Bunyan.createLogger({ name : 'tikva:slack-test' });
 
 let bot = Slack.rtm.client();
 
-let token = "xoxb-176003762181-t09tppTuiSaQi12wKkqOjRdl";
+let token = "xoxb-176003762181-Fiacva5cpl5sOGsTj2ViAq6g";
 
 // logs: ws, started, close, listen, etc... in addition to the RTM event handler methods
 log.info(Object.keys(bot));
