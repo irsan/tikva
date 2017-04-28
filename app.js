@@ -27,19 +27,20 @@ let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
 log.info(vaultKeys);
 
-var vault = Vault({
-    apiVersion: 'v1', // default
-    endpoint: 'http://vault:8200', // default
-    token: vaultKeys["Initial Root Token"]
-});
+const SlackRequestUtil = require('../util/slack_request_util');
 
-//
 let index = require('./routes/index');
 let slack = require('./routes/slack');
 
 let app = Express();
 
 let redisStore = new RedisStore({ client: REDIS });
+
+let vault = Vault({
+    apiVersion: 'v1', // default
+    endpoint: 'http://vault:8200', // default
+    token: vaultKeys["Initial Root Token"]
+});
 
 
 Vasync.waterfall([
@@ -92,7 +93,7 @@ Vasync.waterfall([
     app.use(Express.static(Path.join(__dirname, 'public')));
     app.use(session);
 
-    app.use('/slack', slack);
+    app.use('/slack', SlackRequestUtil.authenticate, slack);
     app.use('/', index);
 
     // catch 404 and forward to error handler
