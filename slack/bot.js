@@ -47,7 +47,7 @@ class Bot {
                     bot.processIncoming(message, callback);
                 }
             ], (error) => {
-                if(message.subtype != "me_message") {//be sure the message has to be other's message
+                if(message.subtype != "me_message" && message.subtype != "bot_message") {//be sure the message has to be other's message
                     if(error) {
                         return bot.sendTextToChannel("Oops, " + error, message.channel);
                     }
