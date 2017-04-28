@@ -1,0 +1,93 @@
+version: "3.1"
+
+services:
+  nginx:
+    build: ../tikva-nginx
+    image: tikva-nginx
+    ports:
+      - "80:80"
+    links:
+      - web
+    depends_on:
+      - web
+    networks:
+      - front-tier
+
+  web:
+    build: ../tikva-node
+    image: tikva-node
+    command: /root/start.sh
+    hostname: tikva-node
+    working_dir: /opt/tikva
+    volumes:
+      - /data/ssh:/root/.ssh
+    environment:
+      - MODE=tikva
+      - GRUNTFILE=gruntfile.js
+      - TOKEN=4c3f2b63-b1be-4a57-6d7a-fa40b5abe8ef
+    links:
+      - redis
+      - mongo
+      - vault
+    depends_on:
+      - redis
+      - mongo
+      - vault
+    networks:
+      - front-tier
+      - back-tier
+
+  slack:
+      build: ../tikva-node
+      image: tikva-node
+      command: /root/start.sh
+      hostname: tikva-node
+      working_dir: /opt/tikva
+      volumes:
+        - /data/ssh:/root/.ssh
+      environment:
+        - MODE=tikva
+        - GRUNTFILE=gruntfile_slack.js
+        - TOKEN=4c3f2b63-b1be-4a57-6d7a-fa40b5abe8ef
+      links:
+        - redis
+        - mongo
+        - vault
+      depends_on:
+        - redis
+        - mongo
+        - vault
+      networks:
+        - front-tier
+        - back-tier
+
+  vault:
+    build: ../tikva-vault
+    image: tikva-vault
+    cap_add:
+      - IPC_LOCK
+    command: vault server -config=/vault/config/local.json
+#    command: tail -f /dev/null
+    environment:
+      - VAULT_ADDR=http://127.0.0.1:8200
+    volumes:
+      - /data/vault/file:/vault/file
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:latest
+    networks:
+      - back-tier
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - /data/mongodb:/data/db
+    networks:
+      - back-tier
+
+networks:
+  front-tier:
+  back-tier:
+

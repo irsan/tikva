@@ -1,0 +1,53 @@
+version: "3.1"
+
+services:
+  nginx:
+    build: ../tikva-nginx
+    image: tikva-nginx
+    ports:
+      - "80:80"
+    links:
+      - web
+    depends_on:
+      - web
+    networks:
+      - front-tier
+
+  web:
+    build: ../tikva-node
+    image: tikva-node
+    command: /root/start.sh
+    hostname: tikva-node
+    working_dir: /opt/tikva
+    volumes:
+      - /data/ssh:/root/.ssh
+    environment:
+      - MODE=tikva
+      - GRUNTFILE=gruntfile.js
+      - TOKEN=4c3f2b63-b1be-4a57-6d7a-fa40b5abe8ef
+    links:
+      - redis
+      - mongo
+      - vault
+    depends_on:
+      - redis
+      - mongo
+      - vault
+    networks:
+      - front-tier
+      - back-tier
+
+  redis:
+    image: redis:latest
+    networks:
+      - back-tier
+
+  mongo:
+    image: mongo:latest
+    networks:
+      - back-tier
+
+networks:
+  front-tier:
+  back-tier:
+

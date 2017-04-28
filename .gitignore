@@ -103,3 +103,4 @@ resources/installed.json
 resources/properties.offline.json
 .idea/
 public/bower.json
+/local/
