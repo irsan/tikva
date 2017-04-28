@@ -79,6 +79,10 @@ class TikvaMOReceiver extends MOReceiver {
 
         Vasync.waterfall([
             (callback) => {
+                if(!message) {
+                    return callback("Invalid message");
+                }
+
                 witSession.getCreate({ user, channel : message.channel }, callback);
             },
             (session, callback) => {
