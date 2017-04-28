@@ -39,9 +39,7 @@ let slack = require('./routes/slack');
 
 let app = Express();
 
-let redisStore = new RedisStore({
-    client: redis
-});
+let redisStore = new RedisStore({ client: REDIS });
 
 
 Vasync.waterfall([
