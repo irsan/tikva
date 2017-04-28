@@ -89,7 +89,7 @@ class Bot {
         let username = this.username;
 
         Slack.chat.postMessage({
-            token, channel, username, text
+            token, channel, username, text, as_user: true,
         }, (err, data) => {
             console.log("POST MESSAGE TO CHANNEL", err, data, text);
         });
@@ -101,7 +101,7 @@ class Bot {
         let username = this.username;
 
         Slack.chat.postMessage({
-            token, channel, username,
+            token, channel, username, as_user: true,
             text : text,
             "attachments": [
                 {
