@@ -21,10 +21,10 @@ services:
     working_dir: /opt/tikva
     volumes:
       - /data/ssh:/root/.ssh
+      - /data/keys:/root/keys
     environment:
       - MODE=tikva
       - GRUNTFILE=gruntfile.js
-      - TOKEN=4c3f2b63-b1be-4a57-6d7a-fa40b5abe8ef
     links:
       - redis
       - mongo
@@ -36,6 +36,7 @@ services:
     networks:
       - front-tier
       - back-tier
+    command: tail -f /dev/null
 
   slack:
       build: ../../build/tikva-node
