@@ -74,7 +74,7 @@ class SlackRequestUtil {
 
     }
 
-    static setCarecell(req, res) {
+    static setCarecell(req, res, next) {
         Vasync.waterfall([
             (callback) => {
                 if(!req.body.channel_id) {
