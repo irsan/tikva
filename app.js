@@ -44,23 +44,17 @@ let redisStore = new RedisStore({ client: REDIS });
 
 Vasync.waterfall([
     (callback) => {
-        log.info("UNSEALING 1");
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 1"] }).then((data) => {
-            log.info("UNSEAL ", data);
             callback();
         }).catch(callback);
     },
     (callback) => {
-        log.info("UNSEALING 2");
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 2"] }).then((data) => {
-            log.info("UNSEAL ", data);
             callback();
         }).catch(callback);
     },
     (callback) => {
-        log.info("UNSEALING 3");
         vault.unseal({ secret_shares: 1, key: vaultKeys["Unseal Key 3"] }).then((data) => {
-            log.info("UNSEAL ", data);
             callback();
         }).catch(callback);
     },
