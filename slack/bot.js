@@ -49,7 +49,7 @@ class Bot {
             ], (error) => {
                 if(message.subtype != "me_message") {//be sure the message has to be other's message
                     if(error) {
-                        return bot.sendText("Oops, " + error);
+                        return bot.sendTextToChannel("Oops, " + error, message.channel);
                     }
 
                     rsmq.sendMessage({
@@ -83,6 +83,17 @@ class Bot {
         });
 
         this.rsmq.sendMessage({ qname : this.rsmqMO, message : messageString }, callback);
+    }
+
+    sendTextToChannel(text, channel) {
+        let token = this.token;
+        let username = this.username;
+
+        Slack.chat.postMessage({
+            token, channel, username, text
+        }, (err, data) => {
+            console.log("POST MESSAGE TO CHANNEL", err, data, text);
+        });
     }
 
     sendText(text) {
