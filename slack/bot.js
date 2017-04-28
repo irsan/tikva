@@ -48,10 +48,14 @@ class Bot {
                         return callback("Ignore Bot Message");
                     }
 
+                    if(message.bot_id) {
+                        return callback("It is bot");
+                    }
+
                     bot.processIncoming(message, callback);
                 }
             ], (error) => {
-                if(message.subtype != "me_message" && message.subtype != "bot_message") {//be sure the message has to be other's message
+                if(message.subtype != "me_message" && message.subtype != "bot_message" && !message.bot_id) {//be sure the message has to be other's message
                     if(error) {
                         return bot.sendTextToChannel("Oops, " + error, message.channel);
                     }
