@@ -22,8 +22,12 @@ router.post('/menu', (req, res) => {
 });
 
 router.post('/cmd/make_cell', (req, res) => {
-    log.info("MAKE CELL", req.body);
-    res.send("Ok, cell");
+    if(req.body.token == PROPERTIES.vault.slackTokenTikva) {
+        log.info("MAKE CELL", req.body);
+        res.send("Ok, cell");
+    } else {
+        res.send("Sorry, you can't do this");
+    }
 });
 
 module.exports = router;
