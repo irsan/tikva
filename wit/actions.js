@@ -6,17 +6,27 @@ class Actions {
         const {sessionId, context, entities} = request;
         const {text, quickreplies} = response;
 
-        let { user } = context;
+        let actions = this;
 
+        this.constructMessage(text, context, (error, message) => {
+            if(error) {
+                log.error("Sending Message Error", error);
+            }
+
+            actions.sendMessage(message);
+        });
+    }
+
+    constructMessage(text, { user, channel }, callback) {
         let message = {
             user,
             text : StringTemplate(text.replace(/\[\[/g, "{").replace(/\]\]/g, "}"), {
                 user_name : user.name
             }),
-            channel : context.channel
+            channel
         };
 
-        this.sendMessage(message);
+        callback(null, message);
     }
 
     sendMessage(message) {}
