@@ -17,7 +17,7 @@ var router = Express.Router();
 /* GET home page. */
 router.post('/button', (req, res) => {
     log.info("BUTTON PRESSED", req.body);
-    res.send("Ok");
+    res.send("<http://www.google.com|Please click to start>");
 });
 
 /* GET home page. */
