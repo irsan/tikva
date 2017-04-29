@@ -49,7 +49,7 @@ class Bot {
                         return callback("It is bot");
                     }
 
-                    if(message.text.match(new RegExp("<@" + this.botId + ">")) === null && message.channel != channel) {
+                    if(message.text && message.text.match(new RegExp("<@" + this.botId + ">")) === null && message.channel != channel) {
                         return callback();
                     }
 
