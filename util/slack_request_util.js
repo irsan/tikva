@@ -9,6 +9,7 @@ const Model = require('../model/model');
 class SlackRequestUtil {
 
     static authenticate(req, res, next) {
+        log.info("THE BODY", req.body);
         let payload = req.body.payload ? req.body.payload: req.body;
         let slackid = payload.user_id;
 
