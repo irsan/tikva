@@ -18,7 +18,29 @@ class TikvaActions extends Actions {
 
         if(text == "greeting") {
             text = "Hi [[user_name]]";
-
+            attachments = [
+                {
+                    "text": "How can I help you?",
+                    "fallback": "Sorry, I can't do that.",
+                    "callback_id": "wopr_action",
+                    "color": "#3AA3E3",
+                    "attachment_type": "default",
+                    "actions": [
+                        {
+                            "name": "action",
+                            "text": "Add FTV",
+                            "type": "button",
+                            "value": "add_ftv"
+                        },
+                        {
+                            "name": "action",
+                            "text": "Add Decision",
+                            "type": "button",
+                            "value": "add_decision"
+                        }
+                    ]
+                }
+            ]
         }
 
         let message = {
