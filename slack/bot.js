@@ -22,7 +22,7 @@ class Bot {
         });
 
         this.worker = new RSMQWorker(this.rsmqMT, {
-            rsmq : this.rsmq
+            rsmq : this.rsmq, defaultDelay : 0.2
         });
 
         this.worker.on("message", (messageString, next, id) => {

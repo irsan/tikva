@@ -8,7 +8,7 @@ class MOReceiver {
 
         this.rsmq = new RedisSMQ( { client : REDIS, ns: "tikvaRSMQ" } );
         this.worker = new RSMQWorker(rsmqMO, {
-            rsmq : this.rsmq
+            rsmq : this.rsmq, defaultDelay : 0.2
         });
 
         let me = this;
