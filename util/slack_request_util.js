@@ -9,7 +9,6 @@ const Model = require('../model/model');
 class SlackRequestUtil {
 
     static authenticate(req, res, next) {
-        log.info("THE BODY", req.body);
         let payload = req.body.payload ? JSON.parse(req.body.payload): req.body;
         let slackid = payload.user_id;
 
@@ -67,6 +66,7 @@ class SlackRequestUtil {
             }
         ], (error, user) => {
             if(error) {
+                log.info("WHAT's THE ERROR?", error);
                 return res.send(error);
             }
 
