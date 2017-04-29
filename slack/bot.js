@@ -38,7 +38,7 @@ class Bot {
             Vasync.waterfall([
                 (callback) => {
                     if(message.text.match(new RegExp("<@" + this.botId + ">")) === null && message.channel != channel) {
-                        return callback("Not a valid channel");
+                        return callback();
                     }
 
                     if(message.subtype == "me_message") {
@@ -56,10 +56,8 @@ class Bot {
                     bot.processIncoming(message, callback);
                 }
             ], (error) => {
-                if(message.subtype != "me_message" && message.subtype != "bot_message" && !message.bot_id) {//be sure the message has to be other's message
-                    if(error) {
-                        return bot.sendTextToChannel("Oops, " + error, message.channel);
-                    }
+                if(error && message.subtype != "me_message" && message.subtype != "bot_message" && !message.bot_id) {//be sure the message has to be other's message
+                    return bot.sendTextToChannel("Oops, " + error, message.channel);
                 }
             });
         });
