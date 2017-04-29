@@ -37,10 +37,6 @@ class Bot {
 
             Vasync.waterfall([
                 (callback) => {
-                    if(message.text.match(new RegExp("<@" + this.botId + ">")) === null && message.channel != channel) {
-                        return callback();
-                    }
-
                     if(message.subtype == "me_message") {
                         return callback("Own message");
                     }
@@ -51,6 +47,10 @@ class Bot {
 
                     if(message.bot_id) {
                         return callback("It is bot");
+                    }
+
+                    if(message.text.match(new RegExp("<@" + this.botId + ">")) === null && message.channel != channel) {
+                        return callback();
                     }
 
                     bot.processIncoming(message, callback);
