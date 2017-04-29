@@ -8,6 +8,9 @@ class CommandController {
     }
 
     parseCommand(command, callback) {
+        if(command.match(/^add ftv$/i)) {
+            this.log.info("ADD FTV");
+        }
         callback(null, "Ok, your command is " + command);
     }
 }
