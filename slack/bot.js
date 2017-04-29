@@ -89,15 +89,12 @@ class Bot {
     }
 
     sendMesage(message) {
-        let token = this.token;
-        let username = this.username;
-
         message.token = this.token;
         message.username = this.username;
         message['as_user'] = true;
 
         Slack.chat.postMessage(message, (err, data) => {
-            console.log("POST MESSAGE TO CHANNEL", err, data, text);
+            console.log("POST MESSAGE TO CHANNEL", err, data);
         });
     }
 
