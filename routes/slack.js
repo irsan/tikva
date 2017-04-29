@@ -12,7 +12,11 @@ const Model = require('../model/model');
 
 const SlackRequestUtil = require('../util/slack_request_util');
 
+const CommandController = require('../controller/command_controller');
+
 var router = Express.Router();
+
+let commandController = new CommandController();
 
 /* GET home page. */
 router.post('/button', (req, res) => {
@@ -64,7 +68,21 @@ router.post('/cmd/make_cell', (req, res) => {
 });
 
 router.post('/cmd', (req, res) => {
-    res.send("Ok, Let's do " + req.body.text);
+    Vasync.waterfall([
+        (callback) => {
+            if(!req.body.text) {
+                return callback("Invalid command");
+            }
+            commandController.parseCommand(req.body.text, callback);
+        }
+    ], (error, reply) => {
+        if(error) {
+            log.error("Command Error", error);
+            return res.send("Oops, you cannot do that");
+        }
+
+        res.send(reply);
+    });
 })
 
 router.post('/cmd/add/:followUp', SlackRequestUtil.setCarecell, (req, res) => {
