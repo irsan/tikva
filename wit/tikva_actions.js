@@ -14,8 +14,11 @@ class TikvaActions extends Actions {
     sendMessage(message) {}
 
     constructMessage(text, { user, channel }, callback) {
+        let attachments = null;
+
         if(text == "greeting") {
-            text = "Hi [[user_name]], how can I help you?";
+            text = "Hi [[user_name]]";
+
         }
 
         let message = {
@@ -25,6 +28,10 @@ class TikvaActions extends Actions {
             }),
             channel
         };
+
+        if(attachments) {
+            message.attachments = attachments;
+        }
 
         callback(null, message);
     }

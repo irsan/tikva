@@ -57,7 +57,8 @@ class Bot {
                 }
             ], (error) => {
                 if(error && message.subtype != "me_message" && message.subtype != "bot_message" && !message.bot_id) {//be sure the message has to be other's message
-                    return bot.sendTextToChannel("Oops, " + error, message.channel);
+                    log.error("Slack On Message Error:", error);
+                    // return bot.sendTextToChannel("Oops, " + error, message.channel);
                 }
             });
         });
@@ -71,7 +72,7 @@ class Bot {
     processIncoming(message, callback) {}
 
     processOutgoing(message) {
-        this.sendTextToChannel(message);
+        this.sendMesage(message);
     }
 
     queueMO({ user, message }, callback) {
@@ -87,49 +88,15 @@ class Bot {
         this.rsmq.sendMessage({ qname : this.rsmqMO, message : messageString }, callback);
     }
 
-    sendTextToChannel({ text, channel }) {
+    sendMesage(message) {
         let token = this.token;
         let username = this.username;
 
-        Slack.chat.postMessage({
-            token, channel, username, text, as_user: true,
-            "attachments": [
-                {
-                    "text": "Choose a game to play",
-                    "fallback": "You are unable to choose a game",
-                    "callback_id": "wopr_game",
-                    "color": "#3AA3E3",
-                    "attachment_type": "default",
-                    "actions": [
-                        {
-                            "name": "game",
-                            "text": "Chess",
-                            "type": "button",
-                            "value": "chess"
-                        },
-                        {
-                            "name": "game",
-                            "text": "Falken's Maze",
-                            "type": "button",
-                            "value": "maze"
-                        },
-                        {
-                            "name": "game",
-                            "text": "Thermonuclear War",
-                            "style": "danger",
-                            "type": "button",
-                            "value": "war",
-                            "confirm": {
-                                "title": "Are you sure?",
-                                "text": "Wouldn't you prefer a good game of chess?",
-                                "ok_text": "Yes",
-                                "dismiss_text": "No"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }, (err, data) => {
+        message.token = this.token;
+        message.username = this.username;
+        message['as_user'] = true;
+
+        Slack.chat.postMessage(message, (err, data) => {
             console.log("POST MESSAGE TO CHANNEL", err, data, text);
         });
     }
