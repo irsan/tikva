@@ -4,11 +4,10 @@ const Vasync = require('vasync');
 class CommandController {
 
     constructor() {
-        this.log = Bunyan.createLogger({ name : 'tikva:controller/CommandController '});
+        this.log = Bunyan.createLogger({ name : 'tikva:controller/CommandController'});
     }
 
     parseCommand(command, callback) {
-        log.info("USER", req.user);
         if(command.match(/^add ftv$/i)) {
             this.log.info("ADD FTV");
         }
