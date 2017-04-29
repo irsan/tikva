@@ -7,9 +7,12 @@ class CommandController {
         this.log = Bunyan.createLogger({ name : 'tikva:controller/CommandController'});
     }
 
-    parseCommand(command, callback) {
+    parseCommand(command, user, callback) {
         if(command.match(/^add ftv$/i)) {
             this.log.info("ADD FTV");
+            return callback(null, {
+                text : "/tikva add ftv\ntest test"
+            });
         }
         callback(null, "Ok, your command is " + command);
     }
