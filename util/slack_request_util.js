@@ -9,14 +9,14 @@ const Model = require('../model/model');
 class SlackRequestUtil {
 
     static authenticate(req, res, next) {
-        log.info("THE BODY", req.body);
-        let slackid = req.body.user_id;
+        let payload = req.body.payload ? req.body.payload: req.body;
+        let slackid = payload.user_id;
 
         Vasync.waterfall([
             (callback) => {
                 //verify token
-                if(req.body.token != PROPERTIES.vault.slackVerificationToken) {
-                    log.error("THE TOKEN MISMATCHED", req.body.token, PROPERTIES.vault.slackVerificationToken);
+                if(payload.token != PROPERTIES.vault.slackVerificationToken) {
+                    log.error("THE TOKEN MISMATCHED", payload.token, PROPERTIES.vault.slackVerificationToken);
                     return callback("Sorry, you can't do this.");
                 }
 
@@ -27,7 +27,7 @@ class SlackRequestUtil {
             },
             (slackData, callback) => {
                 if(slackData.ok) {
-                    let administrator = PROPERTIES.slack.administrators.indexOf(req.body.user_id) > -1;
+                    let administrator = PROPERTIES.slack.administrators.indexOf(payload.user_id) > -1;
 
                     Model.User.findOne({ slackid, status : 'active' }, (error, user) => {
                         if(error) {
@@ -78,12 +78,12 @@ class SlackRequestUtil {
     static setCarecell(req, res, next) {
         Vasync.waterfall([
             (callback) => {
-                if(!req.body.channel_id) {
+                if(!payload.channel_id) {
                     return callback("Invalid Channel ID");
                 }
 
                 Model.Carecell.findOne({
-                    slackChannel : req.body.channel_id,
+                    slackChannel : payload.channel_id,
                     status : 'active'
                 }, callback);
             }
