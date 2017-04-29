@@ -11,3 +11,5 @@ class CommandController {
         callback(null, "Ok, your command is " + command);
     }
 }
+
+module.exports = CommandController;
