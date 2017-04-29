@@ -10,7 +10,7 @@ class SlackRequestUtil {
 
     static authenticate(req, res, next) {
         let payload = req.body.payload ? JSON.parse(req.body.payload): req.body;
-        let slackid = payload.user_id;
+        let slackid = payload.user_id ? payload.user_id : payload.user.id;
 
         Vasync.waterfall([
             (callback) => {
