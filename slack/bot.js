@@ -4,11 +4,12 @@ const Slack = require('slack');
 const Vasync = require('vasync');
 
 class Bot {
-    constructor({ token, rsmqMO, rsmqMT, channel }) {
+    constructor({ token, rsmqMO, rsmqMT, channel, botId }) {
         this.token = token;
         this.rsmqMO = rsmqMO;
         this.rsmqMT = rsmqMT;
         this.channel = channel;
+        this.botId = botId;
         this.slack = Slack.rtm.client();
         this.rsmq = new RedisSMQ( { client : REDIS, ns: "tikvaRSMQ" } );
 
@@ -36,10 +37,10 @@ class Bot {
 
             Vasync.waterfall([
                 (callback) => {
-                    // if(message.channel != channel) {
-                    //     return callback("Not a valid channel");
-                    // }
-                    //
+                    if(message.text.match(new RegExp("<@" + this.botId + ">")) === null && message.channel != channel) {
+                        return callback("Not a valid channel");
+                    }
+
                     if(message.subtype == "me_message") {
                         return callback("Own message");
                     }

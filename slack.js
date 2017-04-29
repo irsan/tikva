@@ -58,7 +58,8 @@ Vasync.waterfall([
         token : PROPERTIES.vault.slackTokenTikva,
         rsmqMO : PROPERTIES.redis.queues.tikvaMO,
         rsmqMT : PROPERTIES.redis.queues.tikvaMT,
-        channel : PROPERTIES.slack.channels.admin
+        channel : PROPERTIES.slack.channels.tikva,
+        botId : PROPERTIES.slack.bots.tikva
     });
 
     let tikvaMOReceiver = new TikvaMOReceiver({

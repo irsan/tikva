@@ -14,8 +14,10 @@
     "slack" : {
       "administrators" : [ "U559MHBKK" ],
       "channels" : {
-        "admin" : "G55UDUMT6",
-        "tikva" : "D51UDHYKT"
+        "tikva" : "D55A3D5H7"
+      },
+      "bots" : {
+        "tikva" : "U5603NE5B"
       }
     }
   },
@@ -34,8 +36,10 @@
     "slack" : {
       "administrators" : [ "U559MHBKK" ],
       "channels" : {
-        "admin" : "D4ZKQ6PU4",
-        "tikva" : "D51UDHYKT"
+        "tikva" : "D55A3D5H7"
+      },
+      "bots" : {
+        "tikva" : "U5603NE5B"
       }
     }
   }
