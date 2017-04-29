@@ -63,6 +63,10 @@ router.post('/cmd/make_cell', (req, res) => {
     });
 });
 
+router.post('/cmd', (req, res) => {
+    res.send("Ok, Let's do " + req.body.text);
+})
+
 router.post('/cmd/add/:followUp', SlackRequestUtil.setCarecell, (req, res) => {
     res.send("Ok, Let's add " + req.params.followUp);
 });
