@@ -68,6 +68,7 @@ router.post('/cmd/make_cell', (req, res) => {
 });
 
 router.post('/cmd', (req, res) => {
+    log.info("RRRRRINNNNNN HEREREREREREREREREREREERERERE");
     Vasync.waterfall([
         (callback) => {
             if(!req.body.text) {
