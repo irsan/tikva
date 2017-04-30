@@ -20,7 +20,7 @@ class CommandController {
     addFTV(user, callback) {
         log.info("THE USER: ...... ", user);
         new Model.AuthroizedLink({
-            user : user, redirect : "/user"
+            user : user, redirect : "/s/add_ftv"
         }).save((error, link) => {
             if(error) {
                 log.error("ERROR", error);

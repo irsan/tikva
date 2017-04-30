@@ -15,4 +15,8 @@ router.get('/', (req, res) => {
     res.render('index', {title: 'Tikva'});
 });
 
+router.get('/add_ftv', (req, res) => {
+    res.render('index', {title: 'Tikva'});
+});
+
 module.exports = router;

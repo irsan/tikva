@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var AuthorizedLink = new Schema({
-    url             : String,
     redirect        : String,
     user            : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     createdAt       : { type : Date, default : Date.now, expires : 60 },
