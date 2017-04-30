@@ -102,6 +102,5 @@ public/bower_components/
 resources/installed.json
 resources/properties.offline.json
 .idea/
-public/bower.json
 /local/
 slack-test.js
