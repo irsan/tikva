@@ -28,6 +28,9 @@ block content
             md-icon home
             textarea(type="text", ng-model="data.ftv.address")
 
+        div(layout="row", layout-align="start center")
+            div Tanggal Lahir
+            md-datepicker(class="dob", ng-model="data.ftv.dob", md-placeholder="Enter dob")
 
 
 block script
