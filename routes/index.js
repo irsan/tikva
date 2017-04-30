@@ -11,12 +11,7 @@ var router = Express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
-    new Model.AuthroizedLink({
-        url : "test1", redirect : "/user"
-    }).save((error, link) => {
-        res.send(link);
-    });
-    // res.render('index', {title: 'Tikva'});
+    res.render('index', {title: 'Tikva'});
 });
 
 router.get('/user', (req, res) => {
