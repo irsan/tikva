@@ -7,18 +7,21 @@ block content
     form(class="ftvForm", name="ftvForm", layout="column", ng-controller="addFTVCtrl")
         md-input-container(class="md-block", flex)
             label Nama
-            input(type="text", ng-model="ftvName")
+            input(type="text", ng-model="ftv.name")
 
 
         div(layout="row", layout-align="start center")
             md-input-container(class="md-block", flex)
                 label Oikos dari
-                input(type="text", ng-model="ftvOikosOf")
-            md-select(ng-model="ftvCarecell", class="carecellSelect md-no-underline", placeholder="Carecell")
+                input(type="text", ng-model="ftv.oikosOf")
+            md-select(ng-model="ftv.carecell", class="carecellSelect md-no-underline", placeholder="Carecell")
                 md-option(value="no carecell") No Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
 
-
+        md-input-container(class="md-block md-icon-float", flex)
+            label Telepon
+            md-icon phone_iphone
+            input(type="tel", ng-model="data.ftv.phone")
 
 
 
@@ -30,7 +33,8 @@ block script
             $log.info("Hello add FTV");
 
             $scope.data = {
-                carecells : []
+                carecells : [],
+                ftv : {}
             };
 
             $scope.actions = {
