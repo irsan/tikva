@@ -29,6 +29,7 @@ const SlackRequestUtil = require('./util/slack_request_util');
 
 let auth = require('./routes/auth');
 let index = require('./routes/index');
+let s = require('./routes/s');
 let slack = require('./routes/slack');
 
 let app = Express();
@@ -93,6 +94,7 @@ Vasync.waterfall([
     app.use(session);
 
     app.use('/auth', auth);
+    app.use('/s', SlackRequestUtil.authenticateS, s);
     app.use('/slack', SlackRequestUtil.authenticate, slack);
     app.use('/', index);
 

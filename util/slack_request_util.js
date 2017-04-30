@@ -98,6 +98,29 @@ class SlackRequestUtil {
             next();
         });
     }
+
+    static authenticateS(req, res, next) {
+        Vasync.waterfall([
+            (callback) => {
+                if(!req.session.user) {
+                    return callback("No user session found");
+                }
+
+                Model.User.findOne({
+                    _id : req.session.user,
+                    status : 'active'
+                }, callback);
+            }
+        ], (error, user) => {
+            if(error) {
+                log.error("Forbidden to S pages", error);
+                return res.status(403).send("Forbidden");
+            }
+
+            req.user = user;
+            next();
+        });
+    }
 }
 
 module.exports = SlackRequestUtil;
