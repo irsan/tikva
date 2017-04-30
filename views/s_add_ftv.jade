@@ -1,17 +1,20 @@
 extends s_layout
 
+block style
+    link(rel='stylesheet', href='/stylesheets/s/add_ftv.css')
+
 block content
-    form(name="ftvForm", layout="column", ng-controller="addFTVCtrl")
+    form(class="ftvForm", name="ftvForm", layout="column", ng-controller="addFTVCtrl")
         md-input-container(class="md-block", flex)
             label Nama
             input(type="text", ng-model="ftvName")
 
 
-        div(layout="row", layout-align="start center", layout-padding)
+        div(layout="row", layout-align="start center")
             md-input-container(class="md-block", flex)
                 label Oikos dari
                 input(type="text", ng-model="ftvOikosOf")
-            md-select(ng-model="ftvCarecell", class="md-no-underline", placeholder="Carecell")
+            md-select(ng-model="ftvCarecell", class="carecellSelect md-no-underline", placeholder="Carecell")
                 md-option(value="no carecell") No Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
 
