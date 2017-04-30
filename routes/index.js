@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/user', (req, res) => {
-    log.info("TESTTTTTTTTT", req.user);
+    log.info("TESTTTTTTTTT", req.session.user);
     res.send("ok");
 });
 
