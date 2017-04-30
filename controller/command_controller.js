@@ -9,16 +9,22 @@ class CommandController {
 
     parseCommand(command, user, callback) {
         if(command.match(/^add ftv$/i)) {
-            this.log.info("ADD FTV");
-            return callback(null, {
-                text : "/tikva add ftv\ntest test"
-            });
+            return this.addFTV(user, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
 
     addFTV(user, callback) {
-        
+        new Model.AuthroizedLink({
+            user : user, redirect : "/user"
+        }).save((error, link) => {
+            if(error) {
+                log.error("ERROR", error);
+                callback(error);
+            }
+            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
+        });
+
     }
 }
 
