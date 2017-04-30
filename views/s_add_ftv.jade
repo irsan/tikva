@@ -29,17 +29,17 @@ block content
             textarea(type="text", ng-model="data.ftv.address")
 
         div(layout="row", layout-align="start center")
-            div Tanggal Lahir
+            div Tanggal Lahir:
             md-datepicker(class="dob", ng-model="data.ftv.dob")
 
         div(layout="row", layout-align="start center", class="marginT30")
-            div Jenis Kelamin
+            div Jenis Kelamin:
             md-radio-group(ng-model="data.ftv.gender", layout="row", layout-padding, class="marginL20")
                 md-radio-button(value="male", class="md-primary") Laki-laki
                 md-radio-button(value="female", class="md-primary") Perempuan
 
         div(layout="row", layout-align="start center", class="marginT30")
-            div Status
+            div Status:
             md-radio-group(ng-model="data.ftv.status", layout="row", layout-padding, class="marginL20")
                 md-radio-button(value="single", class="md-primary") Belum Menikah
                 md-radio-button(value="married", class="md-primary") Sudah Menikah
