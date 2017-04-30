@@ -3,10 +3,11 @@ const Vasync = require('vasync');
 
 const Model = require('../model/model');
 
+let log = Bunyan.createLogger({ name : 'tikva:controller/CommandController'});
+
 class CommandController {
 
     constructor() {
-        this.log = Bunyan.createLogger({ name : 'tikva:controller/CommandController'});
     }
 
     parseCommand(command, user, callback) {
@@ -17,12 +18,12 @@ class CommandController {
     }
 
     addFTV(user, callback) {
-        this.log.info("THE USER: ...... ", user);
+        log.info("THE USER: ...... ", user);
         new Model.AuthroizedLink({
             user : user, redirect : "/user"
         }).save((error, link) => {
             if(error) {
-                this.log.error("ERROR", error);
+                log.error("ERROR", error);
                 callback(error);
             }
             callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
