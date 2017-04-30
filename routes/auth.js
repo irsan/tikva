@@ -16,14 +16,13 @@ router.get('/', (req, res) => {
     res.send("ok");
 });
 
-router.get('/authourized/:authorizedId', (req, res) => {
-    log.info("HERERERERERERERERERERERERERERERERERERERERER");
+router.get('/authorized/:authorizedId', (req, res) => {
     Model.AuthroizedLink.findOne({
         _id : req.params.authorizedId,
         status : 'active'
     }, (error, authorizedLink) => {
-        log.info("THE ERRRRRRRRROORRRRRRRR", error);
         if(error) {
+            log.error("Autorization S error", error);
             let status = error == "Not found" ? 404 : 500;
             return res.status(status).send(error);
         }
