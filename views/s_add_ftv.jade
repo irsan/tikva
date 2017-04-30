@@ -21,6 +21,10 @@ block script
     script.
         var app = angular.module('TikvaApp', ['ngMaterial']);
 
-        app.controller('addFTVCtrl', function($scope, $log) {
+        app.controller('addFTVCtrl', function($scope, $log, rest) {
             $log.info("Hello add FTV");
+
+            rest.carecell.list();
         });
+
+    script(src="/javascript/s/rest.js")
