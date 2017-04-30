@@ -27,6 +27,7 @@ let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
 const SlackRequestUtil = require('./util/slack_request_util');
 
+let auth = require('./routes/auth');
 let index = require('./routes/index');
 let slack = require('./routes/slack');
 
@@ -91,6 +92,7 @@ Vasync.waterfall([
     app.use(Express.static(Path.join(__dirname, 'public')));
     app.use(session);
 
+    app.use('/auth', auth);
     app.use('/slack', SlackRequestUtil.authenticate, slack);
     app.use('/', index);
 
