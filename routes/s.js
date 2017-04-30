@@ -7,6 +7,8 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/s' });
 
 const Model = require('../model/model');
 
+const Response = require('../util/response');
+
 var router = Express.Router();
 
 /* GET home page. */
@@ -17,6 +19,25 @@ router.get('/', (req, res) => {
 
 router.get('/add_ftv', (req, res) => {
     res.render('s_add_ftv', {title: 'Tikva'});
+});
+
+router.get('/rest/carecell/list', (req, res) => {
+    Vasync.waterfall([
+        (callback) => {
+            Model.Carecell.find({ status : 'active '}, callback);
+        },
+        (carecells, callback) => {
+            callback(null, { carecells });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
 });
 
 module.exports = router;
