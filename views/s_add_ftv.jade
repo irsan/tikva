@@ -6,12 +6,11 @@ block content
             label Nama
             input(type="text", ng-model="ftvName")
 
-        md-input-container(class="md-block", flex)
-            label Oikos dari
-            input(type="text", ng-model="ftvOikosOf")
 
         div(layout="row", layout-align="start center")
-            span Carecell
+            md-input-container(class="md-block", flex)
+                label Oikos dari
+                input(type="text", ng-model="ftvOikosOf")
             md-select(ng-model="ftvCarecell", class="md-no-underline", placeholder="Carecell")
                 md-option(value="no carecell") No Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
