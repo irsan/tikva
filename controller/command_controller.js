@@ -16,6 +16,10 @@ class CommandController {
         }
         callback(null, "Ok, your command is " + command);
     }
+
+    addFTV(user, callback) {
+        
+    }
 }
 
 module.exports = CommandController;

@@ -10,11 +10,18 @@ const Model = require('../model/model');
 var router = Express.Router();
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', (req, res) => {
     new Model.AuthroizedLink({
-        url : "test1", redirect : "test1"
-    }).save();
-    res.render('index', {title: 'Tikva'});
+        url : "test1", redirect : "/user"
+    }).save((error, link) => {
+        res.send(link);
+    });
+    // res.render('index', {title: 'Tikva'});
+});
+
+router.get('/user', (req, res) => {
+    log.info("TESTTTTTTTTT", req.user);
+    res.send("ok");
 });
 
 module.exports = router;

@@ -14,7 +14,7 @@ const SlackRequestUtil = require('../util/slack_request_util');
 
 const CommandController = require('../controller/command_controller');
 
-var router = Express.Router();
+const router = Express.Router();
 
 let commandController = new CommandController();
 
@@ -96,6 +96,5 @@ router.post('/cmd/git_pull', (req, res) => {
     });
     res.send("Ok, git pulled");
 });
-
 
 module.exports = router;
