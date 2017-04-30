@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        title= title
+        link(rel="stylesheet", href="/bower_components/angular-material/angular-material.min.css")
+        link(rel='stylesheet', href='/stylesheets/s/style.css')
+
+    body(ng-app="TikvaApp" ng-cloak)
+        block content
+
+        script(src="/bower_components/angular/angular.min.js")
+        script(src="/bower_components/angular-animate/angular-animate.min.js")
+        script(src="/bower_components/angular-aria/angular-aria.js")
+        script(src="/bower_components/angular-messages/angular-messages.min.js")
+
+        <!-- Angular Material Library -->
+        script(src="/bower_components/angular-material/angular-material.js")
+
+        block script
