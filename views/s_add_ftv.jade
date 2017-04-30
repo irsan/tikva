@@ -24,7 +24,9 @@ block script
         app.controller('addFTVCtrl', function($scope, $log, rest) {
             $log.info("Hello add FTV");
 
-            rest.carecell.list();
+            rest.carecell.list(function(response) {
+                $log.info("LIST CARECELL", response);
+            });
         });
 
     script(src="/javascript/s/rest.js")

@@ -5,7 +5,11 @@ app.factory('rest', function($http) {
         carecell : {
             list : function(onSuccess) {
                 $http.get("/s/rest/carecell/list").then(function(response) {
-                    console.log(response);
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
                 });
             }
         }
