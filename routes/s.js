@@ -24,7 +24,7 @@ router.get('/add_ftv', (req, res) => {
 router.get('/rest/carecell/list', (req, res) => {
     Vasync.waterfall([
         (callback) => {
-            Model.Carecell.find({}, callback);
+            Model.Carecell.find({ status : 'active'}, callback);
         },
         (carecells, callback) => {
             callback(null, { carecells });
