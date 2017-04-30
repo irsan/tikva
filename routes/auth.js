@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/authourized/:authorizedId', (req, res) => {
-
+    log.info("HERERERERERERERERERERERERERERERERERERERERER");
     Model.AuthroizedLink.findOne({
         _id : req.params.authorizedId,
         status : 'active'
