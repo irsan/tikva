@@ -45,6 +45,11 @@ block content
                 md-radio-button(value="married", class="md-primary") Sudah Menikah
 
 
+        md-input-container(class="md-block", flex)
+            label Keterangan
+            textarea(type="text", ng-model="data.ftv.comments")
+
+
 block script
     script.
         var app = angular.module('TikvaApp', ['ngMaterial']);
