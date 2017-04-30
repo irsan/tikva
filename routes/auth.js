@@ -18,6 +18,7 @@ router.post('/authourized/:authorizedId', (req, res) => {
         _id : req.params.authorizedId,
         status : 'active'
     }, (error, authorizedLink) => {
+        log.info("THE ERRRRRRRRROORRRRRRRR", error);
         if(error) {
             let status = error == "Not found" ? 404 : 500;
             return res.status(status).send(error);
