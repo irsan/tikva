@@ -17,7 +17,7 @@ class CommandController {
     }
 
     addFTV(user, callback) {
-        log.info("THE USER: ...... ", user);
+        this.log.info("THE USER: ...... ", user);
         new Model.AuthroizedLink({
             user : user, redirect : "/user"
         }).save((error, link) => {
