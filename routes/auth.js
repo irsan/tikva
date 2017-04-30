@@ -12,7 +12,7 @@ const Model = require('../model/model');
 
 const router = Express.Router();
 
-router.post('/authourized/:authorizedId', (req, res) => {
+router.get('/authourized/:authorizedId', (req, res) => {
 
     Model.AuthroizedLink.findOne({
         _id : req.params.authorizedId,
