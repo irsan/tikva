@@ -1,0 +1,18 @@
+extends s_layout
+
+block content
+    form(name="ftvForm", layout="column", ng-controller="addFTVCtrl")
+        md-input-container(class="md-block", flex)
+            label Nama
+            input(type="text")
+
+
+
+
+block script
+    script.
+        var app = angular.module('TikvaApp', ['ngMaterial']);
+
+        app.controller('addFTVCtrl', function($scope, $log) {
+            $log.info("Hello add FTV");
+        });
