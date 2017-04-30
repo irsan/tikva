@@ -1,6 +1,8 @@
 const Bunyan = require('bunyan');
 const Vasync = require('vasync');
 
+const Model = require('../model/model');
+
 class CommandController {
 
     constructor() {
@@ -19,7 +21,7 @@ class CommandController {
             user : user, redirect : "/user"
         }).save((error, link) => {
             if(error) {
-                log.error("ERROR", error);
+                this.log.error("ERROR", error);
                 callback(error);
             }
             callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
