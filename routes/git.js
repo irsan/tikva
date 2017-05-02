@@ -23,8 +23,6 @@ router.post('/pull', (req, res) => {
 
         res.send(result);
     });
-
-    res.send('Ok');
 });
 
 module.exports = router;
