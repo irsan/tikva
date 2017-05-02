@@ -8,7 +8,7 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/git' });
 const router = Express.Router();
 
 router.post('/pull', (req, res) => {
-    log.info("GIT PULL: ", req.headers, req.body);
+    log.info("GIT PULL WITH BODY: ", req.headers, req.body);
 
     if(req.headers['x-hub-signature'] != "sha1=db1d44b1b8660ccb0665d99c0bc1d0bba3b73d0f") {
         return res.status(404).send("Not Found");
