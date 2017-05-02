@@ -37,7 +37,7 @@ class CommandController {
         Vasync.waterfall([
             (callback) => {
                 new Model.AuthroizedLink({
-                    user : user, redirect : "/s/list_ftv"
+                    user : user, redirect : "/s/followups"
                 }).save((error, link) => {
                     if(error) {
                         log.error("ERROR", error);
