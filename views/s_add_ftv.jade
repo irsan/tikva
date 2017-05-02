@@ -7,7 +7,7 @@ block content
     form(class="ftvForm", name="ftvForm", layout="column", ng-controller="addFTVCtrl")
         h1 Add FTV Form
 
-        div(layout="row", layout-align="start center", class="marginB30")
+        div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal:
             md-datepicker(class="dob", ng-model="data.ftv.visitDate")
 
@@ -34,7 +34,7 @@ block content
             md-icon home
             textarea(type="text", ng-model="data.ftv.address")
 
-        div(layout="row", layout-align="start center", class="marginB30")
+        div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal Lahir:
             md-datepicker(class="dob", ng-model="data.ftv.dob")
 
