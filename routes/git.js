@@ -16,7 +16,6 @@ router.post('/pull', (req, res) => {
     console.log(req.headers["x-hub-signature"] === calculatedSignature); // Returns false
     console.log(req.headers["x-hub-signature"]) // => sha1=blablabla
     console.log(calculatedSignature)
-
     res.send("Ok");
     // let signature = crypto.createHmac('sha1', 'yucca-orchid-avert-tight-began').update(JSON.stringify(req.body).digest('hex');
     //
