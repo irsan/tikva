@@ -22,7 +22,6 @@ router.post('/pull', (req, res) => {
     simpleGit.pull((error, result) => {
         log.info("GIT PULL", error, result);
     });
-
     res.send("Ok");
 });
 
