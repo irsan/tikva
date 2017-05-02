@@ -63,12 +63,9 @@ router.post('/rest/ftv/add', (req, res) => {
         },
         (carecell, callback) => {
             let followUp = new Model.FollowUp({
-                name            : req.body.name,
-                gender          : { type : String, enum : [ 'male', 'female' ] },
-                marritalStatus  : { type : String, enum : [ 'single', 'married', 'widow', 'divorce' ] },
-                serviceDate     : new Date(req.body.serviceDate),
-                ftv             : { type :Boolean, default : true },
-                decision        : { type : Boolean, default : false },
+                name : req.body.name,
+                serviceDate : new Date(req.body.serviceDate),
+                ftv : true
             });
 
             if(req.body.phone) {
