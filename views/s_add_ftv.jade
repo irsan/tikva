@@ -49,10 +49,11 @@ block content
             label Keterangan
             textarea(type="text", ng-model="data.ftv.comments")
 
-        div(layout="row", layout-align="center center", class="marginT30")
+        div(layout="row", layout-align="center center", class="marginTB30")
             div
                 md-button Cancel
                 md-button(class="md-raised md-primary") Save
+        div
 block script
     script.
         var app = angular.module('TikvaApp', ['ngMaterial']);
