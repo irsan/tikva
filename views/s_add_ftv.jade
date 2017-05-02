@@ -65,6 +65,8 @@ block script
         app.controller('addFTVCtrl', function($scope, $log, rest) {
             $log.info("Hello add FTV");
 
+            console.log(moment().startOf('week'));
+
             $scope.data = {
                 carecells : [],
                 ftv : {}
