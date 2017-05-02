@@ -13,7 +13,7 @@ router.post('/pull', (req, res) => {
 
     let signature = crypto.createHmac('sha1', 'yucca-orchid-avert-tight-began').update(req.body.payload).digest('hex');
 
-    log.info("THE SIGNATURE IS: ", signature);
+    log.info("THE  SIGNATURE IS: ", signature);
 
     if(req.headers['x-hub-signature'] != "sha1=db1d44b1b8660ccb0665d99c0bc1d0bba3b73d0f") {
         return res.status(404).send("Not Found");
