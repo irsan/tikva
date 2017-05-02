@@ -74,7 +74,7 @@ router.post('/cmd', (req, res) => {
             if(!req.body.text) {
                 return callback("Invalid command");
             }
-            commandController.parseCommand(req.body.text, req.user, callback);
+            commandController.parseCommand(req.body, req.user, callback);
         }
     ], (error, reply) => {
         if(error) {

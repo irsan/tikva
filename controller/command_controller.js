@@ -10,8 +10,8 @@ class CommandController {
     constructor() {
     }
 
-    parseCommand(command, user, callback) {
-        if(command.match(/^add ftv$/i)) {
+    parseCommand({ text, channel_id }, user, callback) {
+        if(text.match(/^add ftv$/i)) {
             return this.addFTV(user, callback);
         }
         callback(null, "Ok, your command is " + command);
@@ -31,6 +31,19 @@ class CommandController {
 
     }
 
+    listFTVs(text, channel, user, callback) {
+        Vasync.waterfall([
+            (callback) => {
+                if(channel != PROPERTIES.slack.channels.leaders) {
+                    return callback("Oops, only leaders are allowed to do this.");
+                }
+
+                Model.FollowUp({
+                    status: 'active'
+                })
+            }
+        ], callback);
+    }
 
 }
 
