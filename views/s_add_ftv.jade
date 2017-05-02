@@ -28,12 +28,12 @@ block content
             md-icon home
             textarea(type="text", ng-model="data.ftv.address")
 
+        div Tanggal Lahir:
         div(layout="row", layout-align="start center")
-            div Tanggal Lahir:
             md-datepicker(class="dob", ng-model="data.ftv.dob")
 
+        div Jenis Kelamin:
         div(layout="row", layout-align="start center", class="marginT30")
-            div Jenis Kelamin:
             md-radio-group(ng-model="data.ftv.gender", layout="row", layout-padding, class="marginL20")
                 md-radio-button(value="male", class="md-primary") Laki-laki
                 md-radio-button(value="female", class="md-primary") Perempuan
