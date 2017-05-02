@@ -22,7 +22,7 @@ router.post('/pull', (req, res) => {
     //     res.send(result);
     // });
 
-    log.info("req", req);
+    log.info("req", req.headers);
 
     res.send('Ok');
 });
