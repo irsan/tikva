@@ -14,7 +14,7 @@ var router = Express.Router();
 /* GET home page. */
 router.get('/', (req, res) => {
     log.info("S USER", req.user);
-    res.render('index', {title: 'Tikva'});
+    res.render('s_index', {title: 'Tikva'});
 });
 
 router.get('/add_ftv', (req, res) => {

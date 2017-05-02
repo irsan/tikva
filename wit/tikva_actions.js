@@ -86,6 +86,16 @@ class TikvaActions extends Actions {
 
             log.info("CONTEXT DATA", context);
 
+            Vasync.waterfall([
+                (callback) => {
+                    Model.FollowUp.find({
+
+                        ftv : true,
+                        status : 'active'
+                    })
+                }
+            ])
+
             context.done = true;
 
             return resolve(context);
