@@ -1,6 +1,6 @@
 var app = angular.module('TikvaApp', ['ngMaterial']);
 
-app.controller('mainController', function($scope, $mdSidenav) {
+app.controller('mainController', function($scope, $mdSidenav, $timeout) {
 
     $scope.toggleLeft = buildDelayedToggler('left');
 
