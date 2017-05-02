@@ -12,6 +12,7 @@ router.post('/pull', (req, res) => {
     log.info("GIT PULL WITH BODY: ", req.headers);
 
     let hmac = crypto.createHmac("sha1", "yucca-orchid-avert-tight-began");
+    console.log("CREATE HMAC");
     let calculatedSignature = "sha1=" + hmac.update(JSON.stringify(req.body)).digest("hex");
     console.log(req.headers["x-hub-signature"] === calculatedSignature); // Returns false
     console.log(req.headers["x-hub-signature"]) // => sha1=blablabla
