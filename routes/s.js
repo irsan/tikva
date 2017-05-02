@@ -49,6 +49,10 @@ router.post('/rest/ftv/add', (req, res) => {
                 return callback("Name is required");
             }
 
+            if(!req.body.serviceDate) {
+                return callback("Service Date is required");
+            }
+
             if(req.body.carecell) {
                 Model.Carecell.findOne({
                     _id: req.body.carecell, status: 'active'
@@ -62,8 +66,7 @@ router.post('/rest/ftv/add', (req, res) => {
                 name            : req.body.name,
                 gender          : { type : String, enum : [ 'male', 'female' ] },
                 marritalStatus  : { type : String, enum : [ 'single', 'married', 'widow', 'divorce' ] },
-                comments        : String,
-                serviceDate     : Date,
+                serviceDate     : new Date(req.body.serviceDate),
                 ftv             : { type :Boolean, default : true },
                 decision        : { type : Boolean, default : false },
             });
@@ -81,7 +84,7 @@ router.post('/rest/ftv/add', (req, res) => {
             }
 
             if(req.body.dob) {
-                followUp.dob = req.body.dob;
+                followUp.dob = new Date(req.body.dob);
             }
 
             if(req.body.gender) {
