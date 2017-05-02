@@ -28,7 +28,7 @@ class CommandController {
                 log.error("ERROR", error);
                 callback(error);
             }
-            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
+            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to add FTV>");
         });
 
     }
@@ -43,7 +43,7 @@ class CommandController {
                         log.error("ERROR", error);
                         callback(error);
                     }
-                    callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
+                    callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to view follow ups>");
                 });
             }
         ], callback);

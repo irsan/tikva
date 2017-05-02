@@ -21,6 +21,10 @@ router.get('/add_ftv', (req, res) => {
     res.render('s_add_ftv', {title: 'Tikva'});
 });
 
+router.get('/followups', (req, res) => {
+    res.render('s_followups', {title: 'Tikva'});
+});
+
 router.get('/rest/carecell/list', (req, res) => {
     Vasync.waterfall([
         (callback) => {
