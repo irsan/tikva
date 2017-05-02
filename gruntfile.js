@@ -6,6 +6,7 @@ module.exports = function (grunt) {
                 script: './bin/www',
                 options: {
                     watchedExtensions: ['js'],
+                    ignore : ['public/**'],
                     env : {
                         PORT : '3000'
                     }
