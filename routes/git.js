@@ -9,9 +9,9 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/git' });
 const router = Express.Router();
 
 router.post('/pull', (req, res) => {
-    log.info("GIT PULL WITH BODY: ", req.headers, req.body);
+    log.info("GIT PULL WITH BODY: ", req.headers);
 
-    let signature = crypto.createHmac('sha1', 'yucca-orchid-avert-tight-began').update(req.body.payload).digest('hex');
+    let signature = crypto.createHmac('sha1', 'yucca-orchid-avert-tight-began').update(JSON.stringify(req.body)).digest('hex');
 
     log.info("THE  SIGNATURE IS: ", signature);
 
