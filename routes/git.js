@@ -8,22 +8,21 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/git' });
 const router = Express.Router();
 
 router.post('/pull', (req, res) => {
-    // if(req.params.token != PROPERTIES.vault.slackVerificationToken) {
-    //     return res.status(404).send("Not Found");
-    // }
-    //
-    // let simpleGit = SimpleGit('./');
-    // simpleGit.pull((error, result) => {
-    //     log.info("GIT PULL", error, result);
-    //     if(error) {
-    //         return res.status(500).send(error);
-    //     }
-    //
-    //     res.send(result);
-    // });
-
     log.info("req", req.headers);
 
+    if(req.headers['x-hub-signature'] != "sha1=db1d44b1b8660ccb0665d99c0bc1d0bba3b73d0f") {
+        return res.status(404).send("Not Found");
+    }
+
+    let simpleGit = SimpleGit('./');
+    simpleGit.pull((error, result) => {
+        log.info("GIT PULL", error, result);
+        if(error) {
+            return res.status(500).send(error);
+        }
+
+        res.send(result);
+    });
 
     res.send('Ok');
 });
