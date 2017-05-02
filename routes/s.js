@@ -44,6 +44,16 @@ router.post('/rest/ftv/add', (req, res) => {
     Vasync.waterfall([
         (callback) => {
             log.info("ADD FTV BODY", req.body);
+
+            Model.Carecell.findOne({
+                _id: req.body.carecell, status: 'active'
+            }, callback);
+        },
+        (carecell, callback) => {
+            if(!carecell) {
+                return callback("Invalid Carecell");
+            }
+
             // new Model.FollowUp({
             //     name            : req.body.name,
             //     phone           : req.body.phone,
