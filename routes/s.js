@@ -123,4 +123,8 @@ router.post('/rest/ftv/add', (req, res) => {
     })
 });
 
+router.post('/rest/followups', (req, res) => {
+
+});
+
 module.exports = router;

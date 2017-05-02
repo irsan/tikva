@@ -79,6 +79,18 @@ class TikvaActions extends Actions {
             return resolve(context);
         });
     }
+
+    list_ftv_list({context, entities}) {
+        return new Promise((resolve, reject) => {
+            log.info("--- WIT ACTIONS : LIST FTV LIST: ");
+
+            log.info("CONTEXT DATA", context);
+
+            context.done = true;
+
+            return resolve(context);
+        });
+    }
 }
 
 module.exports = TikvaActions;

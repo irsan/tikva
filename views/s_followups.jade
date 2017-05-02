@@ -4,8 +4,11 @@ block style
     link(rel='stylesheet', href='/stylesheets/s/followups.css')
 
 block content
-    form(class="ftvForm", name="ftvForm", layout="column", ng-controller="addFTVCtrl")
-        h1 Follow Ups
+    md-toolbar(md-scroll-shrink ng-if="true")
+        div(class="md-toolbar-tools")
+            h3 My Follow Ups
+
+    md-content(flex)
 
 block script
     script.
@@ -15,6 +18,9 @@ block script
             $log.info("List of Follow Ups");
 
             $scope.data = {
+                followUps : {
+
+                }
             };
 
             $scope.actions = {
