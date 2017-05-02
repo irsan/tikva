@@ -45,31 +45,68 @@ router.post('/rest/ftv/add', (req, res) => {
         (callback) => {
             log.info("ADD FTV BODY", req.body);
 
-            Model.Carecell.findOne({
-                _id: req.body.carecell, status: 'active'
-            }, callback);
-        },
-        (carecell, callback) => {
-            if(!carecell) {
-                return callback("Invalid Carecell");
+            if(!req.body.name || req.body.name.length == 0) {
+                return callback("Name is required");
             }
 
-            // new Model.FollowUp({
-            //     name            : req.body.name,
-            //     phone           : req.body.phone,
-            //     address         : req.body.address,
-            //     oikosOf         : req.body.oikosOf,
-            //     carecell        : req.body.carecell,
-            //     dob             : String,
-            //     gender          : { type : String, enum : [ 'male', 'female' ] },
-            //     marritalStatus  : { type : String, enum : [ 'single', 'married', 'widow', 'divorce' ] },
-            //     comments        : String,
-            //     serviceDate     : Date,
-            //     ftv             : { type :Boolean, default : true },
-            //     decision        : { type : Boolean, default : false },
-            // })
+            if(req.body.carecell) {
+                Model.Carecell.findOne({
+                    _id: req.body.carecell, status: 'active'
+                }, callback);
+            } else {
+                callback(null, null);
+            }
+        },
+        (carecell, callback) => {
+            let followUp = new Model.FollowUp({
+                name            : req.body.name,
+                gender          : { type : String, enum : [ 'male', 'female' ] },
+                marritalStatus  : { type : String, enum : [ 'single', 'married', 'widow', 'divorce' ] },
+                comments        : String,
+                serviceDate     : Date,
+                ftv             : { type :Boolean, default : true },
+                decision        : { type : Boolean, default : false },
+            });
 
-            callback(null, {});
+            if(req.body.phone) {
+                followUp.phone = req.body.phone;
+            }
+
+            if(req.body.address) {
+                followUp.address = req.body.address;
+            }
+
+            if(req.body.oikosOf) {
+                followUp.oikosOf = req.body.oikosOf;
+            }
+
+            if(req.body.dob) {
+                followUp.dob = req.body.dob;
+            }
+
+            if(req.body.gender) {
+                followUp.gender = req.body.gender;
+            }
+
+            if(req.body.status) {
+                followUp.marritalStatus = req.body.status;
+            }
+
+            if(req.body.comments) {
+                followUp.comments = req.body.comments;
+            }
+
+            if(carecell) {
+                followUp.carecell = carecell;
+            }
+
+            followUp.save((error, ftv) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { ftv });
+            });
         }
     ], (error, data) => {
         var response = new Response();

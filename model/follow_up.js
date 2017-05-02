@@ -7,7 +7,7 @@ var FollowUp = new Schema({
     address         : String,
     oikosOf         : String,
     carecell        : { type : Schema.Types.ObjectId, ref : 'Carecell' },
-    dob             : String,
+    dob             : Date,
     gender          : { type : String, enum : [ 'male', 'female' ] },
     marritalStatus  : { type : String, enum : [ 'single', 'married', 'widow', 'divorce' ] },
     comments        : String,
