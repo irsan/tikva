@@ -9,7 +9,7 @@ block content
 
         div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal:
-            md-datepicker(class="dob", ng-model="data.ftv.visitDate")
+            md-datepicker(class="dob", ng-model="data.ftv.serviceDate")
 
         md-input-container(class="md-block", flex)
             label Nama
@@ -65,11 +65,11 @@ block script
         app.controller('addFTVCtrl', function($scope, $log, rest) {
             $log.info("Hello add FTV");
 
-            console.log(moment().startOf('week'));
-
             $scope.data = {
                 carecells : [],
-                ftv : {}
+                ftv : {
+                    serviceDate : moment().startOf('week').toDate()
+                }
             };
 
             $scope.actions = {
@@ -85,4 +85,5 @@ block script
             $scope.actions.listCarecells();
         });
 
+    script(src="/javascript/s/config.js")
     script(src="/javascript/s/rest.js")
