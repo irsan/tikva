@@ -13,8 +13,8 @@ class CommandController {
     parseCommand({ text, channel_id }, user, callback) {
         if(text.match(/^add ftv$/i)) {
             return this.addFTV(user, callback);
-        } else if(text.match(/^list ftv$/i)) {
-            return this.listFTVs(user, callback);
+        } else if(text.match(/^list follow ups$/i)) {
+            return this.listFollowUps(user, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -33,7 +33,7 @@ class CommandController {
 
     }
 
-    listFTVs(user, callback) {
+    listFollowUps(user, callback) {
         Vasync.waterfall([
             (callback) => {
                 new Model.AuthroizedLink({
