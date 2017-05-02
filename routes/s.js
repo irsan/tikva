@@ -40,4 +40,21 @@ router.get('/rest/carecell/list', (req, res) => {
     });
 });
 
+router.post('/rest/ftv/add', (req, res) => {
+    Vasync.waterfall([
+        (callback) => {
+            log.info("ADD FTV BODY", req.body);
+            callback(null, {});
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    })
+});
+
 module.exports = router;

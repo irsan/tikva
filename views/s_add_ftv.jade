@@ -56,7 +56,7 @@ block content
         div(layout="row", layout-align="center center", class="marginTB30")
             div
                 md-button Cancel
-                md-button(class="md-raised md-primary") Save
+                md-button(class="md-raised md-primary", ng-click="actions.addFTV()") Save
         div
 block script
     script.
@@ -78,6 +78,11 @@ block script
                         if (response.status == "Ok") {
                             $scope.data.carecells = response.data.carecells;
                         }
+                    });
+                },
+                addFTV : function() {
+                    rest.ftv.add($scope.data.ftv, function(response) {
+                        $log.info("ADD FTV", response);
                     });
                 }
             }
