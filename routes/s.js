@@ -44,6 +44,21 @@ router.post('/rest/ftv/add', (req, res) => {
     Vasync.waterfall([
         (callback) => {
             log.info("ADD FTV BODY", req.body);
+            // new Model.FollowUp({
+            //     name            : req.body.name,
+            //     phone           : req.body.phone,
+            //     address         : req.body.address,
+            //     oikosOf         : req.body.oikosOf,
+            //     carecell        : req.body.carecell,
+            //     dob             : String,
+            //     gender          : { type : String, enum : [ 'male', 'female' ] },
+            //     marritalStatus  : { type : String, enum : [ 'single', 'married', 'widow', 'divorce' ] },
+            //     comments        : String,
+            //     serviceDate     : Date,
+            //     ftv             : { type :Boolean, default : true },
+            //     decision        : { type : Boolean, default : false },
+            // })
+
             callback(null, {});
         }
     ], (error, data) => {
