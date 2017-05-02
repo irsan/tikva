@@ -23,3 +23,4 @@ let payload =  '{"ref":"refs/heads/master","before":"3f4f105f68f2d7e84b5717dfffd
 let signature = crypto.createHmac('sha1', 'yucca-orchid-avert-tight-began').update(new Buffer(payload, 'utf-8')).digest('hex');
 
 console.log("THE  SIGNATURE IS: ", signature);
+
