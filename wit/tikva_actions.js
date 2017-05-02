@@ -69,9 +69,8 @@ class TikvaActions extends Actions {
                 context.done = true;
             } else if(intent == "list_ftv") {
                 let datetime = this.getFirstEntityValue(entities, "datetime");
-                log.info("List FTV Date Time", datetime);
-                context.oops = true;
-                context.done = true;
+                context.data.datetime = datetime;
+                context.listFTV = true;
             } else {
                 context.oops = true;
                 context.done = true;

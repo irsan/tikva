@@ -13,6 +13,8 @@ class CommandController {
     parseCommand({ text, channel_id }, user, callback) {
         if(text.match(/^add ftv$/i)) {
             return this.addFTV(user, callback);
+        } else if(text.match(/^list ftv$/i)) {
+            return this.listFTVs(user, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -31,16 +33,18 @@ class CommandController {
 
     }
 
-    listFTVs(text, channel, user, callback) {
+    listFTVs(user, callback) {
         Vasync.waterfall([
             (callback) => {
-                if(channel != PROPERTIES.slack.channels.leaders) {
-                    return callback("Oops, only leaders are allowed to do this.");
-                }
-
-                Model.FollowUp({
-                    status: 'active'
-                })
+                new Model.AuthroizedLink({
+                    user : user, redirect : "/s/list_ftv"
+                }).save((error, link) => {
+                    if(error) {
+                        log.error("ERROR", error);
+                        callback(error);
+                    }
+                    callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
+                });
             }
         ], callback);
     }

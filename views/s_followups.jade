@@ -1,0 +1,25 @@
+extends s_layout
+
+block style
+    link(rel='stylesheet', href='/stylesheets/s/add_ftv.css')
+
+block content
+    form(class="ftvForm", name="ftvForm", layout="column", ng-controller="addFTVCtrl")
+        h1 Follow Ups
+
+block script
+    script.
+        var app = angular.module('TikvaApp', ['ngMaterial']);
+
+        app.controller('addFTVCtrl', function($scope, $log, rest) {
+            $log.info("List of Follow Ups");
+
+            $scope.data = {
+            };
+
+            $scope.actions = {
+            }
+        });
+
+    script(src="/javascript/s/config.js")
+    script(src="/javascript/s/rest.js")
