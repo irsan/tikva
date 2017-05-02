@@ -9,7 +9,7 @@ html
         link(rel='stylesheet', href='/stylesheets/s/style.css')
         block style
 
-    body(ng-app="TikvaApp", layout="row", flex, ng-cloak)
+    body(ng-app="TikvaApp", ng-controller="mainController", layout="row", flex, ng-cloak)
         md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="false", md-whiteframe="4")
             div hello left
         md-content(flex, layout="column")
@@ -23,5 +23,6 @@ html
 
         <!-- Angular Material Library -->
         script(src="/bower_components/angular-material/angular-material.js")
+        script(src="/javascript/s/index.js")
 
         block script

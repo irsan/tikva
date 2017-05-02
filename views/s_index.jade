@@ -1,9 +1,6 @@
 extends s_layout
 
 block content
-    h1 hello
+    h1(ng-click="toggleLeft()") hello
 
 block script
-    script.
-        var app = angular.module('TikvaApp', ['ngMaterial']);
-
