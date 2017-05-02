@@ -10,7 +10,6 @@ const router = Express.Router();
 
 router.post('/pull', (req, res) => {
     log.info("GIT PULL WITH BODY: ", req.headers);
-
     let hmac = Crypto.createHmac("sha1", PROPERTIES.vault.gitWebhookSecret);
     let calculatedSignature = "sha1=" + hmac.update(JSON.stringify(req.body)).digest("hex");
 
