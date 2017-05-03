@@ -14,6 +14,8 @@ md-toolbar.mainMenu, md-toolbar.mainMenu .md-toolbar-tools {
 
 md-toolbar.mainMenu md-icon { color : #CAD1D9; }
 
+md-toolbar.mainMenu md-icon.selected { color : #00B7FF; }
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginL20 { margin-left: 20px; }
