@@ -9,14 +9,12 @@ md-toolbar(class="topBar")
 
 md-content(flex)
     form(class="ftvForm", name="ftvForm", layout="column")
+        div(layout="row", layout-align="space-around center", class="marginB30")
+            md-checkbox(ng-model="data.ftv.ftv" aria-label="FTV") FTV
+            md-checkbox(ng-model="data.ftv.decision" aria-label="Keputusan") Keputusan
         div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal:
             md-datepicker(class="dob", ng-model="data.ftv.serviceDate")
-
-        div Jenis Follow Up:
-        md-radio-group(ng-model="data.ftv.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="male", class="md-primary", flex) FTV
-            md-radio-button(value="female", class="md-primary", flex) Keputusan
 
         md-input-container(class="md-block", flex)
             label Nama
