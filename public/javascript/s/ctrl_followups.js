@@ -57,7 +57,17 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $location, $log, 
             });
         },
         backToFollowUps : function() {
-            $location.path("/followups");
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to cancel add a follow up?')
+                .textContent('If you leave now, all information that has been entered will be gone.')
+                .ariaLabel('Cancel')
+                .targetEvent(ev)
+                .ok("Yes")
+                .cancel("No");
+
+            $mdDialog.show(confirm).then(function() {
+                $location.path("/followups");
+            }, function() {});
         }
     }
 
