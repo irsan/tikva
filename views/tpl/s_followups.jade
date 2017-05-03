@@ -12,3 +12,4 @@ md-content(flex, layout="column")
         img(class="md-avatar", src="/images/ic_person_black_48px.svg")
         div(class="md-list-item-text" layout="column")
             h3 {{followup.name}}
+            h4 dob: {{followup.dob | date : 'd MMM yyyy'}}
