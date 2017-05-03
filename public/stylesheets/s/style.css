@@ -2,6 +2,11 @@ body {
     font: 14px "Lato", Helvetica, Arial, sans-serif;
 }
 
+md-toolbar.mainMenu {
+    background-color: #fafafa;
+    border-top: 1px solid #F1F1F1;
+}
+
 md-toolbar.mainMenu, md-toolbar.mainMenu .md-toolbar-tools {
     height: 50px;
     min-height: 50px;
