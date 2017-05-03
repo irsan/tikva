@@ -23,8 +23,19 @@ app.factory('rest', function($http) {
                     }
                 });
             }
+        },
+        followUp: {
+            list : function(onSuccess) {
+                $http.get("/s/rest/followups").then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
+            }
         }
-    }
+    };
 
     return restService;
 });

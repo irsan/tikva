@@ -7,6 +7,7 @@ const log = Bunyan.createLogger({ name : 'tikva:routes/s' });
 
 const Model = require('../model/model');
 
+const Pagination = require('../util/pagination');
 const Response = require('../util/response');
 
 var router = Express.Router();
@@ -124,7 +125,22 @@ router.post('/rest/ftv/add', (req, res) => {
 });
 
 router.post('/rest/followups', (req, res) => {
-
+    Vasync.waterfall([
+        (callback) => {
+            Model.FollowUp.find({ status : 'active'}, callback);
+        },
+        (followUps, callback) => {
+            callback(null, { followUps });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
 });
 
 module.exports = router;
