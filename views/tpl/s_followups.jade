@@ -8,35 +8,6 @@ md-toolbar(class="topBar", md-scroll-shrink)
             md-icon add
 
 md-content(flex, layout="column")
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
-    h1 hello
+    md-list-item(class="md-3-line" ng-repeat="followup in followUps.followUps" ng-click="null")
+        div(class="md-list-item-text" layout="column")
+            h3 {{followup.name}}
