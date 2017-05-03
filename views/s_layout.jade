@@ -13,8 +13,7 @@ html
         md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="false", md-whiteframe="4")
             div hello left
         div(flex, layout="column")
-            md-content(flex, layout="column")
-                block content
+            md-content(flex, layout="column", ng-view)
             md-toolbar(class="mainMenu")
                 div(class="md-toolbar-tools", layout="row", layout-align="space-around center")
                     md-button(class="md-icon-button" aria-label="Dashboard")
@@ -33,9 +32,10 @@ html
         script(src="/bower_components/angular-aria/angular-aria.js")
         script(src="/bower_components/angular-messages/angular-messages.min.js")
         script(src="/bower_components/moment/min/moment.min.js")
+        script(src="/bower_components/angular-route/angular-route.min.js")
 
         <!-- Angular Material Library -->
-        script(src="/bower_components/angular-material/angular-material.js")
+        script(src="/bower_components/angular-material/angular-material.min.js")
         script(src="/javascript/s/index.js")
 
         block script

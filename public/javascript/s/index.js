@@ -1,4 +1,4 @@
-var app = angular.module('TikvaApp', ['ngMaterial']);
+var app = angular.module('TikvaApp', ['ngMaterial', 'ngRoute' ]);
 
 app.controller('mainController', function($scope, $mdSidenav, $timeout) {
 

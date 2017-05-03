@@ -9,3 +9,18 @@ app.config(['$mdDateLocaleProvider', function ($mdDateLocaleProvider) {
         return m.isValid() ? m.toDate() : new Date(NaN);
     };
 }]);
+
+app.config([
+    '$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+        when('/', {
+            templateUrl: '/tpl/a_followups',
+            controller: 'followupsCtrl'
+        }).
+
+        otherwise({
+            redirectTo: '/'
+        });
+    }
+]);

@@ -32,6 +32,7 @@ let git = require('./routes/git');
 let index = require('./routes/index');
 let s = require('./routes/s');
 let slack = require('./routes/slack');
+let tpl = require('./routes/tpl');
 
 let app = Express();
 
@@ -98,6 +99,7 @@ Vasync.waterfall([
     app.use('/git', git);
     app.use('/s', SlackRequestUtil.authenticateS, s);
     app.use('/slack', SlackRequestUtil.authenticate, slack);
+    app.use('/tpl', tpl);
     app.use('/', index);
 
     // catch 404 and forward to error handler
