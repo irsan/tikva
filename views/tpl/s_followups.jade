@@ -10,7 +10,7 @@ md-toolbar(class="topBar", md-scroll-shrink)
 md-content(flex, layout="column")
     md-list(class="followUps", flex)
         md-list-item(class="md-2-line" ng-repeat="followup in data.followUps.followUps" ng-click="null")
-            div(class="fa fa-female md-avatar", aria-hidden="true")
+            div(class="fa fa-{{followup.gender}} md-avatar", aria-hidden="true")
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
                 p dob: {{followup.dob | date : 'd MMM yyyy'}}, {{followup.gender}}
