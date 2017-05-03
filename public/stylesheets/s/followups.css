@@ -12,6 +12,7 @@
 
 .newFollowUpForm .insertPhoto {
     width: 70px; height: 70px;
+    margin-left: 20px;
 }
 
 .newFollowUpForm .insertPhoto md-icon {
