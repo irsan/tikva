@@ -10,50 +10,50 @@ md-toolbar(class="topBar")
 md-content(flex)
     form(class="ftvForm", name="ftvForm", layout="column")
         div(layout="row", layout-align="space-around center", class="marginB30")
-            md-checkbox(ng-model="data.ftv.ftv" aria-label="FTV") FTV
-            md-checkbox(ng-model="data.ftv.decision" aria-label="Keputusan") Keputusan
+            md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
+            md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
         div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal:
-            md-datepicker(class="dob", ng-model="data.ftv.serviceDate")
+            md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
 
         md-input-container(class="md-block", flex)
             label Nama
-            input(type="text", ng-model="data.ftv.name")
+            input(type="text", ng-model="data.followUp.name")
 
 
         div(layout="row", layout-align="start center")
             md-input-container(class="md-block", flex)
                 label Yang membawa (Oikos dari)
-                input(type="text", ng-model="data.ftv.oikosOf")
-            md-select(ng-model="data.ftv.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
+                input(type="text", ng-model="data.followUp.oikosOf")
+            md-select(ng-model="data.followUp.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
                 md-option(value="no carecell") Tiada Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
 
         md-input-container(class="md-block md-icon-float", flex)
             label Telepon
             md-icon phone_iphone
-            input(type="tel", ng-model="data.ftv.phone")
+            input(type="tel", ng-model="data.followUp.phone")
 
         md-input-container(class="md-block md-icon-float", flex)
             label Alamat
             md-icon home
-            textarea(type="text", ng-model="data.ftv.address")
+            textarea(type="text", ng-model="data.followUp.address")
 
         div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal Lahir:
-            md-datepicker(class="dob", ng-model="data.ftv.dob")
+            md-datepicker(class="dob", ng-model="data.followUp.dob")
 
         div Jenis Kelamin:
-        md-radio-group(ng-model="data.ftv.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
+        md-radio-group(ng-model="data.followUp.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
             md-radio-button(value="male", class="md-primary", flex) Laki-laki
             md-radio-button(value="female", class="md-primary", flex) Perempuan
 
         div Status:
-        md-radio-group(ng-model="data.ftv.status", layout="row", layout-align="start center", class="marginB30 marginT10")
+        md-radio-group(ng-model="data.followUp.status", layout="row", layout-align="start center", class="marginB30 marginT10")
             md-radio-button(value="single", class="md-primary", flex) belum menikah
             md-radio-button(value="married", class="md-primary", flex) sudah menikah
 
 
         md-input-container(class="md-block", flex)
             label Keterangan
-            textarea(type="text", ng-model="data.ftv.comments")
+            textarea(type="text", ng-model="data.followUp.comments")

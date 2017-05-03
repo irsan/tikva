@@ -45,10 +45,14 @@ router.get('/rest/carecell/list', (req, res) => {
     });
 });
 
-router.post('/rest/ftv/add', (req, res) => {
+router.post('/rest/followup/add', (req, res) => {
     Vasync.waterfall([
         (callback) => {
-            log.info("ADD FTV BODY", req.body);
+            log.info("ADD Follow Up BODY", req.body);
+
+            if(!req.body.ftv && !req.body.decision) {
+                return callback("Invalid Type of follow up")
+            }
 
             if(!req.body.name || req.body.name.length == 0) {
                 return callback("Name is required");
@@ -70,8 +74,15 @@ router.post('/rest/ftv/add', (req, res) => {
             let followUp = new Model.FollowUp({
                 name : req.body.name,
                 serviceDate : new Date(req.body.serviceDate),
-                ftv : true
             });
+
+            if(req.body.ftv) {
+                followUp.ftv = true;
+            }
+
+            if(req.body.decision) {
+                followUp.decision = true;
+            }
 
             if(req.body.phone) {
                 followUp.phone = req.body.phone;
