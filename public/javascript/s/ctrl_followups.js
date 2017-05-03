@@ -2,6 +2,7 @@ var app = angular.module('TikvaApp');
 
 app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, rest) {
     $rootScope.selectedMenu = 'followups';
+    $rootScope.hideMainMenu = false;
 
     $log.debug("FOLLOW UPS CTRL");
 
@@ -33,6 +34,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
 
 app.controller('newFollowUpCtrl', function($scope, $location, $log, rest) {
     $log.debug("NEW FOLLOW UP CONTROLLER");
+    $rootScope.hideMainMenu = true;
 
     $scope.data = {
         carecells : [],

@@ -14,7 +14,7 @@ html
         md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="false", md-whiteframe="4")
         div(flex, layout="column")
             md-content(flex, layout="column", ng-view)
-            md-toolbar(class="mainMenu")
+            md-toolbar(class="mainMenu", ng-hide="hideMainMenu")
                 div(class="md-toolbar-tools", layout="row", layout-align="space-around center")
                     md-button(class="md-icon-button" aria-label="Dashboard")
                         md-icon(ng-class="{'selected' : selectedMenu == 'dashboard'}") dashboard
