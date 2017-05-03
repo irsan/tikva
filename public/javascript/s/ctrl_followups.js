@@ -56,7 +56,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
                 $log.info("ADD FTV", response);
             });
         },
-        backToFollowUps : function() {
+        backToFollowUps : function(ev) {
             var confirm = $mdDialog.confirm()
                 .title('Are you sure you want to cancel add a follow up?')
                 .textContent('If you leave now, all information that has been entered will be gone.')
