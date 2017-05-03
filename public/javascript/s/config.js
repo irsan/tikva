@@ -15,7 +15,7 @@ app.config([
     function($routeProvider) {
         $routeProvider.
         when('/', {
-            templateUrl: '/tpl/a_followups',
+            templateUrl: '/tpl/s_followups',
             controller: 'followupsCtrl'
         }).
 
