@@ -31,6 +31,30 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $scope.actions.init();
 });
 
-app.controller('newFollowUpCtrl', function($scope, $log) {
+app.controller('newFollowUpCtrl', function($scope, $log, rest) {
     $log.debug("NEW FOLLOW UP CONTROLLER");
+
+    $scope.data = {
+        carecells : [],
+        ftv : {
+            serviceDate : moment().startOf('week').toDate()
+        }
+    };
+
+    $scope.actions = {
+        listCarecells : function() {
+            rest.carecell.list(function (response) {
+                if (response.status == "Ok") {
+                    $scope.data.carecells = response.data.carecells;
+                }
+            });
+        },
+        addFTV : function() {
+            rest.ftv.add($scope.data.ftv, function(response) {
+                $log.info("ADD FTV", response);
+            });
+        }
+    }
+
+    $scope.actions.listCarecells();
 })
