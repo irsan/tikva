@@ -2,6 +2,10 @@ body {
     font: 14px "Lato", Helvetica, Arial, sans-serif;
 }
 
+.mainMenu, .mainMenu .md-toolbar-tools {
+    height: 50px;
+}
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginL20 { margin-left: 20px; }
