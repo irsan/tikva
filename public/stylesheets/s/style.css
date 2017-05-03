@@ -7,6 +7,8 @@ md-toolbar.mainMenu, md-toolbar.mainMenu .md-toolbar-tools {
     min-height: 50px;
 }
 
+md-toolbar.mainMenu md-icon { color : #3C3F41; }
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginL20 { margin-left: 20px; }
