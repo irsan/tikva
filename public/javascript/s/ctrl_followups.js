@@ -15,4 +15,6 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $log, rest) {
             $scope.actions.listFollowUps();
         }
     }
+
+    $scope.actions.init();
 });
