@@ -16,10 +16,22 @@ md-content(flex)
             div Tanggal:
             md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
 
-        md-input-container(class="md-block", flex)
-            label Nama
-            input(type="text", ng-model="data.followUp.name")
+        div(layout="row", layout-align="start center")
+            md-icon(style="font-size: 5em") person
+            div(layout="column")
+                md-input-container(class="md-block", flex)
+                    label Nama
+                    input(type="text", ng-model="data.followUp.name")
 
+                md-input-container(class="md-block md-icon-float", flex)
+                    label Telepon
+                    md-icon phone_iphone
+                    input(type="tel", ng-model="data.followUp.phone")
+
+        md-input-container(class="md-block md-icon-float", flex)
+            label Alamat
+            md-icon home
+            textarea(type="text", ng-model="data.followUp.address")
 
         div(layout="row", layout-align="start center")
             md-input-container(class="md-block", flex)
@@ -28,16 +40,6 @@ md-content(flex)
             md-select(ng-model="data.followUp.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
                 md-option(value="no carecell") Tiada Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
-
-        md-input-container(class="md-block md-icon-float", flex)
-            label Telepon
-            md-icon phone_iphone
-            input(type="tel", ng-model="data.followUp.phone")
-
-        md-input-container(class="md-block md-icon-float", flex)
-            label Alamat
-            md-icon home
-            textarea(type="text", ng-model="data.followUp.address")
 
         div(layout="row", layout-align="space-between center", class="marginB30")
             div Tanggal Lahir:
