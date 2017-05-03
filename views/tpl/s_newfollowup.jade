@@ -7,50 +7,58 @@ md-toolbar(class="topBar")
         md-button(class="md-icon-button", aria-label="save")
             md-icon check
 
-md-content(flex)
-    form(class="ftvForm", name="ftvForm", layout="column")
-        div(layout="row", layout-align="space-between center", class="marginB30")
-            div Tanggal:
-            md-datepicker(class="dob", ng-model="data.ftv.serviceDate")
+div(flex)
+    md-tabs(md-dynamic-height md-border-bottom)
+        md-tab(label="FTV")
+            md-content
+                form(class="ftvForm", name="ftvForm", layout="column")
+                    div(layout="row", layout-align="space-between center", class="marginB30")
+                        div Tanggal:
+                        md-datepicker(class="dob", ng-model="data.ftv.serviceDate")
 
-        md-input-container(class="md-block", flex)
-            label Nama
-            input(type="text", ng-model="data.ftv.name")
-
-
-        div(layout="row", layout-align="start center")
-            md-input-container(class="md-block", flex)
-                label Yang membawa
-                input(type="text", ng-model="data.ftv.oikosOf")
-            md-select(ng-model="data.ftv.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
-                md-option(value="no carecell") Tiada Carecell
-                md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
-
-        md-input-container(class="md-block md-icon-float", flex)
-            label Telepon
-            md-icon phone_iphone
-            input(type="tel", ng-model="data.ftv.phone")
-
-        md-input-container(class="md-block md-icon-float", flex)
-            label Alamat
-            md-icon home
-            textarea(type="text", ng-model="data.ftv.address")
-
-        div(layout="row", layout-align="space-between center", class="marginB30")
-            div Tanggal Lahir:
-            md-datepicker(class="dob", ng-model="data.ftv.dob")
-
-        div Jenis Kelamin:
-        md-radio-group(ng-model="data.ftv.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="male", class="md-primary", flex) Laki-laki
-            md-radio-button(value="female", class="md-primary", flex) Perempuan
-
-        div Status:
-        md-radio-group(ng-model="data.ftv.status", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="single", class="md-primary", flex) belum menikah
-            md-radio-button(value="married", class="md-primary", flex) sudah menikah
+                    md-input-container(class="md-block", flex)
+                        label Nama
+                        input(type="text", ng-model="data.ftv.name")
 
 
-        md-input-container(class="md-block", flex)
-            label Keterangan
-            textarea(type="text", ng-model="data.ftv.comments")
+                    div(layout="row", layout-align="start center")
+                        md-input-container(class="md-block", flex)
+                            label Yang membawa
+                            input(type="text", ng-model="data.ftv.oikosOf")
+                        md-select(ng-model="data.ftv.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
+                            md-option(value="no carecell") Tiada Carecell
+                            md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
+
+                    md-input-container(class="md-block md-icon-float", flex)
+                        label Telepon
+                        md-icon phone_iphone
+                        input(type="tel", ng-model="data.ftv.phone")
+
+                    md-input-container(class="md-block md-icon-float", flex)
+                        label Alamat
+                        md-icon home
+                        textarea(type="text", ng-model="data.ftv.address")
+
+                    div(layout="row", layout-align="space-between center", class="marginB30")
+                        div Tanggal Lahir:
+                        md-datepicker(class="dob", ng-model="data.ftv.dob")
+
+                    div Jenis Kelamin:
+                    md-radio-group(ng-model="data.ftv.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
+                        md-radio-button(value="male", class="md-primary", flex) Laki-laki
+                        md-radio-button(value="female", class="md-primary", flex) Perempuan
+
+                    div Status:
+                    md-radio-group(ng-model="data.ftv.status", layout="row", layout-align="start center", class="marginB30 marginT10")
+                        md-radio-button(value="single", class="md-primary", flex) belum menikah
+                        md-radio-button(value="married", class="md-primary", flex) sudah menikah
+
+
+                    md-input-container(class="md-block", flex)
+                        label Keterangan
+                        textarea(type="text", ng-model="data.ftv.comments")
+
+        md-tab(label="Keputusan")
+            md-content
+                h1 Keputusan
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
