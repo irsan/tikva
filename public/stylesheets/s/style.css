@@ -2,7 +2,7 @@ body {
     font: 14px "Lato", Helvetica, Arial, sans-serif;
 }
 
-.mainMenu, .mainMenu .md-toolbar-tools {
+md-toolbar.mainMenu, md-toolbar.mainMenu .md-toolbar-tools {
     height: 50px;
 }
 
