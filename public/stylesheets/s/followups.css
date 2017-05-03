@@ -6,6 +6,10 @@
     color: #FC605B;
 }
 
-.ftvForm {
+.newFollowUpForm {
     padding: 20px;
+}
+
+.newFollowUpForm .insertPhoto {
+    font-size: 5em; width: 70px; height: 70px;
 }
