@@ -14,13 +14,16 @@ app.config([
     '$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/', {
+        when('/followups', {
             templateUrl: '/tpl/s_followups',
             controller: 'followupsCtrl'
         }).
-
+        when('/followup/add', {
+            templateUrl: '/tpl/s_newfollowup',
+            controller: 'newFollowUpCtrl'
+        }).
         otherwise({
-            redirectTo: '/'
+            redirectTo: '/followups'
         });
     }
 ]);

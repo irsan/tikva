@@ -1,6 +1,6 @@
 var app = angular.module('TikvaApp');
 
-app.controller('followupsCtrl', function ($scope, $rootScope, $mdBottomSheet, $log, rest) {
+app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, rest) {
     $rootScope.selectedMenu = 'followups';
 
     $log.debug("FOLLOW UPS CTRL");
@@ -21,15 +21,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $mdBottomSheet, $l
             });
         },
         showNewFollowUp : function() {
-            $mdBottomSheet.show({
-                templateUrl: '/tpl/s_newfollowup',
-                controller: 'newFollowUpCtrl',
-                clickOutsideToClose: false
-            }).then(function(clickedItem) {
-                $log.info("clicked", clickedItem);
-            }).catch(function(error) {
-                // User clicked outside or hit escape
-            });
+            $location.path("/followup/add");
         },
         init : function() {
             $scope.actions.listFollowUps();
