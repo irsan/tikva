@@ -32,7 +32,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $scope.actions.init();
 });
 
-app.controller('newFollowUpCtrl', function($scope, $rootScope, $location, $log, rest) {
+app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest) {
     $log.debug("NEW FOLLOW UP CONTROLLER");
     $rootScope.hideMainMenu = true;
 
