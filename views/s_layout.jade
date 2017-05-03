@@ -11,19 +11,18 @@ html
 
     body(ng-app="TikvaApp", ng-controller="mainController", layout="row", flex, ng-cloak)
         md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="false", md-whiteframe="4")
-            div hello left
         div(flex, layout="column")
             md-content(flex, layout="column", ng-view)
             md-toolbar(class="mainMenu")
                 div(class="md-toolbar-tools", layout="row", layout-align="space-around center")
                     md-button(class="md-icon-button" aria-label="Dashboard")
-                        md-icon(class="selected") dashboard
+                        md-icon(ng-class="{'selected' : selectedMenu == 'dashboard'}") dashboard
                     md-button(class="md-icon-button" aria-label="Follow Ups")
-                        md-icon people
+                        md-icon(ng-class="{'selected' : selectedMenu == 'followups'}") people
                     md-button(class="md-icon-button" aria-label="Notifications")
-                        md-icon notifications
+                        md-icon(ng-class="{'selected' : selectedMenu == 'notifications'}") notifications
                     md-button(class="md-icon-button" aria-label="Settings")
-                        md-icon build
+                        md-icon(ng-class="{'selected' : selectedMenu == 'settings'}") build
 
 
 
