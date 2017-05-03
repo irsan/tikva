@@ -22,7 +22,7 @@ md-content(flex)
             md-input-container(class="md-block", flex)
                 label Yang membawa
                 input(type="text", ng-model="data.ftv.oikosOf")
-            md-select(ng-model="data.ftv.carecell", class="carecellSelect md-no-underline", placeholder="Carecell")
+            md-select(ng-model="data.ftv.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
                 md-option(value="no carecell") Tiada Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
 
