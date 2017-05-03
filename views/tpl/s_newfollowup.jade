@@ -17,8 +17,8 @@ md-content(flex)
             md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
 
         div(layout="row", layout-align="start start")
-            div
-                md-icon(style="font-size: 5em; width: 70px; height: 70px;") person
+            div(ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false", ngf-drag-over-class="'dragover'")
+                md-icon(style="font-size: 5em; width: 70px; height: 70px;") insert_photo
             md-input-container(class="md-block", flex)
                 label Nama
                 input(type="text", ng-model="data.followUp.name")
@@ -59,8 +59,3 @@ md-content(flex)
         md-input-container(class="md-block", flex)
             label Keterangan
             textarea(type="text", ng-model="data.followUp.comments")
-
-
-        div(style="width: 100%; height: 100px; background-color: #080808;" layout="column", layout-align="center center",
-        ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false", ngf-drag-over-class="'dragover'")
-            div Select File
