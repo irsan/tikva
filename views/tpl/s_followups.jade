@@ -7,10 +7,12 @@ md-toolbar(md-scroll-shrink)
         md-button(class="md-icon-button", aria-label="Add")
             md-icon add
 
-div(class="dateFilter", layout="row", layout-align="start center")
-    md-button(class="md-icon-button", aria-label="Date")
-        md-icon date_range
-    div Sunday, 30 April 2017
+md-toolbar
+    div(class="md-toolbar-tools")
+        md-button(class="md-icon-button", aria-label="Date")
+            md-icon date_range
+        div Sunday, 30 April 2017
+
 
 md-content(flex, layout="column")
     h1 hello
