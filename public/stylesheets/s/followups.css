@@ -11,5 +11,9 @@
 }
 
 .newFollowUpForm .insertPhoto {
-    font-size: 5em; width: 70px; height: 70px;
+    Ωwidth: 70px; height: 70px;
+}
+
+.newFollowUpForm .insertPhoto md-icon {
+    font-size: 5em;
 }
