@@ -31,7 +31,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $scope.actions.init();
 });
 
-app.controller('newFollowUpCtrl', function($scope, $log, rest) {
+app.controller('newFollowUpCtrl', function($scope, $location, $log, rest) {
     $log.debug("NEW FOLLOW UP CONTROLLER");
 
     $scope.data = {
@@ -53,6 +53,9 @@ app.controller('newFollowUpCtrl', function($scope, $log, rest) {
             rest.ftv.add($scope.data.ftv, function(response) {
                 $log.info("ADD FTV", response);
             });
+        },
+        backToFollowUps : function() {
+            $location.path("/followups");
         }
     }
 
