@@ -7,6 +7,10 @@ md-toolbar(class="topBar")
         md-button(class="md-icon-button", aria-label="Add", ng-click="actions.showNewFollowUp()")
             md-icon add
 
+md-toolbar(class="subBar")
+    div(class="md-toolbar-tools")
+        div Hello
+
 md-content(flex, layout="column")
     md-list(class="followUps", flex)
         md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="null")

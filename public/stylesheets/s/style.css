@@ -20,6 +20,12 @@ md-toolbar.topBar {
     background-color: #449FD7;
 }
 
+md-toolbar.subBar {
+    font-size: 0.8em;
+    height: 25px;
+    min-height: 25px;
+}
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginL20 { margin-left: 20px; }
