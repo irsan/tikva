@@ -13,6 +13,6 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
-                h4(ng-hide="followup.carecell") No Carecell
-                h4(ng-show="followup.carecell") {{followup.carecell.name}}
+                h4(ng-hide="followup.carecell") Tiada Carecell
+                h4(ng-show="followup.carecell") carecell: {{followup.carecell.name}}
                 p dob: {{followup.dob | date : 'd MMM yyyy'}}, {{followup.gender}}
