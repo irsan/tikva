@@ -21,4 +21,12 @@ var FollowUp = new Schema({
     status          : { type : String, default : 'active' }
 });
 
+FollowUp.index({
+    serviceDate : -1
+});
+
+FollowUp.index({
+    status : 1
+});
+
 module.exports = mongoose.model('FollowUp', FollowUp);
