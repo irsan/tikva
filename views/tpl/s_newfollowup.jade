@@ -42,7 +42,7 @@ md-content(flex)
                 md-option(value="no carecell") Tiada Carecell
                 md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
 
-        div(layout="row", layout-align="space-between center", class="marginB30")
+        div(layout="row", layout-align="start center", class="marginB30")
             div Tanggal Lahir:
             md-datepicker(class="dob", ng-model="data.followUp.dob")
 
