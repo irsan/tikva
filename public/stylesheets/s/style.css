@@ -31,6 +31,10 @@ md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools {
     min-height: 25px;
 }
 
+md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools md-icon {
+    color : #6E6E6E;
+}
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginL20 { margin-left: 20px; }
