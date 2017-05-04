@@ -27,11 +27,11 @@ md-content(flex)
             label Nama
             input(type="text", ng-model="data.followUp.name")
 
-        div(layout="row", layout-align="start center")
-            md-input-container(class="md-block", flex)
+        div(layout="row")
+            md-input-container(flex)
                 label Yang membawa (Oikos dari)
                 input(type="text", ng-model="data.followUp.oikosOf")
-            md-input-container(class="md-block marginL20")
+            md-input-container(class="marginL20")
                 label Carecell
                 md-select(ng-model="data.followUp.carecell", class="carecellSelect")
                     md-option(value="no carecell") Tiada Carecell
