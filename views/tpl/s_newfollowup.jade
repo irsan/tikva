@@ -9,7 +9,7 @@ md-toolbar(class="topBar")
 
 md-content(flex)
     form(class="newFollowUpForm", name="ftvForm", layout="column")
-        div(layout="row", layout-align="space-between center", class="marginB30")
+        div(layout="row", layout-align="space-between start", class="marginB30")
             div(layout="column", layout-align="start start")
                 md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
                 md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
@@ -46,15 +46,18 @@ md-content(flex)
             div Tanggal Lahir:
             md-datepicker(class="dob", ng-model="data.followUp.dob")
 
-        div Jenis Kelamin:
-        md-radio-group(ng-model="data.followUp.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="male", class="md-primary", flex) Laki-laki
-            md-radio-button(value="female", class="md-primary", flex) Perempuan
+        div(layout="row" class="marginB30")
+            div(layout="column", flex)
+                div Jenis Kelamin:
+                md-radio-group(ng-model="data.followUp.gender", class="marginT10")
+                    md-radio-button(value="male", class="md-primary", flex) Laki-laki
+                    md-radio-button(value="female", class="md-primary", flex) Perempuan
 
-        div Status:
-        md-radio-group(ng-model="data.followUp.status", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="single", class="md-primary", flex) belum menikah
-            md-radio-button(value="married", class="md-primary", flex) sudah menikah
+            div(layout="column", flex)
+                div Status:
+                md-radio-group(ng-model="data.followUp.status", class="marginT10")
+                    md-radio-button(value="single", class="md-primary", flex) belum menikah
+                    md-radio-button(value="married", class="md-primary", flex) sudah menikah
 
 
         md-input-container(class="md-block", flex)
