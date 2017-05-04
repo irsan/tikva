@@ -15,7 +15,6 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $scope.actions = {
         listFollowUps : function() {
             rest.followUp.list(function(response) {
-                $log.debug("THE FILLLOOOWWW", response);
                 if(response.status == "Ok") {
                     $scope.data.followUps = response.data;
                 }
@@ -38,7 +37,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
 
     $scope.data = {
         carecells : [],
-        ftv : {
+        followUp : {
             serviceDate : moment().startOf('week').toDate()
         }
     };
