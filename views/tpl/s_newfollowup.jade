@@ -11,11 +11,12 @@ md-content(flex)
     form(class="newFollowUpForm", name="ftvForm", layout="column")
         div(layout="row", layout-align="space-between start", class="marginB30")
             div(layout="column", layout-align="start start")
-                md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
-                md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
-            div(layout="column", layout-align="start end")
                 div Tanggal Ibadah
                 md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
+
+            div(layout="column", layout-align="start start")
+                md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
+                md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
 
 
         div(layout="row", layout-align="start start")
