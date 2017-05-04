@@ -13,12 +13,11 @@
 .newFollowUpForm .insertPhoto {
     background-color: #717171;
     border-radius: 50%;
-    width: 75px; height: 75px;
+    width: 70px; height: 70px;
 }
 
 .newFollowUpForm .insertPhoto md-icon {
     color: #ffffff;
-    font-size: 5em;
-    line-height: 70px;
-    width: 70px; height: 70px;
+    font-size: 4em;
+    width: 50px; height: 50px;
 }
