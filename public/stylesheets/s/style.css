@@ -27,6 +27,7 @@ md-toolbar.subBar {
 md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools {
     color : #6E6E6E;
     font-size: 0.9em;
+    font-weight: bold;
     height: 32px;
     min-height: 32px;
 }
