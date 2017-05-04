@@ -8,11 +8,15 @@ md-toolbar(class="topBar")
             md-icon add
 
 md-toolbar(class="subBar")
-    div(class="md-toolbar-tools", layout="row", layout-align="start center")
+    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
         div
-            md-icon date_range
-        div(class="marginL20")
-            md-calendar
+            md-icon chevron_left
+        div(layout="row")
+            div
+                md-icon date_range
+            div(class="marginL20") Sunday, 30 April 2017
+        div
+            md-icon chevron_right
 
 md-content(flex, layout="column")
     md-list(class="followUps", flex)
