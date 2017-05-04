@@ -13,7 +13,9 @@ md-content(flex)
             div(layout="column", layout-align="start start")
                 md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
                 md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
-            md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
+            div(layout="column", layout-align="start end")
+                div Tanggal Ibadah
+                md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
 
 
         div(layout="row", layout-align="start start")
