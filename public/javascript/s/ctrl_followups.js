@@ -57,7 +57,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
         },
         backToFollowUps : function(ev) {
             var confirm = $mdDialog.confirm()
-                .title('Apakah mau membatalkan untuk follow up?')
+                .title('Apakah mau membatalkan untuk follow up baru?')
                 .textContent('Jika batalkan sekarang, semua informasi yang telah diisi akan hilang.')
                 .ariaLabel('Cancel')
                 .targetEvent(ev)

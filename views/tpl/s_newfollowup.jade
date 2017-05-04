@@ -31,9 +31,11 @@ md-content(flex)
             md-input-container(class="md-block", flex)
                 label Yang membawa (Oikos dari)
                 input(type="text", ng-model="data.followUp.oikosOf")
-            md-select(ng-model="data.followUp.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
-                md-option(value="no carecell") Tiada Carecell
-                md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
+            md-input-container(class="md-block marginL20")
+                label Carecell
+                md-select(ng-model="data.followUp.carecell", class="carecellSelect")
+                    md-option(value="no carecell") Tiada Carecell
+                    md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
 
         md-input-container(class="md-block md-icon-float", flex)
             label Telepon
