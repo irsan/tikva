@@ -9,23 +9,23 @@ md-toolbar(class="topBar")
 
 md-content(flex)
     form(class="newFollowUpForm", name="ftvForm", layout="column")
-        div(layout="row", layout-align="start center")
+        div(layout="row", layout-align="start center", class="marginB30")
             div Tanggal Ibadah
             md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
 
         div(layout="row", layout-align="space-between start", class="marginB30")
-            div(layout="column", layout-align="start start")
+            div(flex)
+                div(class="insertPhoto", ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false",
+                ngf-drag-over-class="'dragover'")
+                    md-icon insert_photo
+            div(layout="column", layout-align="start start", flex)
                 md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
                 md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
 
 
-        div(layout="row", layout-align="start start")
-            md-input-container(class="md-block", flex)
-                label Nama
-                input(type="text", ng-model="data.followUp.name")
-            div(class="insertPhoto", ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false",
-            ngf-drag-over-class="'dragover'")
-                md-icon insert_photo
+        md-input-container(class="md-block", flex)
+            label Nama
+            input(type="text", ng-model="data.followUp.name")
 
         md-input-container(class="md-block md-icon-float", flex)
             label Telepon
