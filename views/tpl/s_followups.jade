@@ -1,4 +1,4 @@
-md-toolbar(class="topBar", md-scroll-shrink)
+md-toolbar(class="topBar")
     div(class="md-toolbar-tools")
         h3(flex)
             span Follow Ups
@@ -17,5 +17,6 @@ md-content(flex, layout="column")
                 h4(ng-show="followup.carecell") Carecell: {{followup.carecell.name}}
                 p
                     span Tanggal Lahir: {{followup.dob | date : 'd MMM yyyy'}},
+                    |
                     span(ng-show="followup.gender == 'female'") Perempuan
                     span(ng-show="followup.gender == 'male'") Laki-laki
