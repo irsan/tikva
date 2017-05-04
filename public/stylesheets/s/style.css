@@ -21,11 +21,11 @@ md-toolbar.topBar {
 }
 
 md-toolbar.subBar {
-    background-color: #fafafa;
+    background-color: #E6E6E6;
 }
 
 md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools {
-    color : #767676;
+    color : #6E6E6E;
     font-size: 0.9em;
     height: 25px;
     min-height: 25px;
