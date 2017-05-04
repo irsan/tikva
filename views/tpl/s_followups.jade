@@ -17,6 +17,6 @@ md-content(flex, layout="column")
                 h4(ng-show="followup.carecell") Carecell: {{followup.carecell.name}}
                 p
                     span Tanggal Lahir: {{followup.dob | date : 'd MMM yyyy'}},
-                    |
+                    =" "
                     span(ng-show="followup.gender == 'female'") Perempuan
                     span(ng-show="followup.gender == 'male'") Laki-laki
