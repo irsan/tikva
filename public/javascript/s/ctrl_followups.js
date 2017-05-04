@@ -51,8 +51,8 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
             });
         },
         addFollowup : function() {
-            rest.ftv.add($scope.data.ftv, function(response) {
-                $log.info("ADD FTV", response);
+            rest.followUp.add($scope.data.followUp, function(response) {
+                $log.info("ADD FOLLOWUP", response);
             });
         },
         backToFollowUps : function(ev) {
