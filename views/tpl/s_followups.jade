@@ -25,13 +25,17 @@ md-content(flex, layout="column")
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
                 h4
-                    span(ng-hide="followup.carecell") Tiada Carecell,
-                    span(ng-show="followup.carecell") Carecell: {{followup.carecell.name}},
+                    span Carecell:
                     =" "
-                    span(ng-hide="followup.sp") Belum di assign
-                    span(ng-show="followup.sp") SP: {{followup.sp}}
+                    span(ng-hide="followup.carecell") -,
+                    span(ng-show="followup.carecell") {{followup.carecell.name}},
+                    =" "
+                    span SP:
+                    =" "
+                    span(ng-hide="followup.sp") -
+                    span(ng-show="followup.sp") {{followup.sp}}
                 p
-                    span Tanggal follow up terakhir:
+                    span Tanggal FU:
                     =" "
                     span(ng-show="followup.followedUpAt") {{followup.followedUpAt | date : 'd MMM yyyy'}},
                     span(ng-hide="followup.followedUpAt") -
