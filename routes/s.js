@@ -1,5 +1,6 @@
 const Bunyan = require('bunyan');
 const Express = require('express');
+const Moment = require('moment');
 const Request = require('request');
 const Vasync = require('vasync');
 
@@ -138,8 +139,15 @@ router.post('/rest/followup/add', (req, res) => {
 router.post('/rest/followups', (req, res) => {
     Vasync.waterfall([
         (callback) => {
+            if(!req.body.date) {
+                return callback("Invalid Date");
+            }
+
+            let moment = Moment(req.body.date);
+            let serviceDate = moment.startOf('day').toDate();
+
             Model.FollowUp.find({
-                serviceDate : {}
+                serviceDate,
                 status : 'active'
             }).populate({
                 path : 'carecell',
