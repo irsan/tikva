@@ -24,17 +24,17 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
-                div(layout="row)
+                div(layout="row")
                     div(flex, layout="row")
                         div Carecell:
                         div(class="width20")
                         div(ng-hide="followup.carecell") belum ada
-                        div(ng-show="followup.carecell") {{followup.carecell.name}},
+                        div(ng-show="followup.carecell") {{followup.carecell.name}}
                     div(flex, layout="row")
                         div SP:
                         div(class="width20")
                         div(ng-hide="followup.sp") belum ada
-                        div(ng-show="followup.sp") {{followup.sp}},
+                        div(ng-show="followup.sp") {{followup.sp}}
 
                 p
                     span Tanggal FU:
