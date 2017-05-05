@@ -14,6 +14,8 @@ var FollowUp = new Schema({
     serviceDate     : Date,
     ftv             : { type :Boolean, default : true },
     decision        : { type : Boolean, default : false },
+    sp              : String,
+    followedUpAt    : Date,
     createdAt       : { type : Date, default : Date.now },
     updatedAt       : { type : Date, default : Date.now },
     creator         : { type : String, default : 'System' },

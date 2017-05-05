@@ -138,7 +138,10 @@ router.post('/rest/followup/add', (req, res) => {
 router.post('/rest/followups', (req, res) => {
     Vasync.waterfall([
         (callback) => {
-            Model.FollowUp.find({ status : 'active' }).populate({
+            Model.FollowUp.find({
+                serviceDate : {}
+                status : 'active'
+            }).populate({
                 path : 'carecell',
                 select : 'name -_id'
             }).sort('-serviceDate').exec(callback);

@@ -24,10 +24,14 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
-                h4(ng-hide="followup.carecell") Tiada Carecell
-                h4(ng-show="followup.carecell") Carecell: {{followup.carecell.name}}
-                p
-                    span Tanggal Lahir: {{followup.dob | date : 'd MMM yyyy'}},
+                h4
+                    span(ng-hide="followup.carecell") Tiada Carecell,
+                    span(ng-show="followup.carecell") Carecell: {{followup.carecell.name}},
                     =" "
-                    span(ng-show="followup.gender == 'female'") Perempuan
-                    span(ng-show="followup.gender == 'male'") Laki-laki
+                    span(ng-hide="followup.sp") Belum di assign
+                    span(ng-show="followup.sp") SP: {{followup.sp}}
+                p
+                    span Tanggal follow up terakhir:
+                    =" "
+                    span(ng-show="followup.followedUpAt") {{followup.followedUpAt | date : 'd MMM yyyy'}},
+                    span(ng-hide="followup.followedUpAt") -
