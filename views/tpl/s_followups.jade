@@ -35,7 +35,8 @@ md-content(flex, layout="column")
                 //    span(ng-hide="followup.sp") -
                 //    span(ng-show="followup.sp") {{followup.sp}}
                 p
-                    span Tanggal FU:
+                    i(class="fa fa-calendar")
+                    span FU:
                     =" "
                     span(ng-show="followup.followedUpAt") {{followup.followedUpAt | date : 'd MMM yyyy'}},
                     span(ng-hide="followup.followedUpAt") -
