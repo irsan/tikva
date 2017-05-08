@@ -7,6 +7,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $log.debug("FOLLOW UPS CTRL");
 
     $scope.data = {
+        sunday : moment().startOf('week').toDate(),
         followUps : {
             followUps : []
         }
@@ -39,8 +40,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
         carecells : [],
         followUp : {
             serviceDate : moment().startOf('week').toDate()
-        },
-        sunday : moment().startOf('week').toDate()
+        }
     };
 
     $scope.actions = {

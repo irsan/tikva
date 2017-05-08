@@ -14,7 +14,7 @@ md-toolbar(class="subBar")
         div(layout="row", layout-align="start center")
             div
                 md-icon date_range
-            div(class="marginL10") {{data.sunday}}
+            div(class="marginL10") {{data.sunday | date : 'dddd, D MMM YYYY'}}
         div
             md-icon chevron_right
 
