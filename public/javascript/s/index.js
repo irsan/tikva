@@ -1,5 +1,3 @@
-moment.locale('id');
-
 var app = angular.module('TikvaApp', ['ngMaterial', 'ngRoute', 'ngFileUpload' ]);
 
 app.controller('mainController', function($scope, $mdSidenav, $timeout) {
