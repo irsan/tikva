@@ -7,7 +7,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $log.debug("FOLLOW UPS CTRL");
 
     $scope.data = {
-        sunday : moment().startOf('week').toDate(),
+        sunday : new Date(),
         followUps : {
             followUps : []
         }
