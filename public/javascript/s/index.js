@@ -1,5 +1,7 @@
 var app = angular.module('TikvaApp', ['ngMaterial', 'ngRoute', 'ngFileUpload' ]);
 
+moment.locale('id');
+
 app.controller('mainController', function($scope, $mdSidenav, $timeout) {
 
     $scope.toggleLeft = buildDelayedToggler('left');
