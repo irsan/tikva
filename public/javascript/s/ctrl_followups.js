@@ -38,7 +38,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
     $scope.data = {
         carecells : [],
         followUp : {
-            serviceDate : moment().startOf('week')
+            serviceDate : moment().startOf('week').locale('id')
         }
     };
 
