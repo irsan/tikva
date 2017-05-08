@@ -35,12 +35,10 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
     $log.debug("NEW FOLLOW UP CONTROLLER");
     $rootScope.hideMainMenu = true;
 
-    var lastSunday = moment().startOf('week').locale('id');
-
     $scope.data = {
         carecells : [],
         followUp : {
-            serviceDate : lastSunday.toDate()
+            serviceDate : moment().startOf('week')
         }
     };
 
