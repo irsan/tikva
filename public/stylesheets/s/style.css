@@ -37,6 +37,7 @@ md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools md-icon {
 }
 
 .noOutline { outline: none; }
+.action { cursor: pointer; }
 
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }

@@ -20,13 +20,13 @@ class CommandController {
     start(user, callback) {
         log.info("THE USER: ...... ", user);
         new Model.AuthroizedLink({
-            user : user, redirect : "/s/followups"
+            user : user, redirect : "/s"
         }).save((error, link) => {
             if(error) {
                 log.error("ERROR", error);
                 callback(error);
             }
-            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to add FTV>");
+            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
         });
 
     }
