@@ -6,6 +6,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
 
     $log.debug("FOLLOW UPS CTRL");
 
+    $scope.show = {
+        chooseSunday : false
+    };
+
     $scope.data = {
         sunday : moment().startOf('week'),
         followUps : {
