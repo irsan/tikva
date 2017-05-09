@@ -20,7 +20,7 @@ md-toolbar(class="subBar")
 
 md-content(flex, layout="column")
     md-list(class="followUps", flex)
-        md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="null")
+        md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="actions.gotoFollowup(followup)")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}

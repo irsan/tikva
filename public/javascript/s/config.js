@@ -18,6 +18,10 @@ app.config([
             templateUrl: '/tpl/s_followups',
             controller: 'followupsCtrl'
         }).
+        when('/followup', {
+            templateUrl: '/tpl/s_followup',
+            controller: 'followupCtrl'
+        }).
         when('/followup/add', {
             templateUrl: '/tpl/s_newfollowup',
             controller: 'newFollowUpCtrl'
