@@ -31,6 +31,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
             $scope.data.sunday.subtract(1, 'weeks');
             this.listFollowUps();
         },
+        nextWeek : function() {
+            $scope.data.sunday.add(1, 'weeks');
+            this.listFollowUps();
+        },
         init : function() {
             $scope.actions.listFollowUps($scope.data.sunday);
         }
