@@ -23,11 +23,15 @@ md-content(flex, layout="column")
         md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="null")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
-                h3
-                    span {{followup.name}}
-                    =" "
-                    span FTV & Keputusan
+                h3 {{followup.name}}
+                //p
+                //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
+                //    span(ng-hide="followup.followedUpAt") belum follow up
                 p
-                    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
-                    span(ng-hide="followup.followedUpAt") belum follow up
+                    span(ng-show="followup.ftv") FTV
+                    span(ng-show="followup.ftv and followup.decision")
+                        =" "
+                        span &
+                        =" "
+                    span(ng-show="followup.decision") Keputusan
             md-icon assignment_ind
