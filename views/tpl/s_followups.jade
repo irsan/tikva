@@ -11,11 +11,11 @@ md-toolbar(class="subBar")
     div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
         div
             md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
-        div(layout="row", layout-align="start center")
-            div
-                md-icon(ng-click="show.chooseSunday = true") date_range
-            div(class="marginL10") {{actions.formatDate()}}
-            md-datepicker(class="marginL10", ng-model="data.sunday", md-is-open="show.chooseSunday", style="display: none")
+        //div(layout="row", layout-align="start center")
+            //div
+            //    md-icon(ng-click="show.chooseSunday = true") date_range
+            //div(class="marginL10") {{actions.formatDate()}}
+        md-datepicker(class="marginL10", ng-model="data.sunday")
         div
             md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
