@@ -24,12 +24,10 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
-                h4
-                    span(ng-hide="followup.carecell") Belum ditugaskan ke Carecell,
-                    //span(ng-show="followup.carecell") {{followup.carecell.name}},
-                    //=" "
-                    //span(ng-hide="followup.sp") -
-                    //span(ng-show="followup.sp") {{followup.sp}}
-                p
-                    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
-                    span(ng-hide="followup.followedUpAt") belum follow up
+                div
+                    md-button Tugaskan
+                //div
+                //    span(ng-hide="followup.carecell")assign ke Carecell,
+                //p
+                //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
+                //    span(ng-hide="followup.followedUpAt") belum follow up
