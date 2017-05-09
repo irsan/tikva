@@ -24,13 +24,7 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
-                md-input-container
-                    label Carecell
-                    md-select(ng-model="followup.carecell")
-                        md-option Kasih
-                        md-option Esther
-                //div
-                //    span(ng-hide="followup.carecell")assign ke Carecell,
-                //p
-                //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
-                //    span(ng-hide="followup.followedUpAt") belum follow up
+                p
+                    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
+                    span(ng-hide="followup.followedUpAt") belum follow up
+            md-icon assignment_ind
