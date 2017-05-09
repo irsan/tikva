@@ -14,8 +14,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     };
 
     $scope.actions = {
-        listFollowUps : function(date) {
-            rest.followUp.list({ date : date }, function(response) {
+        listFollowUps : function() {
+            rest.followUp.list({ date : $scope.data.sunday.toDate() }, function(response) {
                 if(response.status == "Ok") {
                     $scope.data.followUps = response.data;
                 }
@@ -29,9 +29,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
         },
         prevWeek : function() {
             $scope.data.sunday.subtract(1, 'weeks');
+            this.listFollowUps();
         },
         init : function() {
-            $scope.actions.listFollowUps(moment().startOf('week').toDate());
+            $scope.actions.listFollowUps($scope.data.sunday);
         }
     }
 
