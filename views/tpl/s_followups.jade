@@ -10,11 +10,11 @@ md-toolbar(class="topBar")
 md-toolbar(class="subBar")
     div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
         div
-            md-icon chevron_left
+            md-icon(ng-click="actions.prevWeek()") chevron_left
         div(layout="row", layout-align="start center")
             div
                 md-icon date_range
-            div(class="marginL10") {{data.sunday | date:'EEEE, d MMM yyyy'}}
+            div(class="marginL10") {{actions.formatDate()}}
         div
             md-icon chevron_right
 
