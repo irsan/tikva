@@ -24,8 +24,11 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
-                div
-                    md-button Pilih Carecell
+                md-input-container
+                    label Carecell
+                    md-select(ng-model="followup.carecell")
+                        md-option Kasih
+                        md-option Esther
                 //div
                 //    span(ng-hide="followup.carecell")assign ke Carecell,
                 //p
