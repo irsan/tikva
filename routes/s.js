@@ -1,5 +1,6 @@
 const Bunyan = require('bunyan');
 const Express = require('express');
+const Moment = require('moment');
 const Request = require('request');
 const Vasync = require('vasync');
 
@@ -116,12 +117,12 @@ router.post('/rest/followup/add', (req, res) => {
                 followUp.carecell = carecell;
             }
 
-            followUp.save((error, ftv) => {
+            followUp.save((error, followUp) => {
                 if(error) {
                     return callback(error);
                 }
 
-                callback(null, { ftv });
+                callback(null, { followUp });
             });
         }
     ], (error, data) => {
@@ -138,7 +139,20 @@ router.post('/rest/followup/add', (req, res) => {
 router.post('/rest/followups', (req, res) => {
     Vasync.waterfall([
         (callback) => {
-            Model.FollowUp.find({ status : 'active'}, callback);
+            if(!req.body.date) {
+                return callback("Invalid Date");
+            }
+
+            let moment = Moment(req.body.date);
+            let serviceDate = moment.startOf('day').toDate();
+
+            Model.FollowUp.find({
+                serviceDate,
+                status : 'active'
+            }).populate({
+                path : 'carecell',
+                select : 'name -_id'
+            }).sort('-serviceDate').exec(callback);
         },
         (followUps, callback) => {
             callback(null, { followUps });

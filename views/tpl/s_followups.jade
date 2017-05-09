@@ -1,4 +1,4 @@
-md-toolbar(class="topBar", md-scroll-shrink)
+md-toolbar(class="topBar")
     div(class="md-toolbar-tools")
         h3(flex)
             span Follow Ups
@@ -7,10 +7,27 @@ md-toolbar(class="topBar", md-scroll-shrink)
         md-button(class="md-icon-button", aria-label="Add", ng-click="actions.showNewFollowUp()")
             md-icon add
 
+md-toolbar(class="subBar")
+    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
+        div
+            md-icon(ng-click="actions.prevWeek()", class="noOutline") chevron_left
+        div(layout="row", layout-align="start center")
+            div
+                md-icon date_range
+            div(class="marginL10") {{actions.formatDate()}}
+        div
+            md-icon(ng-click="actions.nextWeek()", class="noOutline") chevron_right
+
 md-content(flex, layout="column")
     md-list(class="followUps", flex)
-        md-list-item(class="md-2-line" ng-repeat="followup in data.followUps.followUps" ng-click="null")
+        md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="null")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
-                h3 {{followup.name}}
-                p dob: {{followup.dob | date : 'd MMM yyyy'}}, {{followup.gender}}
+                h3
+                    span {{followup.name}}
+                    =" "
+                    span FTV & Keputusan
+                p
+                    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
+                    span(ng-hide="followup.followedUpAt") belum follow up
+            md-icon assignment_ind

@@ -3,58 +3,66 @@ md-toolbar(class="topBar")
         md-button(class="md-icon-button", aria-label="back", ng-click="actions.backToFollowUps($event)")
             md-icon chevron_left
         h3(flex)
-            span New Follow Up
-        md-button(class="md-icon-button", aria-label="save")
+            span Follow Up Baru
+        md-button(class="md-icon-button", aria-label="save", ng-click="actions.addFollowup()")
             md-icon check
 
 md-content(flex)
     form(class="newFollowUpForm", name="ftvForm", layout="column")
-        div(layout="row", layout-align="space-around center", class="marginB30")
-            md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
-            md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
-        div(layout="row", layout-align="space-between center", class="marginB30")
-            div Tanggal:
+        div(layout="row", layout-align="start center", class="marginB30")
+            div Tanggal Ibadah:
             md-datepicker(class="dob", ng-model="data.followUp.serviceDate")
 
-        div(layout="row", layout-align="start start")
-            md-input-container(class="md-block", flex)
-                label Nama
-                input(type="text", ng-model="data.followUp.name")
-            div(class="insertPhoto", ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false",
-            ngf-drag-over-class="'dragover'")
-                md-icon insert_photo
+        div(layout="row", layout-align="start start", class="marginB30")
+            div(flex)
+                div(class="insertPhoto", ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false",
+                ngf-drag-over-class="'dragover'", layout, layout-align="center center")
+                    md-icon person
+            div(layout="column", layout-align="start start", flex)
+                md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
+                md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
 
-        md-input-container(class="md-block md-icon-float", flex)
+
+        md-input-container(flex)
+            label Nama
+            input(type="text", ng-model="data.followUp.name")
+
+        div(layout="row")
+            md-input-container(flex)
+                label Yang membawa (Oikos dari)
+                input(type="text", ng-model="data.followUp.oikosOf")
+            md-input-container(class="marginL20")
+                label Carecell
+                md-select(ng-model="data.followUp.carecell", class="carecellSelect")
+                    md-option(value="no carecell") Tiada Carecell
+                    md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
+
+        md-input-container(class="md-icon-float", flex)
             label Telepon
             md-icon phone_iphone
             input(type="tel", ng-model="data.followUp.phone")
 
-        md-input-container(class="md-block md-icon-float", flex)
+        md-input-container(class="md-icon-float", flex)
             label Alamat
             md-icon home
             textarea(type="text", ng-model="data.followUp.address")
 
-        div(layout="row", layout-align="start center")
-            md-input-container(class="md-block", flex)
-                label Yang membawa (Oikos dari)
-                input(type="text", ng-model="data.followUp.oikosOf")
-            md-select(ng-model="data.followUp.carecell", class="carecellSelect md-no-underline marginL20", placeholder="Carecell")
-                md-option(value="no carecell") Tiada Carecell
-                md-option(ng-repeat="carecell in data.carecells" ng-value="carecell._id") {{carecell.name}}
-
-        div(layout="row", layout-align="space-between center", class="marginB30")
+        div(layout="row", layout-align="start center", class="marginB30")
             div Tanggal Lahir:
             md-datepicker(class="dob", ng-model="data.followUp.dob")
 
-        div Jenis Kelamin:
-        md-radio-group(ng-model="data.followUp.gender", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="male", class="md-primary", flex) Laki-laki
-            md-radio-button(value="female", class="md-primary", flex) Perempuan
+        div(layout="row" class="marginB30")
+            div(layout="column", flex)
+                div Jenis Kelamin:
+                md-radio-group(ng-model="data.followUp.gender", class="marginT10")
+                    md-radio-button(value="male", class="md-primary", flex) Laki-laki
+                    md-radio-button(value="female", class="md-primary", flex) Perempuan
 
-        div Status:
-        md-radio-group(ng-model="data.followUp.status", layout="row", layout-align="start center", class="marginB30 marginT10")
-            md-radio-button(value="single", class="md-primary", flex) belum menikah
-            md-radio-button(value="married", class="md-primary", flex) sudah menikah
+            div(layout="column", flex)
+                div Status:
+                md-radio-group(ng-model="data.followUp.status", class="marginT10")
+                    md-radio-button(value="single", class="md-primary", flex) belum menikah
+                    md-radio-button(value="married", class="md-primary", flex) sudah menikah
 
 
         md-input-container(class="md-block", flex)

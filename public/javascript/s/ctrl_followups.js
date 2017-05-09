@@ -7,6 +7,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
     $log.debug("FOLLOW UPS CTRL");
 
     $scope.data = {
+        sunday : moment().startOf('week'),
         followUps : {
             followUps : []
         }
@@ -14,8 +15,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
 
     $scope.actions = {
         listFollowUps : function() {
-            rest.followUp.list(function(response) {
-                $log.debug("THE FILLLOOOWWW", response);
+            rest.followUp.list({ date : $scope.data.sunday.toDate() }, function(response) {
                 if(response.status == "Ok") {
                     $scope.data.followUps = response.data;
                 }
@@ -24,8 +24,19 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
         showNewFollowUp : function() {
             $location.path("/followup/add");
         },
+        formatDate : function() {
+            return $scope.data.sunday.locale('id').format("dddd, D MMM YYYY");
+        },
+        prevWeek : function() {
+            $scope.data.sunday.subtract(1, 'weeks');
+            this.listFollowUps();
+        },
+        nextWeek : function() {
+            $scope.data.sunday.add(1, 'weeks');
+            this.listFollowUps();
+        },
         init : function() {
-            $scope.actions.listFollowUps();
+            $scope.actions.listFollowUps($scope.data.sunday);
         }
     }
 
@@ -38,7 +49,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
 
     $scope.data = {
         carecells : [],
-        ftv : {
+        followUp : {
             serviceDate : moment().startOf('week').toDate()
         }
     };
@@ -52,18 +63,18 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
             });
         },
         addFollowup : function() {
-            rest.ftv.add($scope.data.ftv, function(response) {
-                $log.info("ADD FTV", response);
+            rest.followUp.add($scope.data.followUp, function(response) {
+                $log.info("ADD FOLLOWUP", response);
             });
         },
         backToFollowUps : function(ev) {
             var confirm = $mdDialog.confirm()
-                .title('Are you sure you want to cancel add a follow up?')
-                .textContent('If you leave now, all information that has been entered will be gone.')
+                .title('Apakah mau membatalkan untuk follow up baru?')
+                .textContent('Jika batalkan sekarang, semua informasi yang telah diisi akan hilang.')
                 .ariaLabel('Cancel')
                 .targetEvent(ev)
-                .ok("Yes")
-                .cancel("No");
+                .ok("Ya")
+                .cancel("Tidak");
 
             $mdDialog.show(confirm).then(function() {
                 $location.path("/followups");

@@ -20,8 +20,27 @@ md-toolbar.topBar {
     background-color: #449FD7;
 }
 
+md-toolbar.subBar {
+    background-color: #E6E6E6;
+}
+
+md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools {
+    color : #6E6E6E;
+    font-size: 0.9em;
+    font-weight: bold;
+    height: 32px;
+    min-height: 32px;
+}
+
+md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools md-icon {
+    color : #6E6E6E;
+}
+
+.noOutline { outline: none; }
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
+.marginL10 { margin-left: 10px; }
 .marginL20 { margin-left: 20px; }
 .marginT10 { margin-top: 10px; }
 .marginT30 { margin-top: 30px; }

@@ -20,8 +20,8 @@ html
                         md-icon(ng-class="{'selected' : selectedMenu == 'dashboard'}") dashboard
                     md-button(class="md-icon-button" aria-label="Follow Ups")
                         md-icon(ng-class="{'selected' : selectedMenu == 'followups'}") people
-                    md-button(class="md-icon-button" aria-label="Notifications")
-                        md-icon(ng-class="{'selected' : selectedMenu == 'notifications'}") notifications
+                    md-button(class="md-icon-button" aria-label="Schedule")
+                        md-icon(ng-class="{'selected' : selectedMenu == 'schedule'}") schedule
                     md-button(class="md-icon-button" aria-label="Settings")
                         md-icon(ng-class="{'selected' : selectedMenu == 'settings'}") build
 
@@ -31,7 +31,7 @@ html
         script(src="/bower_components/angular-animate/angular-animate.min.js")
         script(src="/bower_components/angular-aria/angular-aria.js")
         script(src="/bower_components/angular-messages/angular-messages.min.js")
-        script(src="/bower_components/moment/min/moment.min.js")
+        script(src="/bower_components/moment/min/moment-with-locales.min.js")
         script(src="/bower_components/angular-route/angular-route.min.js")
         script(src="/bower_components/ng-file-upload/ng-file-upload.min.js")
 

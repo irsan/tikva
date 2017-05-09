@@ -14,8 +14,8 @@ app.factory('rest', function($http) {
             }
         },
         followUp: {
-            list : function(onSuccess) {
-                $http.post("/s/rest/followups").then(function(response) {
+            list : function(queries, onSuccess) {
+                $http.post("/s/rest/followups", queries).then(function(response) {
                     if(response.status == 200) {
                         onSuccess(response.data);
                     } else {
