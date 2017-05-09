@@ -24,6 +24,8 @@ md-content(flex, layout="column")
             md-icon(class="md-avatar") person
             div(class="md-list-item-text" layout="column")
                 h3 {{followup.name}}
+                h4
+                    span FTV & Keputusan, Carecell: Kasih
                 p
                     span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
                     span(ng-hide="followup.followedUpAt") belum follow up
