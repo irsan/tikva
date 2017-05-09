@@ -15,7 +15,7 @@ md-toolbar(class="subBar")
             //div
             //    md-icon(ng-click="show.chooseSunday = true") date_range
             //div(class="marginL10") {{actions.formatDate()}}
-        md-datepicker(class="marginL10", ng-model="data.sunday")
+        md-datepicker(class="marginL10", ng-model="data.sunday", md-date-filter="actions.onlySunday")
         div
             md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 

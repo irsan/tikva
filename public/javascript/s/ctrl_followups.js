@@ -39,6 +39,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
             $scope.data.sunday.add(1, 'weeks');
             this.listFollowUps();
         },
+        onlySunday : function(date) {
+            var day = date.getDay();
+            return day === 0;
+        },
         init : function() {
             $scope.actions.listFollowUps($scope.data.sunday);
         }
