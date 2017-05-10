@@ -33,10 +33,11 @@ md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools {
 }
 
 md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools md-icon {
-    color : #6E6E6E;
+    color : #6E6E6E !important;
 }
 
 .noOutline { outline: none; }
+.action { cursor: pointer; }
 
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }

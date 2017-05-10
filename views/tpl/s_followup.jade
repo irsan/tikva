@@ -1,0 +1,20 @@
+md-toolbar(class="topBar")
+    div(class="md-toolbar-tools")
+        md-button(class="md-icon-button", aria-label="back", ng-click="actions.backToFollowUps()")
+            md-icon chevron_left
+        h3(flex)
+            span Follow Up
+
+md-toolbar(class="subBar")
+    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
+        div
+            md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
+        div(layout="row", layout-align="start center")
+            div
+                md-icon date_range
+            div(class="marginL10") {{actions.formatDate()}}
+        div
+            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
+
+md-content(flex, layout="column")
+    div hi

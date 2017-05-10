@@ -11,43 +11,41 @@ class CommandController {
     }
 
     parseCommand({ text, channel_id }, user, callback) {
-        if(text.match(/^add ftv$/i)) {
-            return this.addFTV(user, callback);
-        } else if(text.match(/^list follow ups$/i)) {
-            return this.listFollowUps(user, callback);
+        if(text.match(/^start$/i)) {
+            return this.start(user, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
 
-    addFTV(user, callback) {
+    start(user, callback) {
         log.info("THE USER: ...... ", user);
         new Model.AuthroizedLink({
-            user : user, redirect : "/s/add_ftv"
+            user : user, redirect : "/s"
         }).save((error, link) => {
             if(error) {
                 log.error("ERROR", error);
                 callback(error);
             }
-            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to add FTV>");
+            callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to start>");
         });
 
     }
-
-    listFollowUps(user, callback) {
-        Vasync.waterfall([
-            (callback) => {
-                new Model.AuthroizedLink({
-                    user : user, redirect : "/s/followups"
-                }).save((error, link) => {
-                    if(error) {
-                        log.error("ERROR", error);
-                        callback(error);
-                    }
-                    callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to view follow ups>");
-                });
-            }
-        ], callback);
-    }
+    //
+    // listFollowUps(user, callback) {
+    //     Vasync.waterfall([
+    //         (callback) => {
+    //             new Model.AuthroizedLink({
+    //                 user : user, redirect : "/s/followups"
+    //             }).save((error, link) => {
+    //                 if(error) {
+    //                     log.error("ERROR", error);
+    //                     callback(error);
+    //                 }
+    //                 callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to view follow ups>");
+    //             });
+    //         }
+    //     ], callback);
+    // }
 
 }
 
