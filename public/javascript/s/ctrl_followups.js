@@ -132,7 +132,7 @@ app.controller('followupsServicedateCtrl', function($scope, $rootScope, $mdDialo
     $log.info("FOLLOW UPS Service date");
 
     $rootScope.selectedMenu = 'followups';
-    $rootScope.hideMainMenu = false;
+    $rootScope.hideMainMenu = true;
 
     $scope.show = {
     };
