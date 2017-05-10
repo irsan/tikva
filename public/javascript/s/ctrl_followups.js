@@ -117,3 +117,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
 
     $scope.actions.listCarecells();
 })
+
+app.controller('followupsWeekCtrl', function($scope) {
+    $scope("FOLLOW UPS WEEK");
+});
