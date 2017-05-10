@@ -125,6 +125,6 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
     $scope.actions.listCarecells();
 })
 
-app.controller('followupsWeekCtrl', function($scope) {
-    $scope("FOLLOW UPS WEEK");
+app.controller('followupsWeekCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
+    $log.info("FOLLOW UPS WEEK");
 });
