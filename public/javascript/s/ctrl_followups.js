@@ -40,7 +40,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
             this.listFollowUps();
         },
         selectServiceDate : function() {
-            $location.path('/followup/servicedate/' + $scope.data.sunday.format('YYYYMMDD'));
+            $location.path('/followups/servicedate/' + $scope.data.sunday.format('YYYYMMDD'));
         },
         gotoFollowup : function(followUp) {
             $location.path('/followup');
