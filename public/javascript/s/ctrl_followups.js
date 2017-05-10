@@ -1,10 +1,10 @@
 var app = angular.module('TikvaApp');
 
-app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, rest) {
+app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $location, $log, rest) {
     $rootScope.selectedMenu = 'followups';
     $rootScope.hideMainMenu = false;
 
-    $log.debug("FOLLOW UPS CTRL");
+    $log.debug("FOLLOW UPS CTRL", $routeParams);
 
     $scope.show = {
         chooseSunday : false
