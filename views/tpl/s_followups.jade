@@ -11,7 +11,7 @@ md-toolbar(class="subBar")
     div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
         div
             md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
-        div(layout="row", layout-align="start center")
+        div(layout="row", layout-align="start center", ng-click="actions.selectServiceDate()")
             div
                 md-icon date_range
             div(class="marginL10") {{actions.formatDate()}}

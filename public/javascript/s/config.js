@@ -22,9 +22,9 @@ app.config([
             templateUrl: '/tpl/s_followups',
             controller: 'followupsCtrl'
         }).
-        when('/followups/week/:week', {
-            templateUrl: '/tpl/s_followups_week',
-            controller: 'followupsWeekCtrl'
+        when('/followups/servicedate/:date', {
+            templateUrl: '/tpl/s_followups_servicedate',
+            controller: 'followupsServicedateCtrl'
         }).when('/followup', {
             templateUrl: '/tpl/s_followup',
             controller: 'followupCtrl'

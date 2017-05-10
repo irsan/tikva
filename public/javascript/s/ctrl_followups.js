@@ -39,6 +39,9 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $location, $log, r
             $scope.data.sunday.add(1, 'weeks');
             this.listFollowUps();
         },
+        selectServiceDate : function() {
+            $location.path('/followup/servicedate/' + $scope.data.sunday.format('YYYYMMDD'));
+        },
         gotoFollowup : function(followUp) {
             $location.path('/followup');
         },
@@ -125,6 +128,25 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
     $scope.actions.listCarecells();
 })
 
-app.controller('followupsWeekCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
-    $log.info("FOLLOW UPS WEEK");
+app.controller('followupsServicedateCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
+    $log.info("FOLLOW UPS Service date");
+
+    $rootScope.selectedMenu = 'followups';
+    $rootScope.hideMainMenu = false;
+
+    $scope.show = {
+    };
+
+    $scope.data = {
+    };
+
+    $scope.actions = {
+        backToFollowUps : function() {
+            $location.path("/followups");
+        },
+        init : function() {
+        }
+    }
+
+    $scope.actions.init();
 });
