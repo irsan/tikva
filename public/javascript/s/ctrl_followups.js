@@ -33,8 +33,11 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                     followUpsByDate.data[key].followUps.push(followUp);
                 });
 
-                var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
-                lastEc[0].scrollTop = lastEc[0].scrollHeight;
+                $timeout(function() {
+                    var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
+                    lastEc[0].scrollTop = lastEc[0].scrollHeight;
+                });
+
             }
         }
     };
