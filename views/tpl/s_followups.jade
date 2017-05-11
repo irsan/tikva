@@ -7,32 +7,35 @@ md-toolbar(class="topBar")
         md-button(class="md-icon-button", aria-label="Add", ng-click="actions.showNewFollowUp()")
             md-icon add
 
-md-toolbar(class="subBar")
-    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
-        div
-            md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
-        div(layout="row", layout-align="start center", ng-click="actions.selectServiceDate()")
-            div
-                md-icon date_range
-            div(class="marginL10") {{actions.formatDate()}}
-        div
-            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
+//md-toolbar(class="subBar")
+//    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
+//        div
+//            md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
+//        div(layout="row", layout-align="start center", ng-click="actions.selectServiceDate()")
+//            div
+//                md-icon date_range
+//            div(class="marginL10") {{actions.formatDate()}}
+//        div
+//            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(flex, layout="column")
-    md-list(class="followUps", flex)
-        md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="actions.gotoFollowup(followup)")
-            md-icon(class="md-avatar") person
-            div(class="md-list-item-text" layout="column")
-                h3 {{followup.name}}
-                //p
-                //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
-                //    span(ng-hide="followup.followedUpAt") belum follow up
-                h4 Carecell: Kasih, SP: Irsan Jie
-                p
-                    span(ng-show="followup.ftv") FTV
-                    span(ng-show="followup.ftv && followup.decision")
-                        =" "
-                        span &
-                        =" "
-                    span(ng-show="followup.decision") Keputusan
-            md-icon(ng-click="null") assignment_ind
+    div(ng-repeat="date in data.followUpsByDate.data") {{date}}
+    //section(ng-repeat="date in data.")
+    //    md-subheader(class="md-primary") {{}}
+    //md-list(class="followUps", flex)
+    //    md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="actions.gotoFollowup(followup)")
+    //        md-icon(class="md-avatar") person
+    //        div(class="md-list-item-text" layout="column")
+    //            h3 {{followup.name}}
+    //            //p
+    //            //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
+    //            //    span(ng-hide="followup.followedUpAt") belum follow up
+    //            h4 Carecell: Kasih, SP: Irsan Jie
+    //            p
+    //                span(ng-show="followup.ftv") FTV
+    //                span(ng-show="followup.ftv && followup.decision")
+    //                    =" "
+    //                    span &
+    //                    =" "
+    //                span(ng-show="followup.decision") Keputusan
+    //        md-icon(ng-click="null") assignment_ind

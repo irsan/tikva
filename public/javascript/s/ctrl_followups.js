@@ -18,18 +18,19 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
             currentPage : 0
         },
         followUpsByDate : {
+            data : {},
             set : function(followUps) {
                 var followUpsByDate = this;
                 followUps.forEach(function(followUp) {
                     var serviceMoment = moment(followUp.serviceDate);
                     var key = serviceMoment.format("YYYYMMDD");
-                    if(!followUpsByDate[key]) {
-                        followUpsByDate[key] = {
+                    if(!followUpsByDate.data[key]) {
+                        followUpsByDate.data[key] = {
                             serviceDate : serviceMoment.toDate(),
                             followUps : []
                         };
                     }
-                    followUpsByDate[key].followUps.push(followUp);
+                    followUpsByDate.data[key].followUps.push(followUp);
                 });
 
                 $log.info("THE FOLLOW UPS", this);
