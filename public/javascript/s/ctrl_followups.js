@@ -19,16 +19,17 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
         },
         followUpsByDate : {
             set : function(followUps) {
+                var followUpsByDate = this;
                 followUps.forEach(function(followUp) {
                     var serviceMoment = moment(followUp.serviceDate);
                     var key = serviceMoment.format("YYYYMMDD");
-                    if(!this[key]) {
-                        this[key] = {
+                    if(!followUpsByDate[key]) {
+                        followUpsByDate[key] = {
                             serviceDate : serviceMoment.toDate(),
                             followUps : []
                         };
                     }
-                    this[key].followUps.push(followUp);
+                    followUpsByDate[key].followUps.push(followUp);
                 });
 
                 $log.info("THE FOLLOW UPS", this);
