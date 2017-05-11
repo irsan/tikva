@@ -144,7 +144,13 @@ app.controller('followupsServicedateCtrl', function($scope, $rootScope, $mdDialo
         backToFollowUps : function() {
             $location.path("/followups");
         },
+        listServiceDates : function(page) {
+            rest.serviceDate.list(page, function(response) {
+                $log.info("THE RESPONSE", response);
+            })
+        },
         init : function() {
+            this.listServiceDates(1);
         }
     }
 

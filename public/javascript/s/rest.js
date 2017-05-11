@@ -32,6 +32,17 @@ app.factory('rest', function($http) {
                     }
                 });
             }
+        },
+        serviceDate : {
+            list : function(page, onSuccess) {
+                $http.get("/s/rest/servicedates/" + page).then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
+            }
         }
     };
 

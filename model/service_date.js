@@ -11,6 +11,8 @@ var ServiceDate = new Schema({
     status          : { type : String, default : 'active' }
 });
 
+ServiceDate.index({ date : -1 });
+ServiceDate.index({ status : 1 });
 ServiceDate.index({ date : 1, status : 1 });
 
 module.exports = mongoose.model('ServiceDate', ServiceDate);

@@ -214,4 +214,53 @@ router.post('/rest/followups', (req, res) => {
     });
 });
 
+router.get('/rest/servicedates/:page', (req, res) => {
+    let { page } = req.params;
+
+    let condition = {
+        status : 'active'
+    };
+
+    Vasync.waterfall([
+        (callback) => {
+            if (isNaN(page) || page < 1) {
+                return callback("Invalid page");
+            }
+
+            Model.ServiceDate.count(condition, callback);
+        },
+        (count, callback) => {
+            if(count == 0) {
+                return callback(null, {
+                    count : 0,
+                    currentPage : 0,
+                    lastPage : 0,
+                    serviceDates : []
+                });
+            }
+
+            let pagination = new Pagination(page, 50);
+            pagination.setCount(count);
+
+            let { lastPage, currentPage } = pagination;
+
+            Model.ServiceDate.find(condition).sort('-date').limit(pagination.limit).skip(pagination.offset).exec((error, serviceDates) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { count, currentPage, lastPage, serviceDates });
+            })
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    })
+});
+
 module.exports = router;
