@@ -75,6 +75,8 @@ router.post('/rest/followup/add', (req, res) => {
             let followUp = new Model.FollowUp({
                 name : req.body.name,
                 serviceDate : new Date(req.body.serviceDate),
+                creator : req.user.username,
+                updater : req.user.username
             });
 
             if(req.body.ftv) {
@@ -122,8 +124,50 @@ router.post('/rest/followup/add', (req, res) => {
                     return callback(error);
                 }
 
-                callback(null, { followUp });
+                callback(null, followUp);
             });
+        },
+        (followUp, callback) => {
+            Model.ServiceDate.count({
+                date : followUp.serviceDate,
+                status : 'active'
+            }, (error, count) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { count, followUp });
+            })
+        },
+        ({ count, followUp }, callback) => {
+            if(count > 0) {
+                Model.ServiceDate.findOneAndUpdate({
+                    date : followUp.serviceDate,
+                    status : 'active'
+                }, {
+                    $inc: { followUpCount : 1 },
+                    updater : req.user.username
+                }, (error) => {
+                    if(error) {
+                        return callback(error);
+                    }
+
+                    return callback(null, { followUp });
+                });
+            }
+
+            new Model.ServiceDate({
+                date : followUp.serviceDate,
+                followUpCount : 1,
+                creator : req.user.username,
+                updater : req.user.username
+            }).save((error) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { followup });
+            })
         }
     ], (error, data) => {
         var response = new Response();
