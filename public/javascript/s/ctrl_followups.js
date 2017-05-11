@@ -13,7 +13,26 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
     $scope.data = {
         sunday : moment().startOf('week'),
         followUps : {
-            followUps : []
+            count : 0,
+            lastPage : 0,
+            currentPage : 0
+        },
+        followUpsByDate : {
+            set : function(followUps) {
+                followUps.forEach(function(followUp) {
+                    var serviceMoment = moment(followUp.serviceDate);
+                    var key = serviceMoment.format("YYYYMMDD");
+                    if(!this[key]) {
+                        this[key] = {
+                            serviceDate : serviceMoment.toDate(),
+                            followUps : []
+                        };
+                    }
+                    this[key].followUps.push(followUp);
+                });
+
+                $log.info("THE FOLLOW UPS", this);
+            }
         }
     };
 
@@ -21,6 +40,12 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
         listFollowUpPage : function(page) {
             rest.followUp.listPage({}, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
+                if(response.status == "Ok") {
+                    $scope.data.followUps = response.data;
+                    if(response.data.count > 0) {
+                        $scope.data.followUpsByDate.set(response.data.followUps);
+                    }
+                }
             });
         },
         listFollowUps : function() {
