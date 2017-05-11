@@ -124,6 +124,8 @@ router.post('/rest/followup/add', (req, res) => {
                     return callback(error);
                 }
 
+                log.info("SAVED FOR FOLLOWUP", followUp);
+
                 callback(null, followUp);
             });
         },
