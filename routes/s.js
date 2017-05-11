@@ -168,7 +168,7 @@ router.post('/rest/followup/add', (req, res) => {
                     return callback(error);
                 }
 
-                callback(null, { followup });
+                callback(null, { followUp });
             })
         }
     ], (error, data) => {
