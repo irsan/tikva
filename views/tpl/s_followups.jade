@@ -19,9 +19,12 @@ md-toolbar(class="topBar")
 //            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(flex, layout="column")
-    div(ng-repeat="date in data.followUpsByDate.data") {{date}}
-    //section(ng-repeat="date in data.")
-    //    md-subheader(class="md-primary") {{}}
+    div(ng-repeat="date in data.followUpsByDate.data")
+        div {{date}}
+        div ##===============================
+
+    //section(ng-repeat="date in data.followUpsByDate.data")
+    //    md-subheader(class="md-primary") {{date}}
     //md-list(class="followUps", flex)
     //    md-list-item(class="md-3-line" ng-repeat="followup in data.followUps.followUps" ng-click="actions.gotoFollowup(followup)")
     //        md-icon(class="md-avatar") person
