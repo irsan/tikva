@@ -21,7 +21,7 @@ md-toolbar(class="topBar")
 md-content(flex, layout="column")
     div(ng-repeat="date in data.followUpsByDate.data")
     section(ng-repeat="date in data.followUpsByDate.data")
-        md-subheader(class="md-primary") {{date.serviceDate | date : 'EEEE, dd MMM yyyy'}}
+        md-subheader(class="md-primary") {{date.serviceDate | date : 'EEEE, d MMM yyyy'}}
         md-list(class="followUps", flex)
             md-list-item(class="md-3-line" ng-repeat="followup in date.followUps" ng-click="actions.gotoFollowup(followup)")
                 md-icon(class="md-avatar") person
