@@ -63,7 +63,7 @@ router.post('/rest/followup/add', (req, res) => {
                 return callback("Service Date is required");
             }
 
-            if(req.body.carecell) {
+            if(req.body.carecell && req.body.carecell != "no carecell") {
                 Model.Carecell.findOne({
                     _id: req.body.carecell, status: 'active'
                 }, callback);
