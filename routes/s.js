@@ -156,20 +156,20 @@ router.post('/rest/followup/add', (req, res) => {
 
                     return callback(null, { followUp });
                 });
+            } else {
+                new Model.ServiceDate({
+                    date : followUp.serviceDate,
+                    followUpCount : 1,
+                    creator : req.user.username,
+                    updater : req.user.username
+                }).save((error) => {
+                    if(error) {
+                        return callback(error);
+                    }
+
+                    callback(null, { followUp });
+                })
             }
-
-            new Model.ServiceDate({
-                date : followUp.serviceDate,
-                followUpCount : 1,
-                creator : req.user.username,
-                updater : req.user.username
-            }).save((error) => {
-                if(error) {
-                    return callback(error);
-                }
-
-                callback(null, { followUp });
-            })
         }
     ], (error, data) => {
         var response = new Response();
