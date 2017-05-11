@@ -214,6 +214,58 @@ router.post('/rest/followups', (req, res) => {
     });
 });
 
+router.post('/rest/followups/:page', (req, res) => {
+    let { page } = req.params;
+
+    let condition = {
+        status : 'active'
+    };
+
+    Vasync.waterfall([
+        (callback) => {
+            if (isNaN(page) || page < 1) {
+                return callback("Invalid page");
+            }
+
+            Model.FollowUp.count(condition, callback);
+        },
+        (count, callback) => {
+            if(count == 0) {
+                return callback(null, {
+                    count : 0,
+                    currentPage : 0,
+                    lastPage : 0,
+                    followUps : []
+                });
+            }
+
+            let pagination = new Pagination(page, 50);
+            pagination.setCount(count);
+
+            let { limit, offset, lastPage, currentPage } = pagination;
+
+            Model.FollowUp.find(condition).populate({
+                path : 'carecell',
+                select : 'name -_id'
+            }).sort('carecell.name name -serviceDate').limit(limit).skip(offset).exec((error, followUps) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { count, currentPage, lastPage, followUps });
+            });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
+});
+
 router.get('/rest/servicedates/:page', (req, res) => {
     let { page } = req.params;
 

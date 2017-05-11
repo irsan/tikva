@@ -18,6 +18,11 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
     };
 
     $scope.actions = {
+        listFollowUpPage : function(page) {
+            rest.followUp.listPage({}, page, function(response) {
+                $log.info("LIST FOLLOWUPS", response);
+            });
+        },
         listFollowUps : function() {
             rest.followUp.list({ date : $scope.data.sunday.toDate() }, function(response) {
                 if(response.status == "Ok") {
@@ -46,7 +51,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
             $location.path('/followup');
         },
         init : function() {
-            $scope.actions.listFollowUps($scope.data.sunday);
+            // $scope.actions.listFollowUps($scope.data.sunday);
+            $scope.actions.listFollowUpPage(1);
         }
     }
 
@@ -152,7 +158,7 @@ app.controller('followupsServicedateCtrl', function($scope, $rootScope, $mdDialo
         init : function() {
             this.listServiceDates(1);
         }
-    }
+    };
 
     $scope.actions.init();
 });

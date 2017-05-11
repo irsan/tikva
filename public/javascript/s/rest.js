@@ -14,6 +14,15 @@ app.factory('rest', function($http) {
             }
         },
         followUp: {
+            listPage : function(queries, page, onSuccess) {
+                $http.post("/s/rest/followups/" + page, queries).then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
+            },
             list : function(queries, onSuccess) {
                 $http.post("/s/rest/followups", queries).then(function(response) {
                     if(response.status == 200) {
