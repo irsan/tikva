@@ -18,7 +18,7 @@ md-toolbar(class="topBar")
 //        div
 //            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
-md-content(flex, layout="column")
+md-content(class="mainContent", flex, layout="column")
     div(ng-repeat="date in data.followUpsByDate.data")
     section(ng-repeat="date in data.followUpsByDate.data")
         md-subheader(class="md-primary") {{date.serviceDate | date : 'EEEE, d MMM yyyy'}}
