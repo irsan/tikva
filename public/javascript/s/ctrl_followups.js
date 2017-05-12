@@ -49,9 +49,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
                     $scope.data.followUps = response.data;
-                    // if(response.data.count > 0) {
-                    //     $scope.data.followUpsByDate.set(response.data.followUps);
-                    // }
+                    $timeout(function() {
+                        var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
+                        lastEc[0].scrollTop = lastEc[0].scrollHeight;
+                    });
                 }
             });
         },

@@ -247,7 +247,7 @@ router.post('/rest/followups/:page', (req, res) => {
             Model.FollowUp.find(condition).populate({
                 path : 'carecell',
                 select : 'name -_id'
-            }).sort('serviceDate carecell.name name').limit(limit).skip(offset).exec((error, fus) => {
+            }).sort('-serviceDate carecell.name name').limit(limit).skip(offset).exec((error, fus) => {
                 if(error) {
                     return callback(error);
                 }
