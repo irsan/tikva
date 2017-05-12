@@ -1,3 +1,4 @@
 .followUp {
+    flex-shrink: 0;
     padding: 25px 20px;
 }
