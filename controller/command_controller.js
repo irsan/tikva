@@ -13,6 +13,8 @@ class CommandController {
     parseCommand({ text, channel_id }, user, callback) {
         if(text.match(/^start$/i)) {
             return this.start(user, callback);
+        } else if(text.match(/^set as carecell .+/)) {
+            return this.setAsCarecell({ text, user, channel_id });
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -30,23 +32,11 @@ class CommandController {
         });
 
     }
-    //
-    // listFollowUps(user, callback) {
-    //     Vasync.waterfall([
-    //         (callback) => {
-    //             new Model.AuthroizedLink({
-    //                 user : user, redirect : "/s/followups"
-    //             }).save((error, link) => {
-    //                 if(error) {
-    //                     log.error("ERROR", error);
-    //                     callback(error);
-    //                 }
-    //                 callback(null, "<http://tikva.sweethope.life/auth/authorized/" + link.id +"|Click here to view follow ups>");
-    //             });
-    //         }
-    //     ], callback);
-    // }
 
+    setAsCarecell({ text, user, channel_id }) {
+        log.info("SET AS CARECELL ", text, user, channel_id);
+        callback(null, "Ok, this is now a carecell");
+    }
 }
 
 module.exports = CommandController;
