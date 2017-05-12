@@ -21,3 +21,7 @@
     font-size: 1.2em; width: 17px; height: 17px;
     line-height: 17px; min-height: 17px;
 }
+
+.followUp .label {
+    color: #6E6E6E;
+}

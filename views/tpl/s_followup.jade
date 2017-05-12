@@ -4,6 +4,7 @@ md-toolbar(class="topBar")
             md-icon chevron_left
         h3(flex)
             span Follow Up
+        div
         md-button(class="md-icon-button", aria-label="delete", ng-click="actions.backToFollowUps()")
             md-icon delete
         md-button(class="md-icon-button", aria-label="delete", ng-click="actions.backToFollowUps()")
@@ -28,11 +29,11 @@ md-content(flex, layout="column")
                         md-icon(class="phoneIcon") phone
                     div {{data.followUp.phone}}
 
-        div(class="marginT20") Alamat:
-        div(class="marginT10") {{data.followUp.address}}
+        div(class="marginT20 label") Alamat:
+        div {{data.followUp.address}}
 
-        div(class="marginT20") Yang Membawa:
-        div(class="marginT10") {{data.followUp.oikosOf}}
+        div(class="marginT20 label") Yang Membawa:
+        div {{data.followUp.oikosOf}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
