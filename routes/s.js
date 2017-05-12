@@ -214,7 +214,7 @@ router.post('/rest/followup/add', (req, res) => {
 
 router.post('/rest/followups/:page', (req, res) => {
     let { page } = req.params;
-    let { user } = req.user;
+    let { user } = req.session;
 
     let condition = {
         status : 'active'
