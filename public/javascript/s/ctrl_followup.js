@@ -19,6 +19,9 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
         get : function() {
             rest.followUp.get($routeParams.uuid, function(response) {
                 $log.info("GOT FOLLOW UP", response);
+                if(response.status == 'Ok') {
+                    $scope.data.followUp = response.data.followUp;
+                }
             });
         },
         init : function() {

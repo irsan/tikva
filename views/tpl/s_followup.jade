@@ -6,4 +6,7 @@ md-toolbar(class="topBar")
             span Follow Up
 
 md-content(flex, layout="column")
-    div(class="followUp") hi
+    div(class="followUp")
+        md-input-container
+            label Name
+            input(ng-model="data.followUp.name")
