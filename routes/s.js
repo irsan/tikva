@@ -290,7 +290,7 @@ router.post('/rest/followups/:page', (req, res) => {
 
 router.get('/rest/followup/:uuid', (req, res) => {
     let { uuid } = req.params;
-    let { user } = req.user;
+    let { user } = req.session;
 
     let condition = {
         uuid,
