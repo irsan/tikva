@@ -4,6 +4,10 @@ md-toolbar(class="topBar")
             md-icon chevron_left
         h3(flex)
             span Follow Up
+        md-button(class="md-icon-button", aria-label="delete", ng-click="actions.backToFollowUps()")
+            md-icon delete
+        md-button(class="md-icon-button", aria-label="delete", ng-click="actions.backToFollowUps()")
+            md-icon check
 
 md-content(flex, layout="column")
     div(class="followUp", layout="column")
