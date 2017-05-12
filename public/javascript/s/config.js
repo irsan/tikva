@@ -25,13 +25,13 @@ app.config([
         when('/followups/servicedate/:date', {
             templateUrl: '/tpl/s_followups_servicedate',
             controller: 'followupsServicedateCtrl'
-        }).when('/followup/:id', {
-            templateUrl: '/tpl/s_followup',
-            controller: 'followupCtrl'
         }).
         when('/followup/add', {
             templateUrl: '/tpl/s_newfollowup',
             controller: 'newFollowUpCtrl'
+        }).when('/followup/:id', {
+            templateUrl: '/tpl/s_followup',
+            controller: 'followupCtrl'
         }).
         otherwise({
             redirectTo: '/followups'
