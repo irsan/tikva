@@ -59,7 +59,7 @@ class CommandController {
                 }).select('name').exec(callback);
             },
             (carecell, callback) => {
-                if (count > 0) {
+                if (carecell) {
                     return callback("This group is already a carecell called '" + carecell.name +"'.");
                 }
 
