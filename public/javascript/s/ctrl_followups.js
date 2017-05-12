@@ -18,29 +18,6 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
             currentPage : 0,
             followUps : {}
         }
-        // followUpsByDate : {
-        //     data : {},
-        //     set : function(followUps) {
-        //         var followUpsByDate = this;
-        //         followUps.forEach(function(followUp) {
-        //             var serviceMoment = moment(followUp.serviceDate);
-        //             var key = serviceMoment.format("YYYYMMDD");
-        //             if(!followUpsByDate.data[key]) {
-        //                 followUpsByDate.data[key] = {
-        //                     serviceDate : serviceMoment.toDate(),
-        //                     followUps : []
-        //                 };
-        //             }
-        //             followUpsByDate.data[key].followUps.push(followUp);
-        //         });
-        //
-        //         $timeout(function() {
-        //             var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
-        //             lastEc[0].scrollTop = lastEc[0].scrollHeight;
-        //         });
-        //
-        //     }
-        // }
     };
 
     $scope.actions = {
@@ -69,19 +46,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
         formatDate : function() {
             return $scope.data.sunday.locale('id').format("dddd, D MMM YYYY");
         },
-        prevWeek : function() {
-            $scope.data.sunday.subtract(1, 'weeks');
-            this.listFollowUps();
-        },
-        nextWeek : function() {
-            $scope.data.sunday.add(1, 'weeks');
-            this.listFollowUps();
-        },
-        selectServiceDate : function() {
-            $location.path('/followups/servicedate/' + $scope.data.sunday.format('YYYYMMDD'));
-        },
         gotoFollowup : function(followUp) {
-            $location.path('/followup');
+            $location.path('/followup/' + followUp._id);
         },
         init : function() {
             // $scope.actions.listFollowUps($scope.data.sunday);

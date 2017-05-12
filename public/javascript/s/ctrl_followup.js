@@ -1,10 +1,10 @@
 var app = angular.module('TikvaApp');
 
-app.controller('followupCtrl', function ($scope, $rootScope, $location, $log, rest) {
+app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $location, $log, rest) {
     $rootScope.selectedMenu = 'followups';
     $rootScope.hideMainMenu = false;
 
-    $log.debug("FOLLOW UP CTRL");
+    $log.debug("FOLLOW UP CTRL", $routeParams.id);
 
     $scope.show = {
     };

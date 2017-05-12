@@ -25,7 +25,7 @@ app.config([
         when('/followups/servicedate/:date', {
             templateUrl: '/tpl/s_followups_servicedate',
             controller: 'followupsServicedateCtrl'
-        }).when('/followup', {
+        }).when('/followup/:id', {
             templateUrl: '/tpl/s_followup',
             controller: 'followupCtrl'
         }).
