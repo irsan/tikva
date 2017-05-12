@@ -79,7 +79,7 @@ router.post('/cmd', (req, res) => {
     ], (error, reply) => {
         if(error) {
             log.error("Command Error", error);
-            return res.send("Oops, you cannot do that");
+            return res.send("Oops, you cannot do that because " + error);
         }
 
         res.send(reply);

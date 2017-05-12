@@ -1,4 +1,5 @@
 const Bunyan = require('bunyan');
+const UUID = require('uuid');
 const Vasync = require('vasync');
 
 const Model = require('../model/model');
@@ -37,38 +38,48 @@ class CommandController {
 
     setAsCarecell({ name, user, channel_id }, callback) {
         log.info("SET AS CARECELL ", name, user, channel_id);
-        callback(null, "Ok, this is now a carecell");
 
-        // Vasync.waterfall([
-        //     (callback) => {
-        //         Model.Carecell.findOne({
-        //             name, status : "active"
-        //         }, callback);
-        //     },
-        //     (carecell, callback) => {
-        //         if(carecell) {
-        //             context.addCarecellFailedExist = "The carecell name '" + name + "' is already in used.  Please try again.";
-        //             return callback(null, carecell);
-        //         }
-        //
-        //         new Model.Carecell({
-        //             name, key : UUID()
-        //         }).save((error, carecell) => {
-        //             if(error) {
-        //                 return callback(error);
-        //             }
-        //             context.addCarecellDone = "Carecell '" + name + "' is added successfully.";
-        //             context.done = true;
-        //             callback(null, carecell);
-        //         });
-        //     }
-        // ], (error, carecell) => {
-        //     if(error) {
-        //         context.addCarecellFailed = "Oops.  Something wrong. " + error;
-        //         context.done = true;
-        //     }
-        //     return context;
-        // })
+        Vasync.waterfall([
+            (callback) => {
+                if(!user.administrator) {
+                    return callback("You are not an administrator.");
+                }
+
+                Model.Carecell.count({
+                    name, status : "active"
+                }, callback);
+            },
+            (count, callback) => {
+                if (count > 0) {
+                    return callback("The carecell name '" + name + "' is already in used.  Please try again.");
+                }
+
+                Model.Carecell.findOne({
+                    slackChannel : channel_id, status : "active"
+                }).select('name').exec(callback);
+            },
+            (carecell, callback) => {
+                if (count > 0) {
+                    return callback("This group is already a carecell called '" + carecell.name +"'.");
+                }
+
+
+                new Model.Carecell({
+                    name, key : 'cc-' + UUID.v1()
+                }).save((error, carecell) => {
+                    if(error) {
+                        return callback(error);
+                    }
+                    callback(null, carecell);
+                });
+            }
+        ], (error, carecell) => {
+            if(error) {
+                return callback(error);
+            }
+
+            callback(null, "This group is now a Carecell '" + carecell.name + "'.");
+        });
     }
 }
 
