@@ -3,14 +3,14 @@
     padding: 25px 20px;
 }
 
-.followUpEdit .insertPhoto {
+.followUp .insertPhoto, .followUpEdit .insertPhoto {
     background-color: #717171;
     border-radius: 50%;
     width: 70px; height: 70px;
     overflow: hidden;
 }
 
-.followUpEdit .insertPhoto md-icon {
+.followUp .insertPhoto md-icon, .followUpEdit .insertPhoto md-icon {
     color: #ffffff;
     font-size: 3.7em;
     line-height: 50px;

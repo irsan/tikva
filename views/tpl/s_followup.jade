@@ -11,9 +11,20 @@ md-toolbar(class="topBar")
 
 md-content(flex, layout="column")
     div(class="followUp", layout="column", ng-hide="show.edit")
-        div(layout="row")
-            div Nama
-            div {{data.followUp.name}}
+        div(layout="row", layout-align="start start", class="marginB30")
+            div(flex)
+                div(class="insertPhoto", layout, layout-align="center center")
+                    md-icon person
+            div(layout="column", layout-align="start start", flex)
+                div
+                    span(ng-show="data.followup.ftv") FTV
+                    span(ng-show="data.followup.ftv && followup.decision")
+                        =" "
+                        span &
+                        =" "
+                    span(ng-show="data.followup.decision") Keputusan
+                div {{data.followUp.name}}
+
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
         div(layout="row", layout-align="start center", class="marginB30")
