@@ -29,7 +29,7 @@ app.config([
         when('/followup/add', {
             templateUrl: '/tpl/s_newfollowup',
             controller: 'newFollowUpCtrl'
-        }).when('/followup/:id', {
+        }).when('/followup/:uuid', {
             templateUrl: '/tpl/s_followup',
             controller: 'followupCtrl'
         }).

@@ -4,7 +4,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     $rootScope.selectedMenu = 'followups';
     $rootScope.hideMainMenu = false;
 
-    $log.debug("FOLLOW UP CTRL", $routeParams.id);
+    $log.debug("FOLLOW UP CTRL", $routeParams.uuid);
 
     $scope.show = {
     };

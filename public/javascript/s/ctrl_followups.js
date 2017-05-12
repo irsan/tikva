@@ -21,8 +21,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
     };
 
     $scope.actions = {
-        listFollowUpPage : function(page) {
-            rest.followUp.listPage({}, page, function(response) {
+        listFollowUps : function(page) {
+            rest.followUp.list({}, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
                     $scope.data.followUps = response.data;
@@ -33,13 +33,6 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                 }
             });
         },
-        listFollowUps : function() {
-            rest.followUp.list({ date : $scope.data.sunday.toDate() }, function(response) {
-                if(response.status == "Ok") {
-                    $scope.data.followUps = response.data;
-                }
-            });
-        },
         showNewFollowUp : function() {
             $location.path("/followup/add");
         },
@@ -47,13 +40,12 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
             return $scope.data.sunday.locale('id').format("dddd, D MMM YYYY");
         },
         gotoFollowup : function(followUp) {
-            $location.path('/followup/' + followUp._id);
+            $location.path('/followup/' + followUp.uuid);
         },
         init : function() {
-            // $scope.actions.listFollowUps($scope.data.sunday);
-            $scope.actions.listFollowUpPage(1);
+            $scope.actions.listFollowUps(1);
         }
-    }
+    };
 
     $scope.actions.init();
 });
