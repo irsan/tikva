@@ -259,7 +259,7 @@ router.post('/rest/followups/:page', (req, res) => {
                     let key = moment.format('YYYYMMDD');
                     if(!followUps[key]) {
                         followUps[key] = {
-                            serviceDate : moment.toData(),
+                            serviceDate : moment.toDate(),
                             followUps : []
                         };
                     }
