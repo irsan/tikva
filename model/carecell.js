@@ -22,6 +22,10 @@ Carecell.index({
 });
 
 Carecell.index({
+    name: 1
+});
+
+Carecell.index({
     key    : 1,
     status : 1
 });
