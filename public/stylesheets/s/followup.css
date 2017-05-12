@@ -2,3 +2,17 @@
     flex-shrink: 0;
     padding: 25px 20px;
 }
+
+.followUp .insertPhoto {
+    background-color: #717171;
+    border-radius: 50%;
+    width: 70px; height: 70px;
+    overflow: hidden;
+}
+
+.followUp .insertPhoto md-icon {
+    color: #ffffff;
+    font-size: 3.7em;
+    line-height: 50px;
+    width: 50px; height: 50px;
+}
