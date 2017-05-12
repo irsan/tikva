@@ -14,7 +14,7 @@ class CommandController {
         if(text.match(/^start$/i)) {
             return this.start(user, callback);
         } else if(text.match(/^set as carecell .+/)) {
-            return this.setAsCarecell({ text, user, channel_id });
+            return this.setAsCarecell({ text, user, channel_id }, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -33,7 +33,7 @@ class CommandController {
 
     }
 
-    setAsCarecell({ text, user, channel_id }) {
+    setAsCarecell({ text, user, channel_id }, callback) {
         log.info("SET AS CARECELL ", text, user, channel_id);
         callback(null, "Ok, this is now a carecell");
     }
