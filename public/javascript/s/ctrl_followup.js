@@ -16,6 +16,13 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
         backToFollowUps : function() {
             $location.path("/followups");
         },
+        listCarecells : function() {
+            rest.carecell.list(function (response) {
+                if (response.status == "Ok") {
+                    $scope.data.carecells = response.data.carecells;
+                }
+            });
+        },
         get : function() {
             rest.followUp.get($routeParams.uuid, function(response) {
                 $log.info("GOT FOLLOW UP", response);
@@ -25,6 +32,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
             });
         },
         init : function() {
+            this.listCarecells();
             this.get();
         }
     };
