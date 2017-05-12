@@ -28,6 +28,12 @@ md-content(flex, layout="column")
                         md-icon(class="phoneIcon") phone
                     div {{data.followUp.phone}}
 
+        div(class="marginT20") Alamat:
+        div(class="marginT10") {{data.followUp.address}}
+
+        div(class="marginT20") Yang Membawa:
+        div(class="marginT10") {{data.followUp.oikosOf}}
+
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
         div(layout="row", layout-align="start center", class="marginB30")
