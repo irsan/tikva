@@ -4,7 +4,6 @@ md-toolbar(class="topBar")
             md-icon chevron_left
         h3(flex)
             span Follow Up
-        md-button Update
 
 md-content(flex, layout="column")
     div(class="followUp", layout="column")
@@ -64,6 +63,9 @@ md-content(flex, layout="column")
                     md-radio-button(value="married", class="md-primary", flex) sudah menikah
 
 
-        md-input-container(class="md-block", flex)
+        md-input-container(class="md-block marginB30", flex)
             label Keterangan
             textarea(type="text", ng-model="data.followUp.comments")
+
+        md-button(class="md-raised md-primary") UPDATE
+        md-button(class="md-raised md-warn") DELETE
