@@ -31,6 +31,15 @@ app.factory('rest', function($http) {
                         //TODO handle error
                     }
                 });
+            },
+            get : function(uuid, onSuccess) {
+                $http.get("/s/rest/followup/" + uuid).then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
             }
         },
         serviceDate : {

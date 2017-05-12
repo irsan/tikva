@@ -225,6 +225,14 @@ router.post('/rest/followups/:page', (req, res) => {
                 return callback("Invalid page");
             }
 
+            if(!user.administrator) {
+                condition['$or'] = [
+                    { carecell : { $exists : false } },
+                    { carecell : null },
+                    { carecell : user.carecell }
+                ];
+            }
+
             Model.FollowUp.count(condition, callback);
         },
         (count, callback) => {
@@ -279,61 +287,31 @@ router.post('/rest/followups/:page', (req, res) => {
     });
 });
 
-router.post('/rest/followup/:id', (req, res) => {
-    let { page } = req.params;
+router.get('/rest/followup/:uuid', (req, res) => {
+    let { uuid } = req.params;
+    let { user } = req.user;
 
     let condition = {
+        uuid,
         status : 'active'
     };
 
     Vasync.waterfall([
         (callback) => {
-            if (isNaN(page) || page < 1) {
-                return callback("Invalid page");
+            if(!user.administrator) {
+                condition['$or'] = [
+                    { carecell : user.carecell }
+                ];
             }
 
-            Model.FollowUp.count(condition, callback);
+            Model.FollowUp.findOne(condition, callback);
         },
-        (count, callback) => {
-            if(count == 0) {
-                return callback(null, {
-                    count : 0,
-                    currentPage : 0,
-                    lastPage : 0,
-                    followUps : {}
-                });
+        (followUp, callback) => {
+            if(!followUp) {
+                return callback("Invalid Follow Up");
             }
 
-            let pagination = new Pagination(page, 50);
-            pagination.setCount(count);
-
-            let { limit, offset, lastPage, currentPage } = pagination;
-
-            Model.FollowUp.find(condition).populate({
-                path : 'carecell',
-                select : 'name -_id'
-            }).sort('-serviceDate carecell.name name').limit(limit).skip(offset).exec((error, fus) => {
-                if(error) {
-                    return callback(error);
-                }
-
-                let followUps = {};
-
-                fus.forEach((fu) => {
-                    let moment = Moment(fu.serviceDate);
-                    let key = moment.format('YYYYMMDD');
-                    if(!followUps[key]) {
-                        followUps[key] = {
-                            serviceDate : moment.toDate(),
-                            followUps : []
-                        };
-                    }
-
-                    followUps[key].followUps.push(fu);
-                });
-
-                callback(null, { count, currentPage, lastPage, followUps });
-            });
+            callback(null, { followUp });
         }
     ], (error, data) => {
         var response = new Response();

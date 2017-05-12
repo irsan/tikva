@@ -16,9 +16,15 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
         backToFollowUps : function() {
             $location.path("/followups");
         },
+        get : function() {
+            rest.followUp.get($routeParams.uuid, function(response) {
+                $log.info("GOT FOLLOW UP", response);
+            });
+        },
         init : function() {
+            this.get();
         }
-    }
+    };
 
     $scope.actions.init();
 });
