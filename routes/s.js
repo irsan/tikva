@@ -264,7 +264,7 @@ router.post('/rest/followups/:page', (req, res) => {
                         };
                     }
 
-                    followUps[key].push(fu);
+                    followUps[key].followUps.push(fu);
                 });
 
                 callback(null, { count, currentPage, lastPage, followUps });
