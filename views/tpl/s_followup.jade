@@ -12,10 +12,9 @@ md-toolbar(class="topBar")
 md-content(flex, layout="column")
     div(class="followUp", layout="column", ng-hide="show.edit")
         div(layout="row", layout-align="start start", class="marginB30")
-            div(flex)
-                div(class="insertPhoto", layout, layout-align="center center")
-                    md-icon person
-            div(layout="column", layout-align="start start", flex)
+            div(class="insertPhoto", layout, layout-align="center center")
+                md-icon person
+            div(layout="column", layout-align="start start", class="marginL20", flex)
                 div
                     span(ng-show="data.followUp.ftv") FTV
                     span(ng-show="data.followUp.ftv && followUp.decision")
@@ -27,7 +26,7 @@ md-content(flex, layout="column")
                 div(class="marginT10", layout="row", layout-align="start center")
                     div
                         md-icon phone
-                    div {{data.followUp.phone}}
+                    div(class="marginL10") {{data.followUp.phone}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
