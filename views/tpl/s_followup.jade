@@ -24,7 +24,10 @@ md-content(flex, layout="column")
                         =" "
                     span(ng-show="data.followUp.decision") Keputusan
                 div(class="marginT10") {{data.followUp.name}}
-                div(class="marginT10") {{data.followUp.phone}}
+                div(class="marginT10", layout="row", layout-align="start center")
+                    div
+                        md-icon phone
+                    div {{data.followUp.phone}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
