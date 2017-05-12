@@ -15,31 +15,32 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
         followUps : {
             count : 0,
             lastPage : 0,
-            currentPage : 0
-        },
-        followUpsByDate : {
-            data : {},
-            set : function(followUps) {
-                var followUpsByDate = this;
-                followUps.forEach(function(followUp) {
-                    var serviceMoment = moment(followUp.serviceDate);
-                    var key = serviceMoment.format("YYYYMMDD");
-                    if(!followUpsByDate.data[key]) {
-                        followUpsByDate.data[key] = {
-                            serviceDate : serviceMoment.toDate(),
-                            followUps : []
-                        };
-                    }
-                    followUpsByDate.data[key].followUps.push(followUp);
-                });
-
-                $timeout(function() {
-                    var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
-                    lastEc[0].scrollTop = lastEc[0].scrollHeight;
-                });
-
-            }
+            currentPage : 0,
+            followUps : {}
         }
+        // followUpsByDate : {
+        //     data : {},
+        //     set : function(followUps) {
+        //         var followUpsByDate = this;
+        //         followUps.forEach(function(followUp) {
+        //             var serviceMoment = moment(followUp.serviceDate);
+        //             var key = serviceMoment.format("YYYYMMDD");
+        //             if(!followUpsByDate.data[key]) {
+        //                 followUpsByDate.data[key] = {
+        //                     serviceDate : serviceMoment.toDate(),
+        //                     followUps : []
+        //                 };
+        //             }
+        //             followUpsByDate.data[key].followUps.push(followUp);
+        //         });
+        //
+        //         $timeout(function() {
+        //             var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
+        //             lastEc[0].scrollTop = lastEc[0].scrollHeight;
+        //         });
+        //
+        //     }
+        // }
     };
 
     $scope.actions = {
@@ -48,9 +49,9 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
                     $scope.data.followUps = response.data;
-                    if(response.data.count > 0) {
-                        $scope.data.followUpsByDate.set(response.data.followUps);
-                    }
+                    // if(response.data.count > 0) {
+                    //     $scope.data.followUpsByDate.set(response.data.followUps);
+                    // }
                 }
             });
         },

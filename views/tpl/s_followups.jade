@@ -19,11 +19,10 @@ md-toolbar(class="topBar")
 //            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(class="mainContent", flex, layout="column")
-    div(ng-repeat="date in data.followUpsByDate.data")
-    section(ng-repeat="date in data.followUpsByDate.data")
-        md-subheader(class="md-primary") {{date.serviceDate | date : 'EEEE, d MMM yyyy'}}
+    section(ng-repeat="followUps in data.followUps.followUps")
+        md-subheader(class="md-primary") {{followUps.serviceDate | date : 'EEEE, d MMM yyyy'}}
         md-list(class="followUps", flex)
-            md-list-item(class="md-3-line" ng-repeat="followup in date.followUps" ng-click="actions.gotoFollowup(followup)")
+            md-list-item(class="md-3-line" ng-repeat="followup in followUps.followUps" ng-click="actions.gotoFollowup(followup)")
                 md-icon(class="md-avatar") person
                 div(class="md-list-item-text" layout="column")
                     h3 {{followup.name}}

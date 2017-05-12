@@ -235,7 +235,7 @@ router.post('/rest/followups/:page', (req, res) => {
                     count : 0,
                     currentPage : 0,
                     lastPage : 0,
-                    followUps : []
+                    followUps : {}
                 });
             }
 
@@ -247,10 +247,25 @@ router.post('/rest/followups/:page', (req, res) => {
             Model.FollowUp.find(condition).populate({
                 path : 'carecell',
                 select : 'name -_id'
-            }).sort('-serviceDate carecell.name name').limit(limit).skip(offset).exec((error, followUps) => {
+            }).sort('-serviceDate carecell.name name').limit(limit).skip(offset).exec((error, fus) => {
                 if(error) {
                     return callback(error);
                 }
+
+                let followUps = {};
+
+                fus.forEach((fu) => {
+                    let moment = Moment(fu.serviceDate);
+                    let key = moment.format('YYYYMMDD');
+                    if(!followUps[key]) {
+                        followUps[key] = {
+                            serviceDate : moment.toData(),
+                            followUps : []
+                        };
+                    }
+
+                    followUps[key].push(fu);
+                });
 
                 callback(null, { count, currentPage, lastPage, followUps });
             });
@@ -264,55 +279,6 @@ router.post('/rest/followups/:page', (req, res) => {
         }
         res.send(response);
     });
-});
-
-router.get('/rest/servicedates/:page', (req, res) => {
-    let { page } = req.params;
-
-    let condition = {
-        status : 'active'
-    };
-
-    Vasync.waterfall([
-        (callback) => {
-            if (isNaN(page) || page < 1) {
-                return callback("Invalid page");
-            }
-
-            Model.ServiceDate.count(condition, callback);
-        },
-        (count, callback) => {
-            if(count == 0) {
-                return callback(null, {
-                    count : 0,
-                    currentPage : 0,
-                    lastPage : 0,
-                    serviceDates : []
-                });
-            }
-
-            let pagination = new Pagination(page, 50);
-            pagination.setCount(count);
-
-            let { lastPage, currentPage } = pagination;
-
-            Model.ServiceDate.find(condition).sort('-date').limit(pagination.limit).skip(pagination.offset).exec((error, serviceDates) => {
-                if(error) {
-                    return callback(error);
-                }
-
-                callback(null, { count, currentPage, lastPage, serviceDates });
-            })
-        }
-    ], (error, data) => {
-        var response = new Response();
-        if(error) {
-            response.fail(error);
-        } else {
-            response.data = data;
-        }
-        res.send(response);
-    })
 });
 
 module.exports = router;
