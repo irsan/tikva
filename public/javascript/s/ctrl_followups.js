@@ -69,7 +69,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
                 }
             });
         },
-        addFollowup : function($event) {
+        addFollowup : function(ev) {
             rest.followUp.add($scope.data.followUp, function(response) {
                 $log.info("ADD FOLLOWUP", response);
                 if(response.status == "Ok") {
