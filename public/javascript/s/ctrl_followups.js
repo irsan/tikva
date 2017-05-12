@@ -69,9 +69,26 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
                 }
             });
         },
-        addFollowup : function() {
+        addFollowup : function($event) {
             rest.followUp.add($scope.data.followUp, function(response) {
                 $log.info("ADD FOLLOWUP", response);
+                if(response.status == "Ok") {
+                    var confirm = $mdDialog.confirm()
+                        .title('Follow Up sudah sukses ditambahkan')
+                        .textContent('Mau masukkan Follow Up yang baru?')
+                        .ariaLabel('Follow Up Added Successfully')
+                        .targetEvent(ev)
+                        .ok("Ya")
+                        .cancel("Tidak");
+
+                    $mdDialog.show(confirm).then(function() {
+                        $scope.data.followUp = {
+                            serviceDate : moment().startOf('week').toDate()
+                        };
+                    }, function() {
+                        $location.path("/followups");
+                    });
+                }
             });
         },
         backToFollowUps : function(ev) {
@@ -124,32 +141,3 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
 
     $scope.actions.listCarecells();
 })
-
-app.controller('followupsServicedateCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
-    $log.info("FOLLOW UPS Service date");
-
-    $rootScope.selectedMenu = 'followups';
-    $rootScope.hideMainMenu = true;
-
-    $scope.show = {
-    };
-
-    $scope.data = {
-    };
-
-    $scope.actions = {
-        backToFollowUps : function() {
-            $location.path("/followups");
-        },
-        listServiceDates : function(page) {
-            rest.serviceDate.list(page, function(response) {
-                $log.info("THE RESPONSE", response);
-            })
-        },
-        init : function() {
-            this.listServiceDates(1);
-        }
-    };
-
-    $scope.actions.init();
-});
