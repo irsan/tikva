@@ -14,7 +14,7 @@ class CommandController {
         if(text.match(/^start$/i)) {
             return this.start(user, callback);
         } else if(text.match(/^set as carecell .+$/i)) {
-            let name = text.replace('/^set as carecell /i').trim();
+            let name = text.replace(/^set as carecell /i, '').trim();
             log.info("THE NAME", name);
             return this.setAsCarecell({ name, user, channel_id }, callback);
         }
