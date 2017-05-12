@@ -14,7 +14,8 @@ class CommandController {
         if(text.match(/^start$/i)) {
             return this.start(user, callback);
         } else if(text.match(/^set as carecell .+/)) {
-            return this.setAsCarecell({ text, user, channel_id }, callback);
+            let name = text.replace('set as carecell ').trim();
+            return this.setAsCarecell({ name, user, channel_id }, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -33,9 +34,40 @@ class CommandController {
 
     }
 
-    setAsCarecell({ text, user, channel_id }, callback) {
-        log.info("SET AS CARECELL ", text, user, channel_id);
+    setAsCarecell({ name, user, channel_id }, callback) {
+        log.info("SET AS CARECELL ", name, user, channel_id);
         callback(null, "Ok, this is now a carecell");
+
+        // Vasync.waterfall([
+        //     (callback) => {
+        //         Model.Carecell.findOne({
+        //             name, status : "active"
+        //         }, callback);
+        //     },
+        //     (carecell, callback) => {
+        //         if(carecell) {
+        //             context.addCarecellFailedExist = "The carecell name '" + name + "' is already in used.  Please try again.";
+        //             return callback(null, carecell);
+        //         }
+        //
+        //         new Model.Carecell({
+        //             name, key : UUID()
+        //         }).save((error, carecell) => {
+        //             if(error) {
+        //                 return callback(error);
+        //             }
+        //             context.addCarecellDone = "Carecell '" + name + "' is added successfully.";
+        //             context.done = true;
+        //             callback(null, carecell);
+        //         });
+        //     }
+        // ], (error, carecell) => {
+        //     if(error) {
+        //         context.addCarecellFailed = "Oops.  Something wrong. " + error;
+        //         context.done = true;
+        //     }
+        //     return context;
+        // })
     }
 }
 
