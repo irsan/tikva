@@ -23,7 +23,8 @@ md-content(flex, layout="column")
                         span &
                         =" "
                     span(ng-show="data.followUp.decision") Keputusan
-                div {{data.followUp.name}}
+                div(class="marginT10") {{data.followUp.name}}
+                div(class="marginT10") {{data.mobile}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
