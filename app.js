@@ -33,6 +33,7 @@ let index = require('./routes/index');
 let s = require('./routes/s');
 let slack = require('./routes/slack');
 let tpl = require('./routes/tpl');
+let upload = require('./routes/upload');
 
 let app = Express();
 
@@ -100,6 +101,7 @@ Vasync.waterfall([
     app.use('/s', SlackRequestUtil.authenticateS, s);
     app.use('/slack', SlackRequestUtil.authenticate, slack);
     app.use('/tpl', tpl);
+    app.use('/upload', SlackRequestUtil.authenticateS, upload);
     app.use('/', index);
 
     // catch 404 and forward to error handler
