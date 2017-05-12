@@ -13,8 +13,9 @@ class CommandController {
     parseCommand({ text, channel_id }, user, callback) {
         if(text.match(/^start$/i)) {
             return this.start(user, callback);
-        } else if(text.match(/^set as carecell .+/)) {
-            let name = text.replace('set as carecell ').trim();
+        } else if(text.match(/^set as carecell .+$/i)) {
+            let name = text.replace('/^set as carecell /i').trim();
+            log.info("THE NAME", name);
             return this.setAsCarecell({ name, user, channel_id }, callback);
         }
         callback(null, "Ok, your command is " + command);
