@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var FollowUp = new Schema({
+    uuid            : String,
     name            : String,
     phone           : String,
     address         : String,
@@ -22,6 +23,11 @@ var FollowUp = new Schema({
     updater         : { type : String, default : 'System' },
     status          : { type : String, default : 'active' }
 });
+
+FollowUp.index({
+    uuid   : 1,
+    status : 1
+})
 
 FollowUp.index({
     serviceDate : -1
