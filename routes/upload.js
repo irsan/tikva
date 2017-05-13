@@ -37,7 +37,7 @@ router.post('/', upload.fields([{ name: 'file', maxCount: 1 }]), function(req, r
     let file = req.files.file[0];
     log.info(file);
 
-    response.data = file;
+    response.data = { file };
     res.send(response);
 });
 

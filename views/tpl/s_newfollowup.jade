@@ -17,7 +17,7 @@ md-content(flex)
             div(flex)
                 div(class="insertPhoto", ngf-drop, ngf-select, ng-model="file", ngf-multiple="false", ngf-allow-dir="false",
                 ngf-drag-over-class="'dragover'", layout, layout-align="center center")
-                    div(style="background-image: url({{data.followUp.profileImage}})")
+                    div(pstyle="background-image: url({{data.followUp.profileImage}})")
             div(layout="column", layout-align="start start", flex)
                 md-checkbox(ng-model="data.followUp.ftv" aria-label="FTV") FTV
                 md-checkbox(ng-model="data.followUp.decision" aria-label="Keputusan") Keputusan
