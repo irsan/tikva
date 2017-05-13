@@ -7,7 +7,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
     $log.debug("FOLLOW UPS CTRL", $routeParams);
 
     $scope.show = {
-        chooseSunday : false
+        chooseSunday : false,
+        loading : false;
     };
 
     $scope.data = {
@@ -22,6 +23,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
 
     $scope.actions = {
         listFollowUps : function(page) {
+            $scope.show.loading = true;
             rest.followUp.list({}, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
@@ -29,6 +31,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                     $timeout(function() {
                         var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
                         lastEc[0].scrollTop = lastEc[0].scrollHeight;
+                        $scope.show.loading = false;
                     });
                 }
             });
