@@ -8,7 +8,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
 
     $scope.show = {
         chooseSunday : false,
-        loading : false;
+        loading : false
     };
 
     $scope.data = {
