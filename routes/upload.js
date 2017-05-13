@@ -13,7 +13,7 @@ const router = Express.Router();
 
 AWS.config.update({
     accessKeyId: 'AKIAI2LSW3KSMIB4RQFQ',
-    secretAccessKey: PROPERTIES.vault['aws.s3.' + this.accessKeyId],
+    secretAccessKey: PROPERTIES.vault['aws.s3.AKIAI2LSW3KSMIB4RQFQ'],
 });
 AWS.config.region = "ap-southeast-1";
 const s3 = new AWS.S3();
