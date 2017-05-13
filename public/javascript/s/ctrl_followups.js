@@ -121,6 +121,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
                 if(resp.status == 200) {
                     var data = resp.data;
                     if(data.status == "Ok") {
+                        $scope.data.followUp.profileImage = data.file.location;
                         // var uploadId = data.data._id;
                         // rest.country.import(uploadId, function(response) {
                         //     if(response.status == "Ok") {
