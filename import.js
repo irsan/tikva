@@ -29,11 +29,14 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
             name, phone, address, oikosOf,
             dob             : dobDate,
             gender          : 'female',
-            marritalStatus,
             comments,
             serviceDate,
             profileImage    : "https://jie-tikva.s3.amazonaws.com/user.svg",
         });
+
+        if(marritalStatus) {
+            followUp.marritalStatus = marritalStatus;
+        }
 
         if(contacted && contacted == 'Y') {
             followUp.followedUpAt = new Date(serviceDate.getTime() + (1000*60*60*24*5));
