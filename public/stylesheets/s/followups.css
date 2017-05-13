@@ -17,6 +17,8 @@
     overflow: hidden;
 }
 
-.newFollowUpForm .insertPhoto img {
+.newFollowUpForm .insertPhoto div {
+    background-size: cover;
     width: 70px; height: 70px;
+    background-image: ;
 }
