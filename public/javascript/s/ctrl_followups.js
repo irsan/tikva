@@ -118,22 +118,22 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
                 }
             }).then(function(resp) {
                 $log.info("UPLOADED", resp);
-                // if(resp.status == 200) {
-                //     var data = resp.data;
-                //     if(data.status == "Ok") {
-                //         var uploadId = data.data._id;
-                //         rest.country.import(uploadId, function(response) {
-                //             if(response.status == "Ok") {
-                //                 $scope.actions.list(1);
-                //             }
-                //
-                //             $scope.show.topBar = true;
-                //             $scope.show.importCountries = false;
-                //             $scope.show.uplodingImportCountries = false;
-                //
-                //         });
-                //     }
-                // }
+                if(resp.status == 200) {
+                    var data = resp.data;
+                    if(data.status == "Ok") {
+                        // var uploadId = data.data._id;
+                        // rest.country.import(uploadId, function(response) {
+                        //     if(response.status == "Ok") {
+                        //         $scope.actions.list(1);
+                        //     }
+                        //
+                        //     $scope.show.topBar = true;
+                        //     $scope.show.importCountries = false;
+                        //     $scope.show.uplodingImportCountries = false;
+                        //
+                        // });
+                    }
+                }
             }, null, function (evt) {
                 $scope.data.uploading = parseInt(100.0 * evt.loaded / evt.total);
             });
