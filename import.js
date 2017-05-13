@@ -21,12 +21,14 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
     if(date) {
         let serviceDate = new Moment(date, "DD/MM/YYYY").toDate();
         let dobDate = new Moment(dob, "DD/MM/YYYY").toDate();
+        let status = status.toLowerCase();
+        let marritalStatus = status == "single" || status == "married" ? status : null;
 
         let followUp = new Model.FollowUp({
             name, phone, address, oikosOf,
             dob             : dobDate,
             gender          : 'female',
-            marritalStatus  : status,
+            marritalStatus,
             comments,
             serviceDate,
             profileImage    : "https://jie-tikva.s3.amazonaws.com/user.svg",
