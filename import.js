@@ -18,31 +18,32 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
 
     let { date, name, oikosOf, contacted, returned, comments, phone, address, dob, status } = record;
 
-    let serviceDate = new Moment(date, "DD/MM/YYYY").toDate();
-    let dobDate = new Moment(dob, "DD/MM/YYYY").toDate();
+    if(date) {
+        let serviceDate = new Moment(date, "DD/MM/YYYY").toDate();
+        let dobDate = new Moment(dob, "DD/MM/YYYY").toDate();
 
-    let followUp = new Model.FollowUp({
-        name, phone, address, oikosOf,
-        dob             : dobDate,
-        gender          : 'female',
-        marritalStatus  : status,
-        comments,
-        serviceDate,
-        profileImage    : "https://jie-tikva.s3.amazonaws.com/user.svg",
-    });
+        let followUp = new Model.FollowUp({
+            name, phone, address, oikosOf,
+            dob             : dobDate,
+            gender          : 'female',
+            marritalStatus  : status,
+            comments,
+            serviceDate,
+            profileImage    : "https://jie-tikva.s3.amazonaws.com/user.svg",
+        });
 
-    if(contacted && contacted == 'Y') {
-        followUp.followedUpAt = new Date(serviceDate.getTime() + (1000*60*60*24*5));
+        if(contacted && contacted == 'Y') {
+            followUp.followedUpAt = new Date(serviceDate.getTime() + (1000*60*60*24*5));
+        }
+
+        if(returned && returned == 'Y') {
+            followUp.returned = true;
+        }
+
+        followUp.save((error, followUp) => {
+            log.info("SAVED", error, followUp);
+        });
     }
-
-    if(returned && returned == 'Y') {
-        followUp.returned = true;
-    }
-
-    followUp.save((error, followUp) => {
-        log.info("SAVED", error, followUp);
-    });
-
 }).on('done', (error) => {
     log.info("DONE READING", error);
 })
