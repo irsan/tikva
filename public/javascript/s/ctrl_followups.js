@@ -117,7 +117,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
                     file : $scope.file
                 }
             }).then(function(resp) {
-                $log.info("UPLOADED", resp);
+                $log.info("UPLOADED", resp.data);
                 if(resp.status == 200) {
                     var data = resp.data;
                     if(data.status == "Ok") {
