@@ -21,6 +21,10 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
     log.info("THE DATE:", date);
     if(date && date.trim().length == 8) {
         let serviceDate = new Moment(date, "DD/MM/YY").toDate();
+        if(serviceDate == "Invalid Date") {
+            log.error("THE SERVICE DATE", date);
+            return;
+        }
         let dobDate = (date && date.trim().length == 10) ? new Moment(dob, "DD/MM/YY").toDate() : null;
         status = status ? status.toLowerCase() : null;
         let marritalStatus = status == "single" || status == "married" ? status : null;
