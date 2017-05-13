@@ -109,7 +109,7 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
     $scope.$watch('file', function () {
         $log.info("TRYING UPLOADED", $scope.file);
         if($scope.file) {
-            $scope.actions.uploadImportCountries();
+            // $scope.actions.uploadImportCountries();
             Upload.upload({
                 url: '/upload',
                 data : {
