@@ -19,9 +19,9 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
     let { date, name, oikosOf, contacted, returned, comments, phone, address, dob, status } = record;
 
     log.info("THE DATE:", date);
-    if(date) {
+    if(date && date.trim().length == 10) {
         let serviceDate = new Moment(date, "DD/MM/YYYY").toDate();
-        let dobDate = new Moment(dob, "DD/MM/YYYY").toDate();
+        let dobDate = (date && date.trim().length == 10) new Moment(dob, "DD/MM/YYYY").toDate() : null;
         status = status ? status.toLowerCase() : null;
         let marritalStatus = status == "single" || status == "married" ? status : null;
 
