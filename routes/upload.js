@@ -26,7 +26,9 @@ var upload = Multer({
         dirname: "public",
         acl: "public-read",
         contentType: MulterS3.AUTO_CONTENT_TYPE,
-        key: UUID.v1()
+        key: function (req, file, cb) {
+            cb(null, UUID.v1());
+        }
     })
 });
 
