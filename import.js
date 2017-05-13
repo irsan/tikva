@@ -15,7 +15,6 @@ PROPERTIES = JSON.parse(FS.readFileSync('./resources/properties.json', 'utf8'))[
 Mongoose.connect(PROPERTIES.mongodb); //connect to mongodb
 
 CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on('json', (record) => {
-    log.info("Record:", record);
 
     let { date, name, oikosOf, contacted, returned, comments, phone, address, dob, status } = record;
 
@@ -40,7 +39,9 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
         followUp.returned = true;
     }
 
-    followUp.save();
+    followUp.save((error, followUp) => {
+        log.info("SAVED", error, followUp);
+    });
 
 }).on('done', (error) => {
     log.info("DONE READING", error);
