@@ -17,6 +17,7 @@ var FollowUp = new Schema({
     decision        : { type : Boolean, default : false },
     sp              : { type : Schema.Types.ObjectId, ref : 'User' },
     followedUpAt    : Date,
+    profileImage    : String,
     createdAt       : { type : Date, default : Date.now },
     updatedAt       : { type : Date, default : Date.now },
     creator         : { type : String, default : 'System' },

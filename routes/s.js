@@ -44,6 +44,7 @@ router.get('/rest/carecell/list', (req, res) => {
 });
 
 router.post('/rest/followup/add', (req, res) => {
+
     Vasync.waterfall([
         (callback) => {
             log.info("ADD Follow Up BODY", req.body);
@@ -117,6 +118,8 @@ router.post('/rest/followup/add', (req, res) => {
                 followUp.carecell = carecell;
             }
 
+            followUp.profileImage = req.body.profileImage ? req.body.profileImage : "https://jie-tikva.s3.amazonaws.com/user.svg";
+
             followUp.save((error, followUp) => {
                 if(error) {
                     return callback(error);
@@ -179,38 +182,6 @@ router.post('/rest/followup/add', (req, res) => {
         res.send(response);
     })
 });
-//
-// router.post('/rest/followups', (req, res) => {
-//     Vasync.waterfall([
-//         (callback) => {
-//             if(!req.body.date) {
-//                 return callback("Invalid Date");
-//             }
-//
-//             let moment = Moment(req.body.date);
-//             let serviceDate = moment.startOf('day').toDate();
-//
-//             Model.FollowUp.find({
-//                 serviceDate,
-//                 status : 'active'
-//             }).populate({
-//                 path : 'carecell',
-//                 select : 'name -_id'
-//             }).sort('-serviceDate').exec(callback);
-//         },
-//         (followUps, callback) => {
-//             callback(null, { followUps });
-//         }
-//     ], (error, data) => {
-//         var response = new Response();
-//         if(error) {
-//             response.fail(error);
-//         } else {
-//             response.data = data;
-//         }
-//         res.send(response);
-//     });
-// });
 
 router.post('/rest/followups/:page', (req, res) => {
     let { page } = req.params;

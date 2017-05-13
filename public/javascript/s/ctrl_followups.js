@@ -57,7 +57,8 @@ app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $locat
     $scope.data = {
         carecells : [],
         followUp : {
-            serviceDate : moment().startOf('week').toDate()
+            serviceDate : moment().startOf('week').toDate(),
+            profileImage : "https://jie-tikva.s3.amazonaws.com/user.svg"
         }
     };
 
