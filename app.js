@@ -27,14 +27,6 @@ let vaultKeys = JSON.parse(FS.readFileSync('/var/keys/vault.json', 'utf8'));
 
 const SlackRequestUtil = require('./util/slack_request_util');
 
-let auth = require('./routes/auth');
-let git = require('./routes/git');
-let index = require('./routes/index');
-let s = require('./routes/s');
-let slack = require('./routes/slack');
-let tpl = require('./routes/tpl');
-let upload = require('./routes/upload');
-
 let app = Express();
 
 let redisStore = new RedisStore({ client: REDIS });
@@ -74,6 +66,15 @@ Vasync.waterfall([
     }
 
     log.info(mode, PROPERTIES);
+
+    //ROUTES
+    let auth = require('./routes/auth');
+    let git = require('./routes/git');
+    let index = require('./routes/index');
+    let s = require('./routes/s');
+    let slack = require('./routes/slack');
+    let tpl = require('./routes/tpl');
+    let upload = require('./routes/upload');
 
     let session = Session({
         secret: PROPERTIES.vault.expressSessionSecret,
