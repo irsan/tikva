@@ -21,7 +21,7 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
     if(date) {
         let serviceDate = new Moment(date, "DD/MM/YYYY").toDate();
         let dobDate = new Moment(dob, "DD/MM/YYYY").toDate();
-        let status = status ? status.toLowerCase() : null;
+        status = status ? status.toLowerCase() : null;
         let marritalStatus = status == "single" || status == "married" ? status : null;
 
         let followUp = new Model.FollowUp({
