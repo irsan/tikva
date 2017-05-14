@@ -27,7 +27,14 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
             rest.followUp.list({}, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
-                    $scope.data.followUps = response.data;
+                    $scope.data.followUps.count = response.data.count;
+                    $scope.data.followUps.lastPage = response.data.lastPage;
+                    $scope.data.followUps.currentPage = response.data.currentPage;
+
+                    Object.keys(response.data.followUps).forEach((key) => {
+                        $scope.data.followUps[key] = response.data.followUps[key];
+                    });
+
                     $timeout(function() {
                         var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
                         lastEc[0].scrollTop = lastEc[0].scrollHeight;
