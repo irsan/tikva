@@ -245,7 +245,7 @@ router.post('/rest/followups/:page', (req, res) => {
                     followUps[key].followUps.push(fu);
                 });
 
-                callback(null, { count, page, lastPage, followUps });
+                callback(null, { count, currentPage : Number(page), lastPage, followUps });
             });
         }
     ], (error, data) => {
