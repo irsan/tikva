@@ -220,7 +220,7 @@ router.post('/rest/followups/:page', (req, res) => {
             let pagination = new Pagination(page, 50);
             pagination.setCount(count);
 
-            let { limit, offset, lastPage, currentPage } = pagination;
+            let { limit, offset, lastPage } = pagination;
 
             Model.FollowUp.find(condition).populate({
                 path : 'carecell',
@@ -245,7 +245,7 @@ router.post('/rest/followups/:page', (req, res) => {
                     followUps[key].followUps.push(fu);
                 });
 
-                callback(null, { count, currentPage, lastPage, followUps });
+                callback(null, { count, page, lastPage, followUps });
             });
         }
     ], (error, data) => {
