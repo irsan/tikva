@@ -22,7 +22,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
     };
 
     $scope.actions = {
-        listFollowUps : function(page) {
+        listFollowUps : function(page, noScroll) {
             $scope.show.loading = true;
             rest.followUp.list({}, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
@@ -37,16 +37,18 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                         $scope.data.followUps.followUps[key] = response.data.followUps[key];
                     });
 
-                    $timeout(function() {
-                        var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
-                        lastEc[0].scrollTop = lastEc[0].scrollHeight;
-                    });
+                    if(!noScroll) {
+                        $timeout(function() {
+                            var lastEc = angular.element($document[0].querySelector("md-content.mainContent"));
+                            lastEc[0].scrollTop = lastEc[0].scrollHeight;
+                        });
+                    }
                 }
                 $scope.show.loading = false;
             });
         },
         next : function() {
-            this.listFollowUps($scope.data.followUps.currentPage + 1);
+            this.listFollowUps($scope.data.followUps.currentPage + 1, true);
         },
         showNewFollowUp : function() {
             $location.path("/followup/add");
