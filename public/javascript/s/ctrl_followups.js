@@ -34,7 +34,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                     $log.info("THE KEYSSSS: ", Object.keys(response.data.followUps));
 
                     Object.keys(response.data.followUps).forEach((key) => {
-                        $scope.data.followUps[key] = response.data.followUps[key];
+                        $scope.data.followUps.followUps[key] = response.data.followUps[key];
                     });
 
                     $timeout(function() {
