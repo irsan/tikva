@@ -20,12 +20,12 @@ div
 //            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(class="mainContent", flex, layout="column")
+    section
+        md-button(class="md-raised") View More
+
     section(ng-repeat="followUps in data.followUps.followUps")
         md-subheader(class="md-primary") {{followUps.serviceDate | date : 'EEEE, d MMM yyyy'}}
         md-list(class="followUps", flex)
-            md-list-item(class="md-1-line", ng-show="$first")
-                div(flex, layout, layout-align="center center")
-                    md-button(class="md-raised") View More
             md-list-item(class="md-3-line" ng-repeat="followup in followUps.followUps" ng-click="actions.gotoFollowup(followup)")
                 md-icon(class="md-avatar") person
                 div(class="md-list-item-text" layout="column")
