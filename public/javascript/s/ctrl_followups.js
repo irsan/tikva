@@ -45,6 +45,9 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                 $scope.show.loading = false;
             });
         },
+        next : function() {
+            this.listFollowUps($scope.data.followUps.currentPage + 1);
+        },
         showNewFollowUp : function() {
             $location.path("/followup/add");
         },

@@ -22,7 +22,7 @@ div
 md-content(class="mainContent", flex, layout="column")
     section(ng-show="data.followUps.currentPage < data.followUps.lastPage")
         div(layout="column")
-            md-button(class="md-primary") View More
+            md-button(class="md-primary", ng-click="actions.next()") View More
 
     section(ng-repeat="followUps in data.followUps.followUps")
         md-subheader(class="md-primary") {{followUps.serviceDate | date : 'EEEE, d MMM yyyy'}}
