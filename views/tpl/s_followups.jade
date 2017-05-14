@@ -20,7 +20,7 @@ div
 //            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(class="mainContent", flex, layout="column")
-    section
+    section(layout="column")
         md-button(class="md-raised") View More
 
     section(ng-repeat="followUps in data.followUps.followUps")
