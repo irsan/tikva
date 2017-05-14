@@ -31,6 +31,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
                     $scope.data.followUps.lastPage = response.data.lastPage;
                     $scope.data.followUps.currentPage = response.data.currentPage;
 
+                    $log.info("THE KEYSSSS: ", Object.keys(response.data.followUps));
+
                     Object.keys(response.data.followUps).forEach((key) => {
                         $scope.data.followUps[key] = response.data.followUps[key];
                     });
