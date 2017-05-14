@@ -20,7 +20,7 @@ div
 //            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(class="mainContent", flex, layout="column")
-    section(ng-show="data.followUps.currentPage > data.followUps.lastPage")
+    section(ng-show="data.followUps.currentPage < data.followUps.lastPage")
         div(layout="column")
             md-button(class="md-primary") View More
 
