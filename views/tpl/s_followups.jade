@@ -21,7 +21,8 @@ div
 
 md-content(class="mainContent", flex, layout="column")
     div(layout, layout-align="center center")
-        md-button(md-no-ink, class="md-primary") View More
+        div
+            md-button(md-no-ink, class="md-primary") View More
     section(ng-repeat="followUps in data.followUps.followUps")
         md-subheader(class="md-primary") {{followUps.serviceDate | date : 'EEEE, d MMM yyyy'}}
         md-list(class="followUps", flex)
