@@ -28,7 +28,7 @@ md-content(class="mainContent", flex, layout="column")
         md-subheader(class="md-primary") {{followUps.serviceDate | date : 'EEEE, d MMM yyyy'}}
         md-list(class="followUps", flex)
             md-list-item(class="md-3-line" ng-repeat="followup in followUps.followUps" ng-click="actions.gotoFollowup(followup)")
-                img(ng-src="followup.profileImage", class="md-avatar")
+                img(ng-src="{{followup.profileImage}}", class="md-avatar")
                 div(class="md-list-item-text" layout="column")
                     h3 {{followup.name}}
                     //p
