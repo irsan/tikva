@@ -6,6 +6,8 @@ md-dialog(aria-label="filter dialog")
                     md-icon chevron_left
                 h2 Follow Ups Filter
                 div(flex)
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.reset()")
+                    md-icon delete
                 md-button(class="md-icon-button", aria-label="Done", ng-click="actions.done()")
                     md-icon check
 
