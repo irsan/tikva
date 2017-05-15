@@ -8,7 +8,11 @@ md-dialog(aria-label="filter dialog")
             div(class="md-dialog-content", layout="column")
                 md-input-container(md-no-float, class="md-block")
                     md-icon search
-                    input(ng-model="search", type="text" placeholder="Search")
+                    input(ng-model="data.search", type="text" placeholder="Search")
+
+                div(layout="row", layout-align="space-around center")
+                    md-checkbox(ng-model="data.ftv" aria-label="FTV") FTV
+                    md-checkbox(ng-model="data.decision" aria-label="Decision") Keputusan
 
         md-dialog-actions(layout="row")
             span(flex)
