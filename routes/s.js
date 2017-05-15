@@ -195,9 +195,9 @@ router.post('/rest/followups/:page', (req, res) => {
     let { page } = req.params;
     let { user } = req;
 
-    log.info("BODY", req.body);
-
     let { search, ftv, decision, carecells } = req.body;
+
+    log.info("THE SELECTED CARECELLS", carecells);
 
     let condition = {
         status : 'active'
@@ -216,7 +216,7 @@ router.post('/rest/followups/:page', (req, res) => {
                     { carecell : user.carecell }
                 ];
             } else if(req.body != {} && carecells) {
-                    condition.carecell = { $in : carecells };
+                condition.carecell = { $in : carecells };
             }
 
             if(typeof ftv == 'boolean') {
