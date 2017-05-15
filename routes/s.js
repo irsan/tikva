@@ -233,6 +233,8 @@ router.post('/rest/followups/:page', (req, res) => {
                     or.push({ carecell : { $in : carecells }});
                 }
 
+                log.info("THE OR", or);
+
                 if(or.length == 1) {
                     condition.carecell = or[0].carecell;
                 } else {
