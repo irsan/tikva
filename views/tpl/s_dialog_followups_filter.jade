@@ -3,6 +3,9 @@ md-dialog(aria-label="filter dialog")
         md-toolbar
             div(class="md-toolbar-tools")
                 h2 Follow Ups Filter
+                div(flex)
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.done()")
+                    md-icon check
 
         md-dialog-content
             div(class="md-dialog-content", layout="column")
@@ -13,7 +16,3 @@ md-dialog(aria-label="filter dialog")
                 div(layout="row", layout-align="space-around center")
                     md-checkbox(ng-model="data.ftv" aria-label="FTV") FTV
                     md-checkbox(ng-model="data.decision" aria-label="Decision") Keputusan
-
-        md-dialog-actions(layout="row")
-            span(flex)
-            md-button Filter
