@@ -1,6 +1,6 @@
 var app = angular.module('TikvaApp');
 
-app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $location, $document, $timeout, $log, rest) {
+app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdDialog, $location, $document, $timeout, $log, rest) {
     $rootScope.selectedMenu = 'followups';
     $rootScope.hideMainMenu = false;
 
@@ -50,6 +50,20 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
         next : function() {
             this.listFollowUps($scope.data.followUps.currentPage + 1, true);
         },
+        filter : function(ev) {
+            $mdDialog.show({
+                controller : 'filterFollowUpsCtrl',
+                templateUrl: '/tpl/s_dialog_followups_filter',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen : true
+            }).then(function(answer) {
+                $log.info("ANSWER", answer);
+            }, function() {
+                $log.info("CANCEL FILTER");
+            });
+        },
         showNewFollowUp : function() {
             $location.path("/followup/add");
         },
@@ -65,6 +79,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $loc
     };
 
     $scope.actions.init();
+});
+
+app.controller('filterFollowUpsCtrl', function($scope, $log) {
+    $log.info("FILTER FOLLOW UPS");
 });
 
 app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
