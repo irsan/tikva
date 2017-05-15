@@ -217,6 +217,8 @@ router.post('/rest/followups/:page', (req, res) => {
                 condition.decision = decision;
             }
 
+            log.info("THE CONDITION", condition);
+
             Model.FollowUp.count(condition, callback);
         },
         (count, callback) => {
