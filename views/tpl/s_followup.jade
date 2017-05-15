@@ -46,7 +46,7 @@ md-content(flex, layout="column")
             span(class="label") Tanggal Lahir:
             span(class="field") {{data.followUp.dob | date : 'dd MMM yyyy'}}
 
-        div(class="marginT10")
+        div(class="marginT10", ng-show="data.followUp.comments")
             span(class="label") Keterangan:
             span(class="field") {{data.followUp.comments}}
 
