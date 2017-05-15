@@ -90,6 +90,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
 app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     $log.info("FILTER FOLLOW UPS");
 
+    $scope.show = {
+        carecells : true
+    };
+
     $scope.data = {
         ftv : true,
         decision : true
@@ -106,6 +110,9 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
         onCarecellSelected : function() {
             if($scope.data.filter.carecells.indexOf('ALL') > -1) {
                 $scope.data.filter.carecells = [ 'ALL' ].concat($scope.data.carecells);
+                $scope.show.carecells = false;
+            } else {
+                $scope.show.carecells = true;
             }
         },
         close : function() {

@@ -28,4 +28,4 @@ md-dialog(aria-label="filter dialog")
                     md-select(ng-model="data.filter.carecells", multiple="true", ng-change="actions.onCarecellSelected()")
                         md-option(ng-value="'NO'") Tiada Carecell
                         md-option(ng-value="'ALL'") Semua Carecell
-                        md-option(ng-value="carecell", ng-repeat="carecell in data.carecells", ng-show="data.filter.carecells.indexOf('ALL') > -1") {{carecell.name}}
+                        md-option(ng-value="carecell", ng-repeat="carecell in data.carecells", ng-show="show.carecells") {{carecell.name}}
