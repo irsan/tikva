@@ -87,7 +87,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
     $scope.actions.init();
 });
 
-app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log) {
+app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     $log.info("FILTER FOLLOW UPS");
 
     $scope.data = {
