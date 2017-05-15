@@ -184,8 +184,12 @@ router.post('/rest/followup/add', (req, res) => {
 });
 
 router.post('/rest/followups/:page', (req, res) => {
-    let { search, ftv, decision, page } = req.params;
+    let { page } = req.params;
     let { user } = req;
+
+    log.info("BODY", req.body);
+
+    let { search, ftv, decision } = req.body;
 
     let condition = {
         status : 'active'
