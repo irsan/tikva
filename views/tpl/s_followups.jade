@@ -37,10 +37,9 @@ md-content(class="mainContent", flex, layout="column")
                     //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
                     //    span(ng-hide="followup.followedUpAt") belum follow up
                     h4
-                        span(ng-hide="followup.carecell") belum ada carecell
-                        span ,
-                        =" "
-                        span(ng-hide="followup.sp") belum ada sp
+                        span(ng-show="!followup.carecell && followup.sp") belum ada carecell
+                        span(ng-hide="followup.sp || followup.carecell") belum ada SP
+                        span(ng-show="!followup.carecell && !followup.sp") belum ada carecell dan SP
                     p
                         span(ng-show="followup.ftv") FTV
                         span(ng-show="followup.ftv && followup.decision")
