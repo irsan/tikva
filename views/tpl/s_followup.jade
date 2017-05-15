@@ -5,10 +5,8 @@ md-toolbar(class="topBar")
         h3(flex)
             span Follow Up
         div
-        md-button(class="md-icon-button", aria-label="delete", ng-click="actions.backToFollowUps()")
-            md-icon delete
-        md-button(class="md-icon-button", aria-label="delete", ng-click="actions.backToFollowUps()")
-            md-icon check
+        md-button(class="md-icon-button", aria-label="more", ng-click="actions.backToFollowUps()")
+            md-icon more_vert
 
 md-content(flex, layout="column")
     div(class="followUp", layout="column", ng-hide="show.edit")
