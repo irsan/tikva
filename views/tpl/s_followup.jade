@@ -36,19 +36,19 @@ md-content(flex, layout="column")
 
         div(class="marginT10")
             span(class="label") Alamat:
-            =" "
             span {{data.followUp.address}}
 
         div(class="marginT10")
             span(class="label") Yang Membawa:
-            =" "
             span {{data.followUp.oikosOf}}
 
-        div(class="marginT10 label", ng-show="data.followUp.dob") Tanggal Lahir:
-        div(ng-show="data.followUp.dob") {{data.followUp.dob | date : 'dd MMM yyyy'}}
+        div(class="marginT10", ng-show="data.followUp.dob")
+            span(class="label") Tanggal Lahir:
+            span {{data.followUp.dob | date : 'dd MMM yyyy'}}
 
-        div(class="marginT10 label") Keterangan:
-        div(ng-show="data.followUp.comments") {{data.followUp.comments}}
+        div(class="marginT10")
+            span(class="label") Keterangan:
+            span {{data.followUp.comments}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
