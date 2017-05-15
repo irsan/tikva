@@ -61,6 +61,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
             }).then(function(data) {
                 $log.info("FILTER DATA", data);
                 $scope.data.filter = data;
+                $scope.actions.listFollowUps(1);
             }, function() {
                 $log.info("CANCEL FILTER");
             });

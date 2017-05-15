@@ -6,7 +6,7 @@ md-dialog(aria-label="filter dialog")
                     md-icon chevron_left
                 h2 Follow Ups Filter
                 div(flex)
-                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.reset()")
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.close()")
                     md-icon close
                 md-button(class="md-icon-button", aria-label="Done", ng-click="actions.done()")
                     md-icon check
@@ -22,9 +22,3 @@ md-dialog(aria-label="filter dialog")
                 md-input-container(md-no-float, class="md-block")
                     md-icon search
                     input(ng-model="data.search", type="text" placeholder="Search")
-
-                div(layout="row", layout-align="start center")
-                    div(flex)
-                        md-checkbox(ng-model="data.carecell", ng-change="actions.onCarecellChange()") ada Carecell
-                    div(flex)
-                        md-checkbox(ng-model="data.sp", ng-disabled="!data.carecell") ada SP

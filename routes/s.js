@@ -184,7 +184,7 @@ router.post('/rest/followup/add', (req, res) => {
 });
 
 router.post('/rest/followups/:page', (req, res) => {
-    let { page } = req.params;
+    let { search, ftv, decision, page } = req.params;
     let { user } = req;
 
     let condition = {
@@ -203,6 +203,14 @@ router.post('/rest/followups/:page', (req, res) => {
                     { carecell : null },
                     { carecell : user.carecell }
                 ];
+            }
+
+            if(ftv !== null) {
+                condition.ftv = ftv;
+            }
+
+            if(decision !== null) {
+                condition.decision = decision;
             }
 
             Model.FollowUp.count(condition, callback);
