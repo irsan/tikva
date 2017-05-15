@@ -11,9 +11,11 @@ md-dialog(aria-label="filter dialog")
 
         md-dialog-content
             div(class="md-dialog-content", layout="column")
-                div(layout="row", layout-align="space-around center")
-                    md-checkbox(ng-model="data.ftv" aria-label="FTV") FTV
-                    md-checkbox(ng-model="data.decision" aria-label="Decision") Keputusan
+                div(layout="row", layout-align="start center")
+                    div(flex)
+                        md-checkbox(ng-model="data.ftv" aria-label="FTV") FTV
+                    div(flex)
+                        md-checkbox(ng-model="data.decision" aria-label="Decision") Keputusan
 
                 md-input-container(md-no-float, class="md-block")
                     md-icon search
