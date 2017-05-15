@@ -4,7 +4,8 @@ md-toolbar(class="topBar")
             md-icon chevron_left
         h3(flex)
             span Follow Up
-        div
+        md-button(class="md-icon-button", aria-label="assign", ng-click="actions.backToFollowUps()")
+            md-icon assign_ind
         md-button(class="md-icon-button", aria-label="more", ng-click="actions.backToFollowUps()")
             md-icon more_vert
 
