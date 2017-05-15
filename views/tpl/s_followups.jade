@@ -6,6 +6,8 @@ md-toolbar(class="topBar")
             md-icon search
         md-button(class="md-icon-button", aria-label="Add", ng-click="actions.showNewFollowUp()")
             md-icon add
+        md-button(class="md-icon-button", aria-label="More")
+            md-icon more_vert
 //md-toolbar(class="subBar")
 //    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
 //        div(flex, layout="column", layout-align="center center")
@@ -37,9 +39,9 @@ md-content(class="mainContent", flex, layout="column")
                     //    span(ng-show="followup.followedUpAt") follow up terakhir {{followup.followedUpAt | date : 'd MMM yyyy'}},
                     //    span(ng-hide="followup.followedUpAt") belum follow up
                     h4
-                        span(ng-show="!followup.carecell && followup.sp") belum ada carecell
+                        span(ng-show="!followup.carecell && followup.sp") belum ada Carecell
                         span(ng-show="!followup.sp && followup.carecell") belum ada SP
-                        span(ng-show="!followup.carecell && !followup.sp") belum ada carecell dan SP
+                        span(ng-show="!followup.carecell && !followup.sp") belum ada Carecell dan SP
                     p
                         span(ng-show="followup.ftv") FTV
                         span(ng-show="followup.ftv && followup.decision")
