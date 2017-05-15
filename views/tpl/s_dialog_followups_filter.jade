@@ -2,6 +2,8 @@ md-dialog(aria-label="filter dialog")
     form(ng-cloak)
         md-toolbar
             div(class="md-toolbar-tools")
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.back()")
+                    md-icon left_chevron
                 h2 Follow Ups Filter
                 div(flex)
                 md-button(class="md-icon-button", aria-label="Done", ng-click="actions.done()")
