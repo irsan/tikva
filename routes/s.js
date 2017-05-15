@@ -27,7 +27,7 @@ router.get('/followups', (req, res) => {
 router.get('/rest/carecell/list', (req, res) => {
     let { user } = req;
 
-    let condtion = { status : 'active'};
+    let condition = { status : 'active'};
 
     Vasync.waterfall([
         (callback) => {
