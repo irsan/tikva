@@ -38,7 +38,7 @@ md-content(class="mainContent", flex, layout="column")
                     //    span(ng-hide="followup.followedUpAt") belum follow up
                     h4
                         span(ng-show="!followup.carecell && followup.sp") belum ada carecell
-                        span(ng-hide="followup.sp || followup.carecell") belum ada SP
+                        span(ng-show="!followup.sp && followup.carecell") belum ada SP
                         span(ng-show="!followup.carecell && !followup.sp") belum ada carecell dan SP
                     p
                         span(ng-show="followup.ftv") FTV
