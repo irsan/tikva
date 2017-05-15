@@ -19,6 +19,8 @@ md-dialog(aria-label="filter dialog")
                     md-icon search
                     input(ng-model="data.search", type="text" placeholder="Search")
 
-                div(layout="row", layout-align="space-around center")
-                    md-checkbox(ng-model="data.carecell") ada Carecell
-                    md-checkbox(ng-model="data.sp") ada SP
+                div(layout="row", layout-align="start center")
+                    div(flex)
+                        md-checkbox(ng-model="data.carecell") ada Carecell
+                    div(flex)
+                        md-checkbox(ng-model="data.sp") ada SP
