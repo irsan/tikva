@@ -11,7 +11,7 @@ md-toolbar(class="topBar")
                 md-icon more_vert
             md-menu-content(width="4")
                 md-menu-item
-                    md-button tambahkan keterangan
+                    md-button buat catatan
                 md-menu-item
                     md-button hapus follow up
 
@@ -36,10 +36,12 @@ md-content(flex, layout="column")
 
         div(class="marginT10")
             span(class="label") Alamat:
+            ="  "
             span {{data.followUp.address}}
 
         div(class="marginT10")
             span(class="label") Yang Membawa:
+            ="  "
             span {{data.followUp.oikosOf}}
 
         div(class="marginT10", ng-show="data.followUp.dob")
