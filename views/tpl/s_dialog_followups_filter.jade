@@ -26,11 +26,11 @@ md-dialog(aria-label="filter dialog")
 
                 div(layout="row", layout-align="start center", class="marginB20")
                     div(flex)
-                        md-checkbox(ng-model="data.filter.noCarecells" aria-label="Tiada Carecell") Tiada Carecell
+                        md-checkbox(ng-model="data.filter.noCarecells", class="md-primary", aria-label="Tiada Carecell") Tiada Carecell
                     div(flex)
-                        md-checkbox(ng-model="data.filter.allCarecells" aria-label="Semua Carecell") Semua Carecell
+                        md-checkbox(ng-model="data.filter.allCarecells", class="md-primary", aria-label="Semua Carecell") Semua Carecell
 
-                md-input-container
+                md-input-container(ng-show="!data.filter.allCarecells")
                     label Carecell
                     md-select(ng-model="data.filter.carecells", multiple="true")
-                        md-option(ng-value="carecell", ng-repeat="carecell in data.carecells", ng-show="show.carecells") {{carecell.name}}
+                        md-option(ng-value="carecell._id", ng-repeat="carecell in data.carecells") {{carecell.name}}
