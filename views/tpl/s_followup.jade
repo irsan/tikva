@@ -34,8 +34,10 @@ md-content(flex, layout="column")
                         md-icon(class="phoneIcon") phone
                     div {{data.followUp.phone}}
 
-        div(class="marginT10 label") Alamat:
-        div {{data.followUp.address}}
+        div(class="marginT10")
+            span(class="label") Alamat:
+            =" "
+            span {{data.followUp.address}}
 
         div(class="marginT10")
             span(class="label") Yang Membawa:
