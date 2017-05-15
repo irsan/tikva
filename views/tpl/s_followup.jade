@@ -4,11 +4,14 @@ md-toolbar(class="topBar")
             md-icon chevron_left
         h3(flex)
             span Follow Up
-        md-button(class="md-icon-button", aria-label="assign", ng-click="actions.backToFollowUps()")
+        md-button(class="md-icon-button", aria-label="assign", ng-click="null")
             md-icon assignment_ind
-        md-button(class="md-icon-button", aria-label="more", ng-click="actions.backToFollowUps()")
-            md-icon more_vert
-
+        md-menu
+            md-button(class="md-icon-button", aria-label="more", ng-click="$mdMenu.open($event)")
+                md-icon more_vert
+            md-menu-content(width="4")
+                md-menu-item
+                    md-button hello world
 md-content(flex, layout="column")
     div(class="followUp", layout="column", ng-hide="show.edit")
         div(layout="row", layout-align="start start", class="marginB30")
