@@ -25,9 +25,17 @@ router.get('/followups', (req, res) => {
 });
 
 router.get('/rest/carecell/list', (req, res) => {
+    let { user } = req;
+
+    let condtion = { status : 'active'};
+
     Vasync.waterfall([
         (callback) => {
-            Model.Carecell.find({ status : 'active'}).sort('name').exec(callback);
+            if(!user.administrator) {
+                condition.carecell = user.carecell;
+            }
+
+            Model.Carecell.find(condition).sort('name').exec(callback);
         },
         (carecells, callback) => {
             callback(null, { carecells });
