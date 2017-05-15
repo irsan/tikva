@@ -6,22 +6,9 @@ md-toolbar(class="topBar")
             md-icon search
         md-button(class="md-icon-button", aria-label="Add", ng-click="actions.showNewFollowUp()")
             md-icon add
-        md-button(class="md-icon-button", aria-label="More")
-            md-icon more_vert
-//md-toolbar(class="subBar")
-//    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
-//        div(flex, layout="column", layout-align="center center")
-//            input(type="text", style="width: 100%;")
+
 div
     md-progress-linear(md-mode="indeterminate", ng-disabled="!show.loading")
-//        div
-//            md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
-//        div(layout="row", layout-align="start center", ng-click="actions.selectServiceDate()")
-//            div
-//                md-icon date_range
-//            div(class="marginL10") {{actions.formatDate()}}
-//        div
-//            md-icon(ng-click="actions.nextWeek()", class="noOutline action") chevron_right
 
 md-content(class="mainContent", flex, layout="column")
     section(ng-show="data.followUps.currentPage < data.followUps.lastPage")
