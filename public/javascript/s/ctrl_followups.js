@@ -103,9 +103,9 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
                 }
             });
         },
-        onCarecellChange : function() {
-            if($scope.data.sp && !$scope.data.carecell) {
-                $scope.data.sp = false;
+        onCarecellSelected : function() {
+            if($scope.data.filter.carecells.indexOf('ALL') > -1) {
+                $scope.data.filter.carecells = [ 'ALL' ].concat($scope.data.carecells);
             }
         },
         close : function() {
