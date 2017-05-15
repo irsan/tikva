@@ -209,11 +209,11 @@ router.post('/rest/followups/:page', (req, res) => {
                 ];
             }
 
-            if(ftv !== null || typeof ftv != 'undefined') {
+            if(typeof ftv == 'boolean') {
                 condition.ftv = ftv;
             }
 
-            if(decision !== null || typeof decision != 'undefined') {
+            if(typeof decision == 'boolean') {
                 condition.decision = decision;
             }
 
