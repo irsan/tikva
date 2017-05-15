@@ -215,8 +215,10 @@ router.post('/rest/followups/:page', (req, res) => {
                     { carecell : null },
                     { carecell : user.carecell }
                 ];
-            } else if(req.body != {} && carecells) {
-                condition.carecell = { $in : carecells };
+            } else if(req.body != {}) {//if there is filter
+                if(carecells) {
+
+                }
             }
 
             if(typeof ftv == 'boolean') {

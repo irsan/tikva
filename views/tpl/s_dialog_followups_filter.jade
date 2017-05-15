@@ -23,9 +23,14 @@ md-dialog(aria-label="filter dialog")
                     md-icon search
                     input(ng-model="data.filter.search", type="text" placeholder="Search")
 
+
+                div(layout="row", layout-align="start center", class="marginB20")
+                    div(flex)
+                        md-checkbox(ng-model="data.filter.noCarecells" aria-label="Tiada Carecell") Tiada Carecell
+                    div(flex)
+                        md-checkbox(ng-model="data.filter.allCarecells" aria-label="Semua Carecell") Semua Carecell
+
                 md-input-container
                     label Carecell
-                    md-select(ng-model="data.filter.carecells", multiple="true", ng-change="actions.onCarecellSelected()")
-                        md-option(ng-value="'NO'") Tiada Carecell
-                        md-option(ng-value="'ALL'") Semua Carecell
+                    md-select(ng-model="data.filter.carecells", multiple="true")
                         md-option(ng-value="carecell", ng-repeat="carecell in data.carecells", ng-show="show.carecells") {{carecell.name}}
