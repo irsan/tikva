@@ -15,10 +15,15 @@ md-dialog(aria-label="filter dialog")
             div(class="md-dialog-content", layout="column")
                 div(layout="row", layout-align="start center")
                     div(flex)
-                        md-checkbox(ng-model="data.ftv" aria-label="FTV") FTV
+                        md-checkbox(ng-model="data.filter.ftv" aria-label="FTV") FTV
                     div(flex)
-                        md-checkbox(ng-model="data.decision" aria-label="Decision") Keputusan
+                        md-checkbox(ng-model="data.filter.decision" aria-label="Decision") Keputusan
 
-                md-input-container(md-no-float, class="md-block")
+                md-input-container(md-no-float)
                     md-icon search
-                    input(ng-model="data.search", type="text" placeholder="Search")
+                    input(ng-model="data.filter.search", type="text" placeholder="Search")
+
+                md-input-container
+                    label Carecell
+                    md-select(ng-model="data.filter.carecells", multiple="true")
+                        md-option(ng-value="carecell" ng-repeat="carecell in data.carecells") {{carecell.name}}

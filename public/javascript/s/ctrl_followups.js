@@ -96,6 +96,13 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log) {
     };
 
     $scope.actions = {
+        listCarecells : function() {
+            rest.carecell.list(function (response) {
+                if (response.status == "Ok") {
+                    $scope.data.carecells = response.data.carecells;
+                }
+            });
+        },
         onCarecellChange : function() {
             if($scope.data.sp && !$scope.data.carecell) {
                 $scope.data.sp = false;
@@ -109,8 +116,13 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log) {
         },
         back : function() {
             $mdDialog.cancel();
+        },
+        init : function() {
+            this.listCarecells();
         }
     };
+
+    $scope.actions.init();
 });
 
 app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
