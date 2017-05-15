@@ -34,3 +34,9 @@ md-dialog(aria-label="filter dialog")
                     label Carecell
                     md-select(ng-model="data.filter.carecells", multiple="true")
                         md-option(ng-value="carecell._id", ng-repeat="carecell in data.carecells") {{carecell.name}}
+
+                div(layout="row", layout-align="start center")
+                    div(flex)
+                        md-checkbox(ng-model="data.filter.noSPs", class="md-primary", aria-label="Tiada SP") Tiada SP
+                    div(flex)
+                        md-checkbox(ng-model="data.filter.allSPs", class="md-primary", aria-label="Semua SP") Semua SP

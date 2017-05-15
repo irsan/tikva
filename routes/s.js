@@ -195,7 +195,7 @@ router.post('/rest/followups/:page', (req, res) => {
     let { page } = req.params;
     let { user } = req;
 
-    let { search, ftv, decision, carecells } = req.body;
+    let { search, ftv, decision, noCarecells, allCarecells, carecells } = req.body;
 
     log.info("THE SELECTED CARECELLS", carecells);
 
@@ -216,8 +216,27 @@ router.post('/rest/followups/:page', (req, res) => {
                     { carecell : user.carecell }
                 ];
             } else if(req.body != {}) {//if there is filter
-                if(carecells) {
+                let or = [];
 
+                if(!(noCarecells && allCarecells)) {
+                    if(noCarecells) {
+                        or.push({ carecell : { $exists : false } });
+                        or.push({ carecell : null });
+                    }
+
+                    if(allCarecells) {
+                        or.push({ carecell : { $exists : true } });
+                    }
+                }
+
+                if(!allCarecells) {
+                    or.push({ carecell : { $in : carecells }});
+                }
+
+                if(or.length == 1) {
+                    condition.carecell = or[0].carecell;
+                } else {
+                    condition.['$or'] = or;
                 }
             }
 
