@@ -5,8 +5,10 @@ md-dialog(aria-label="filter dialog")
                 h2 Follow Ups Filter
 
         md-dialog-content
-            div(class="md-dialog-content")
-                div hello
+            div(class="md-dialog-content", layout="column")
+                md-input-container(md-no-float, class="md-block")
+                    md-icon search
+                    input(ng-model="search", type="text" placeholder="Search")
 
         md-dialog-actions(layout="row")
             span(flex)
