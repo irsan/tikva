@@ -112,7 +112,7 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
             $mdDialog.hide({});
         },
         done : function() {
-            $mdDialog.hide($scope.data);
+            $mdDialog.hide($scope.data.filter);
         },
         back : function() {
             $mdDialog.cancel();
