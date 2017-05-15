@@ -197,7 +197,7 @@ router.post('/rest/followups/:page', (req, res) => {
 
     log.info("BODY", req.body);
 
-    let { search, ftv, decision } = req.body;
+    let { search, ftv, decision, carecells } = req.body;
 
     let condition = {
         status : 'active'
@@ -214,6 +214,12 @@ router.post('/rest/followups/:page', (req, res) => {
                     { carecell : { $exists : false } },
                     { carecell : null },
                     { carecell : user.carecell }
+                ];
+            } else if(carecells) {
+                condition['$or'] = [
+                    { carecell : { $exists : false } },
+                    { carecell : null },
+                    { carecell : { $in : carecells } }
                 ];
             }
 
