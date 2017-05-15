@@ -8,8 +8,11 @@ md-toolbar(class="topBar")
             md-icon add
 div
     md-progress-linear(md-mode="indeterminate", ng-disabled="!show.loading")
-//md-toolbar(class="subBar")
-//    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
+md-toolbar(class="subBar")
+    div(class="md-toolbar-tools", layout="row", layout-align="space-between center")
+        div(fex, layout="column", layout-align="center center")
+            input(type="text")
+
 //        div
 //            md-icon(ng-click="actions.prevWeek()", class="noOutline action") chevron_left
 //        div(layout="row", layout-align="start center", ng-click="actions.selectServiceDate()")
