@@ -37,8 +37,10 @@ md-content(flex, layout="column")
         div(class="marginT10 label") Alamat:
         div {{data.followUp.address}}
 
-        div(class="marginT10 label") Yang Membawa:
-        div {{data.followUp.oikosOf}}
+        div(class="marginT10")
+            span(class="label") Yang Membawa:
+            =" "
+            span {{data.followUp.oikosOf}}
 
         div(class="marginT10 label", ng-show="data.followUp.dob") Tanggal Lahir:
         div(ng-show="data.followUp.dob") {{data.followUp.dob | date : 'dd MMM yyyy'}}
