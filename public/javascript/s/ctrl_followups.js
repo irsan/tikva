@@ -22,7 +22,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
     };
 
     $scope.actions = {
-        listFollowUps : function(page, noScroll) {
+        listFollowUps : function(page, noScroll, reset) {
             $scope.show.loading = true;
             rest.followUp.list($scope.data.filter, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
@@ -32,6 +32,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
                     $scope.data.followUps.currentPage = response.data.currentPage;
 
                     $log.info("THE KEYSSSS: ", Object.keys(response.data.followUps));
+
+                    if(reset) {
+                        $scope.data.followUps.followUps = {};
+                    }
 
                     Object.keys(response.data.followUps).forEach((key) => {
                         $scope.data.followUps.followUps[key] = response.data.followUps[key];
@@ -61,7 +65,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
             }).then(function(data) {
                 $log.info("FILTER DATA", data);
                 $scope.data.filter = data;
-                $scope.actions.listFollowUps(1);
+                $scope.actions.listFollowUps(1, false, true);
             }, function() {
                 $log.info("CANCEL FILTER");
             });
