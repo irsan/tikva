@@ -33,8 +33,11 @@ md-content(flex, layout="column")
         div(class="marginT10 label") Yang Membawa:
         div {{data.followUp.oikosOf}}
 
-        div(class="marginT10 label") Tanggal Lahir:
-        div {{data.followUp.dob | date : 'dd MMM yyyy'}}
+        div(class="marginT10 label", ng-show="data.followUp.dob") Tanggal Lahir:
+        div(ng-show="data.followUp.dob") {{data.followUp.dob | date : 'dd MMM yyyy'}}
+
+        div(class="marginT10 label", ng-show="data.followUp.dob") Keterangan:
+        div(ng-show="data.followUp.comments") {{data.followUp.comments}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
