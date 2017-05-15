@@ -1,9 +1,10 @@
 const Bunyan = require('bunyan');
+const CSV = require('csvtojson');
 const FS = require('fs');
 const Moment = require('moment');
 const Mongoose = require('mongoose');
 const Request = require('request');
-const CSV = require('csvtojson');
+const UUID = require('uuid');
 
 const Model = require('./model/model');
 
@@ -45,6 +46,8 @@ CSV().fromStream(Request.get('https://jie-tikva.s3.amazonaws.com/ftv2.csv')).on(
         if(returned && returned == 'Y') {
             followUp.returned = true;
         }
+
+        followUp.uuid = "fu-" + UUID.v1();
 
         followUp.save((error, followUp) => {
             log.info("SAVED", error, followUp);
