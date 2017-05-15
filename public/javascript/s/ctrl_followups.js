@@ -24,7 +24,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
     $scope.actions = {
         listFollowUps : function(page, noScroll) {
             $scope.show.loading = true;
-            rest.followUp.list({}, page, function(response) {
+            rest.followUp.list($scope.data.filter, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
                     $scope.data.followUps.count = response.data.count;
@@ -60,6 +60,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
                 fullscreen : true
             }).then(function(data) {
                 $log.info("FILTER DATA", data);
+                $scope.data.filter = data;
             }, function() {
                 $log.info("CANCEL FILTER");
             });
@@ -90,6 +91,14 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log) {
     };
 
     $scope.actions = {
+        onCarecellChange : function() {
+            if($scope.data.sp && !$scope.data.carecell) {
+                $scope.data.sp = false;
+            }
+        },
+        close : function() {
+            $mdDialog.hide({});
+        },
         done : function() {
             $mdDialog.hide($scope.data);
         },
