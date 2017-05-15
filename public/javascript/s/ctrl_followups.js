@@ -81,8 +81,17 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
     $scope.actions.init();
 });
 
-app.controller('filterFollowUpsCtrl', function($scope, $log) {
+app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log) {
     $log.info("FILTER FOLLOW UPS");
+
+    $scope.data = {
+    };
+
+    $scope.actions = {
+        back : function() {
+            $mdDialog.cancel();
+        }
+    };
 });
 
 app.controller('newFollowUpCtrl', function($scope, $rootScope, $mdDialog, $location, $log, rest, Upload) {
