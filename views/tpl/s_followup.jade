@@ -13,7 +13,7 @@ md-toolbar(class="topBar")
                 md-menu-item
                     md-button buat catatan
                 md-menu-item
-                    md-button hapus follow up
+                    md-button hapus
 
 md-content(flex, layout="column")
     div(class="followUp", layout="column", ng-hide="show.edit")
@@ -48,9 +48,8 @@ md-content(flex, layout="column")
             span(class="label") Tanggal Lahir:
             span {{data.followUp.dob | date : 'dd MMM yyyy'}}
 
-        div(class="marginT10")
-            span(class="label") Keterangan:
-            span {{data.followUp.comments}}
+        div(class="marginT10 label") Keterangan:
+        div {{data.followUp.comments}}
 
 
     div(class="followUpEdit", layout="column", ng-show="show.edit")
