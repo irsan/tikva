@@ -236,7 +236,7 @@ router.post('/rest/followups/:page', (req, res) => {
                 if(or.length == 1) {
                     condition.carecell = or[0].carecell;
                 } else {
-                    condition.['$or'] = or;
+                    condition['$or'] = or;
                 }
             }
 
