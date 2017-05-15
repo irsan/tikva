@@ -218,18 +218,14 @@ router.post('/rest/followups/:page', (req, res) => {
             } else if(req.body != {}) {//if there is filter
                 let or = [];
 
-                if(!(noCarecells && allCarecells)) {
-                    if(noCarecells) {
-                        or.push({ carecell : { $exists : false } });
-                        or.push({ carecell : null });
-                    }
-
-                    if(allCarecells) {
-                        or.push({ carecell : { $exists : true } });
-                    }
+                if(noCarecells) {
+                    or.push({ carecell : { $exists : false } });
+                    or.push({ carecell : null });
                 }
 
-                if(!allCarecells) {
+                if(allCarecells) {
+                    or.push({ carecell : { $exists : true } });
+                } else {
                     or.push({ carecell : { $in : carecells }});
                 }
 
