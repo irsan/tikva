@@ -25,4 +25,4 @@ md-dialog(aria-label="filter dialog")
                     div(flex)
                         md-checkbox(ng-model="data.carecell") ada Carecell
                     div(flex)
-                        md-checkbox(ng-model="data.sp") ada SP
+                        md-checkbox(ng-model="data.sp", ng-disabled="!data.carecell") ada SP
