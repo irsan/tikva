@@ -109,7 +109,11 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
         },
         onCarecellSelected : function() {
             if($scope.data.filter.carecells.indexOf('ALL') > -1) {
-                $scope.data.filter.carecells = [ 'ALL' ].concat($scope.data.carecells);
+                let noCarecell = $scope.data.filter.carecells.indexOf('NO') > -1;
+                $scope.data.filter.carecells = [ 'ALL' ];
+                if(noCarecell) {
+                    $scope.data.filter.carecells.push('NO');
+                }
                 $scope.show.carecells = false;
             } else {
                 $scope.show.carecells = true;
