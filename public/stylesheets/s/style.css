@@ -39,6 +39,8 @@ md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools md-icon {
 .noOutline { outline: none; }
 .action { cursor: pointer; }
 
+.italic { font-style: italic; }
+
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginL10 { margin-left: 10px; }
