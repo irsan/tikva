@@ -58,8 +58,8 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
                 targetEvent: ev,
                 clickOutsideToClose:true,
                 fullscreen : true
-            }).then(function(answer) {
-                $log.info("ANSWER", answer);
+            }).then(function(data) {
+                $log.info("FILTER DATA", data);
             }, function() {
                 $log.info("CANCEL FILTER");
             });
@@ -85,9 +85,14 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log) {
     $log.info("FILTER FOLLOW UPS");
 
     $scope.data = {
+        ftv : true,
+        decision : true
     };
 
     $scope.actions = {
+        done : function() {
+            $mdDialog.hide($scope.data);
+        },
         back : function() {
             $mdDialog.cancel();
         }
