@@ -119,6 +119,7 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
                 carecells : $scope.data.filter.carecells
             } : {};
             rest.sp.list(queries, function (response) {
+                $log.info("SP LIST RESPONSE", response);
                 if (response.status == "Ok") {
                     $scope.data.sps = response.data.sps;
                     $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0;
