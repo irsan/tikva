@@ -122,7 +122,7 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
                 if (response.status == "Ok") {
                     $scope.data.sps = response.data.sps;
                     $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0;
-                    $scope.$apply();
+                    $log.info($scope.show);
                 }
             });
         },
