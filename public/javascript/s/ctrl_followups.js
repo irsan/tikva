@@ -114,8 +114,10 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
             });
         },
         listSPs : function() {
-            $log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells);
-            let queries = $scope.data.filter.carecells.length > 0 ? $scope.data.filter.carecells : {};
+            $log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells, $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0);
+            let queries = $scope.data.filter.carecells.length > 0 ? {
+                carecells : $scope.data.filter.carecells
+            } : {};
             rest.sp.list(queries, function (response) {
                 if (response.status == "Ok") {
                     $scope.data.sps = response.data.sps;
