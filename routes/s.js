@@ -60,14 +60,12 @@ router.post('/rest/sp/list', (req, res) => {
         (callback) => {
             if(!user.administrator) {
                 condition.carecell = user.carecell;
-            } else {
-                let and = [];
             }
 
             Model.User.find(condition).sort('name').exec(callback);
         },
-        (carecells, callback) => {
-            callback(null, { carecells });
+        (sps, callback) => {
+            callback(null, { sps });
         }
     ], (error, data) => {
         var response = new Response();
