@@ -41,7 +41,7 @@ md-dialog(aria-label="filter dialog")
                     div(flex)
                         md-checkbox(ng-model="data.filter.allSPs", class="md-primary", aria-label="Semua SP") Semua SP
 
-                md-input-container(ng-show="!data.filter.allSPs || show.sps")
+                md-input-container(ng-show="!data.filter.allSPs && show.sps")
                     label SP
                     md-select(ng-model="data.filter.sps")
                         md-option(ng-value="sp._id", ng-repeat="sp in data.sps") {{sp.name}}
