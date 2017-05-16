@@ -91,7 +91,8 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     $log.info("FILTER FOLLOW UPS");
 
     $scope.show = {
-        carecells : true
+        carecells : true,
+        sps : true
     };
 
     $scope.data = {
@@ -117,10 +118,9 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
             rest.sp.list(queries, function (response) {
                 if (response.status == "Ok") {
                     $scope.data.sps = response.data.sps;
+                    $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length() > 0;
                 }
             });
-        },
-        onCarecellSelected : function() {
         },
         close : function() {
             $mdDialog.hide({});
