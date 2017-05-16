@@ -66,6 +66,8 @@ router.post('/rest/sp/list', (req, res) => {
                 condition.carecell = { $in : carecells };
             }
 
+            log.info("THE SP CONDITION:", condition);
+
             Model.User.find(condition).sort('name').exec(callback);
         },
         (sps, callback) => {
