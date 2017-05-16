@@ -112,17 +112,15 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
                 }
             });
         },
-        onCarecellSelected : function() {
-            if($scope.data.filter.carecells.indexOf('ALL') > -1) {
-                let noCarecell = $scope.data.filter.carecells.indexOf('NO') > -1;
-                $scope.data.filter.carecells = [ 'ALL' ];
-                if(noCarecell) {
-                    $scope.data.filter.carecells.push('NO');
+        listSPs : function() {
+            let queries = $scope.data.filter.carecells.length > 0 ? $scope.data.filter.carecells : {};
+            rest.carecell.list(queries, function (response) {
+                if (response.status == "Ok") {
+                    $scope.data.sps = response.data.sps;
                 }
-                $scope.show.carecells = false;
-            } else {
-                $scope.show.carecells = true;
-            }
+            });
+        },
+        onCarecellSelected : function() {
         },
         close : function() {
             $mdDialog.hide({});
@@ -135,6 +133,7 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
         },
         init : function() {
             this.listCarecells();
+            this.listSPs();
         }
     };
 

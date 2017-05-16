@@ -13,6 +13,17 @@ app.factory('rest', function($http) {
                 });
             }
         },
+        sp : {
+            list : function(queries, onSuccess) {
+                $http.post("/s/rest/sp/list", queries).then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
+            }
+        },
         followUp: {
             list : function(queries, page, onSuccess) {
                 $http.post("/s/rest/followups/" + page, queries).then(function(response) {
@@ -34,17 +45,6 @@ app.factory('rest', function($http) {
             },
             get : function(uuid, onSuccess) {
                 $http.get("/s/rest/followup/" + uuid).then(function(response) {
-                    if(response.status == 200) {
-                        onSuccess(response.data);
-                    } else {
-                        //TODO handle error
-                    }
-                });
-            }
-        },
-        serviceDate : {
-            list : function(page, onSuccess) {
-                $http.get("/s/rest/servicedates/" + page).then(function(response) {
                     if(response.status == 200) {
                         onSuccess(response.data);
                     } else {

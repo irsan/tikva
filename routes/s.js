@@ -54,12 +54,16 @@ router.get('/rest/carecell/list', (req, res) => {
 router.post('/rest/sp/list', (req, res) => {
     let { user } = req;
 
+    let { carecells } = req.body;
+
     let condition = { status : 'active'};
 
     Vasync.waterfall([
         (callback) => {
             if(!user.administrator) {
                 condition.carecell = user.carecell;
+            } else if(carecells) {
+                condition.carecell = { $in : { carecells } };
             }
 
             Model.User.find(condition).sort('name').exec(callback);

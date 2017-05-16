@@ -40,3 +40,8 @@ md-dialog(aria-label="filter dialog")
                         md-checkbox(ng-model="data.filter.noSPs", class="md-primary", aria-label="Tiada SP") Tiada SP
                     div(flex)
                         md-checkbox(ng-model="data.filter.allSPs", class="md-primary", aria-label="Semua SP") Semua SP
+
+                    md-input-container(ng-show="!data.filter.allSPs")
+                        label SP
+                        md-select(ng-model="data.filter.sps")
+                            md-option(ng-value="sp._id", ng-repeat="sp in data.sps") {{sp.name}}
