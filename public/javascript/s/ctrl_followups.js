@@ -114,11 +114,12 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
             });
         },
         listSPs : function() {
+            $log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells);
             let queries = $scope.data.filter.carecells.length > 0 ? $scope.data.filter.carecells : {};
             rest.sp.list(queries, function (response) {
                 if (response.status == "Ok") {
                     $scope.data.sps = response.data.sps;
-                    // $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length() > 0;
+                    $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0;
                 }
             });
         },
@@ -138,7 +139,6 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     };
 
     $scope.$watch('data.filter.carecells', function() {
-        $log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells);
         if($scope.data.filter.carecells) {
             $scope.actions.listSPs();
         }
