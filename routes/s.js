@@ -63,7 +63,7 @@ router.post('/rest/sp/list', (req, res) => {
             if(!user.administrator) {
                 condition.carecell = user.carecell;
             } else if(carecells) {
-                condition.carecell = { $in : { carecells } };
+                condition.carecell = { $in : carecells };
             }
 
             Model.User.find(condition).sort('name').exec(callback);
