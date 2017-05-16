@@ -45,3 +45,5 @@ md-dialog(aria-label="filter dialog")
                     label SP
                     md-select(ng-model="data.filter.sps")
                         md-option(ng-value="sp._id", ng-repeat="sp in data.sps") {{sp.name}}
+
+                div {{show.sps}}
