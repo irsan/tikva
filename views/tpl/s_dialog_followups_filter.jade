@@ -35,7 +35,7 @@ md-dialog(aria-label="filter dialog")
                     md-select(ng-model="data.filter.carecells", multiple="true")
                         md-option(ng-value="carecell._id", ng-repeat="carecell in data.carecells") {{carecell.name}}
 
-                div(layout="row", layout-align="start center")
+                div(layout="row", layout-align="start center", ng-show="data.filter.allCarecells || data.filter.carecells.length() > 0")
                     div(flex)
                         md-checkbox(ng-model="data.filter.noSPs", class="md-primary", aria-label="Tiada SP") Tiada SP
                     div(flex)
