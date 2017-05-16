@@ -146,6 +146,10 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
         }
     });
 
+    $scope.$watch('data.filter.allCarecells', function() {
+        $scope.actions.listSPs();
+    });
+
     $scope.actions.init();
 });
 
