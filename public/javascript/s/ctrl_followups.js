@@ -138,7 +138,7 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     };
 
     $scope.$watch('data.filter.carecells', function() {
-        log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells);
+        $log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells);
         if($scope.data.filter.carecells) {
             $scope.actions.listSPs();
         }
