@@ -95,8 +95,13 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     };
 
     $scope.data = {
-        ftv : true,
-        decision : true
+        filter : {
+            ftv : true,
+            decision : true,
+            noCarecells : true,
+            allCarecells : true,
+            carecells : []
+        }
     };
 
     $scope.actions = {

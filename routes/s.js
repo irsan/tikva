@@ -51,6 +51,35 @@ router.get('/rest/carecell/list', (req, res) => {
     });
 });
 
+router.post('/rest/sp/list', (req, res) => {
+    let { user } = req;
+
+    let condition = { status : 'active'};
+
+    Vasync.waterfall([
+        (callback) => {
+            if(!user.administrator) {
+                condition.carecell = user.carecell;
+            } else {
+                let and = [];
+            }
+
+            Model.User.find(condition).sort('name').exec(callback);
+        },
+        (carecells, callback) => {
+            callback(null, { carecells });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
+});
+
 router.post('/rest/followup/add', (req, res) => {
 
     Vasync.waterfall([
@@ -229,8 +258,6 @@ router.post('/rest/followups/:page', (req, res) => {
                     or.push({ carecell : { $in : carecells }});
                 }
 
-                log.info("THE OR", or);
-
                 if(or.length == 1) {
                     condition.carecell = or[0].carecell;
                 } else {
@@ -246,8 +273,7 @@ router.post('/rest/followups/:page', (req, res) => {
                 condition.decision = decision;
             }
 
-            log.info("THE CONDITION", condition);
-
+            // log.info("THE CONDITION", condition);
             Model.FollowUp.count(condition, callback);
         },
         (count, callback) => {
