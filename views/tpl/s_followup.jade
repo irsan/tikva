@@ -23,8 +23,7 @@ md-content(flex, layout="column", layout-align="start center")
         div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
         div(class="profileImageWrapper", layout, layout-align="center center")
             //div(class="profileImage", style="background-image: url({{data.followUp.profileImage}})")
-            //img(class="profileImage", ng-src="{{data.followUp.profileImage}}")
-
+            img(class="profileImage", ng-src="{{data.followUp.profileImage}}")
 
         //div(layout="row", layout-align="start start", class="marginB30")
         //    div(class="insertPhoto", layout, layout-align="center center")
