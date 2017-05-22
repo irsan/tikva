@@ -15,8 +15,9 @@
     padding-bottom: 75%;
 }
 
-/*.followUp .profileImage {*/
-/*}*/
+.followUp .profileImage {
+    height: 100%;
+}
 
 .followUp, .followUpEdit {
     flex-shrink: 0;
