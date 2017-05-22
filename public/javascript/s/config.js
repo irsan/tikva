@@ -39,7 +39,7 @@ app.config([
     }
 ]);
 
-app.directive('onSizeChanged', function ($window) {
+app.directive('onSizeChanged', function ($window, $timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -65,7 +65,7 @@ app.directive('onSizeChanged', function ($window) {
                 }
             };
 
-            onWindowResize(true);
+            $timeout(onWindowResize(true), 2000);
         }
     }
 });
