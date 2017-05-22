@@ -24,24 +24,17 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 }
             });
         },
-        get : function(init) {
+        get : function() {
             rest.followUp.get($routeParams.uuid, function(response) {
                 $log.info("GOT FOLLOW UP", response);
                 if(response.status == 'Ok') {
                     $scope.data.followUp = response.data.followUp;
-                    if(init) {
-                        $scope.actions.onProfileImageResized(document.getElementById('profileImageWrapper'));
-                    }
                 }
             });
         },
-        onProfileImageResized : function(element) {
-            $log.info("ON PROFILE IMAGE RESIZED", element.offsetWidth, element.offsetHeight);
-            element.style.backgroundSize = element.offsetWidth + "px " + element.offsetHeight + "px";
-        },
         init : function() {
             this.listCarecells();
-            this.get(true);
+            this.get();
         }
     };
 
