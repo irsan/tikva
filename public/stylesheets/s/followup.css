@@ -2,6 +2,7 @@
     color: #90949c;
     font-size: 0.9em;
     margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .followUp .profileImageWrapper {
