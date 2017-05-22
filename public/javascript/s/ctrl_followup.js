@@ -45,6 +45,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     $scope.actions.init();
 
     $scope.test = function($event) {
-        $log.info("TEST", $event.currentTarget);
+        var element = $event.currentTarget;
+        element.style.backgroundSize = element.offsetWidth + "px " + element.offsetHeight + "px";
     }
 });
