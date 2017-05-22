@@ -16,7 +16,7 @@ md-toolbar(class="topBar")
 
 md-content(flex, layout="column", layout-align="start center")
     div(layout="row", class="width100Pct")
-        div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-gt-xs="25")
+        div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-sm="10", flex-offset-gt-sm="25")
             div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
             div(layout="row", layout-align="start center", class="assignment")
                 div
@@ -50,4 +50,5 @@ md-content(flex, layout="column", layout-align="start center")
 
             div(class="marginT10 label", ng-show="data.followUp.comments") Keterangan:
             div(class="field", ng-show="data.followUp.comments") {{data.followUp.comments}}
-        div(flex="25", hide-xs, show-gt-xs)
+        div(flex="25", hide, show-gt-sm)
+        div(flex="10", hide, show-sm)
