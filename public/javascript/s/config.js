@@ -60,6 +60,7 @@ app.directive('onSizeChanged', ['$window', function ($window) {
             function onWindowResize() {
                 var isSizeChanged = scope.cachedElementWidth != element.offsetWidth || scope.cachedElementHeight != element.offsetHeight;
                 if (isSizeChanged) {
+                    cacheElementSize(scope, element);
                     var expression = scope.onSizeChanged();
                     expression(element.offsetWidth, element.offsetHeight);
                 }
