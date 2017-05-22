@@ -23,8 +23,10 @@
 }
 
 .followUp .profileImageWrapper .detail {
-    left: 0; bottom: 0; right: 0;
     background-color: #000000;
+    color: #ffffff;
+    padding: 10px;
+    left: 0; bottom: 0; right: 0;
 }
 
 .followUp, .followUpEdit {
