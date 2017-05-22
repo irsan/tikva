@@ -65,7 +65,7 @@ app.directive('onSizeChanged', function ($window, $timeout) {
                 }
             };
 
-            $timeout(onWindowResize(true), 2000);
+            $timeout(console.log("WAIIITTTTTTT"), 2000);
         }
     }
 });
