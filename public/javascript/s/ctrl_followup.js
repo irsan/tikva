@@ -42,4 +42,8 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     };
 
     $scope.actions.init();
+
+    $scope.missionCompled = function() {
+        $log.info("missionCompled");
+    }
 });
