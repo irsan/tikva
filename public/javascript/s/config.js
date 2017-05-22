@@ -62,7 +62,7 @@ app.directive('onSizeChanged', ['$window', function ($window) {
                 if (isSizeChanged) {
                     cacheElementSize(scope, element);
                     var expression = scope.onSizeChanged();
-                    expression(element.offsetWidth, element.offsetHeight);
+                    expression(element);
                 }
             };
         }

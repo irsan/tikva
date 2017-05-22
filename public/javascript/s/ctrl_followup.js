@@ -32,6 +32,9 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 }
             });
         },
+        onProfileImageResized : function(element) {
+            $log.info("ON PROFILE IMAGE RESIZED", element.offsetWidth, element.offsetHeight);
+        },
         init : function() {
             this.listCarecells();
             this.get();
@@ -39,8 +42,4 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     };
 
     $scope.actions.init();
-
-    $scope.logResize = function (width, height) {
-        console.log('element resized', width, height);
-    };
 });
