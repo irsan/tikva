@@ -1,3 +1,8 @@
+.followUp .serviceDate {
+    font-size: 0.8em;
+    margin-bottom: 20px;
+}
+
 .followUp, .followUpEdit {
     flex-shrink: 0;
     padding: 25px 20px;
