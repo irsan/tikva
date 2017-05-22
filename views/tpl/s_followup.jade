@@ -30,7 +30,15 @@ md-content(flex, layout="column", layout-align="start center")
             div(class="detail", layout, layout-align="start center")
                 div(flex)
                     md-truncate {{data.followUp.name}}
-                div FTV, Keputusan
+
+                div
+                    span(ng-show="data.followUp.ftv") FTV
+                    span(ng-show="data.followUp.ftv && followUp.decision")
+                        =" "
+                        span &
+                        =" "
+                    span(ng-show="data.followUp.decision") Keputusan
+
         //div(layout="row", layout-align="start start", class="marginB30")
         //    div(class="insertPhoto", layout, layout-align="center center")
         //        md-icon person
@@ -48,6 +56,8 @@ md-content(flex, layout="column", layout-align="start center")
         //                md-icon(class="phoneIcon") phone
         //            div {{data.followUp.phone}}
 
+        div(class="marginT10 label") Telepon:
+        div(class="field") {{data.followUp.phone}}
 
         div(class="marginT10 label") Alamat:
         div(class="field") {{data.followUp.address}}
