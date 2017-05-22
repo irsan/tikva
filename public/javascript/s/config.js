@@ -39,7 +39,7 @@ app.config([
     }
 ]);
 
-app.directive('onSizeChanged', function ($window, $timeout) {
+app.directive('onSizeChanged', function ($window) {
     return {
         restrict: 'A',
         scope: {
@@ -56,16 +56,14 @@ app.directive('onSizeChanged', function ($window, $timeout) {
                 scope.cachedElementHeight = element.offsetHeight;
             }
 
-            function onWindowResize(force) {
+            function onWindowResize() {
                 var isSizeChanged = scope.cachedElementWidth != element.offsetWidth || scope.cachedElementHeight != element.offsetHeight;
-                if (isSizeChanged || force) {
+                if (isSizeChanged) {
                     cacheElementSize(scope, element);
                     var expression = scope.onSizeChanged();
                     expression(element);
                 }
             };
-
-            $timeout(onWindowResize(true), 500);
         }
     }
 });

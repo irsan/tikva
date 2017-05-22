@@ -43,7 +43,5 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
 
     $scope.actions.init();
 
-    $scope.missionCompled = function(element) {
-        $log.info("missionCompled", element);
-    }
+    console.log(document.getElementById('profileImageWrapper').clientWidth, document.getElementById('profileImageWrapper').clientHeight);
 });
