@@ -15,7 +15,7 @@ md-toolbar(class="topBar")
 
 
 md-content(flex, layout="column", layout-align="start center")
-    div(layout="row")
+    div(layout="row", class="width100Pct")
         div(flex, hide-xs, hide-gt-xs, hide-sm, show-gt-sm)
         div(class="followUp", layout="column", layout-align="start start", flex)
             div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}

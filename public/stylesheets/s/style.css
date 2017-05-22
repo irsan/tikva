@@ -51,3 +51,5 @@ md-toolbar.subBar, md-toolbar.subBar .md-toolbar-tools md-icon {
 .marginT30 { margin-top: 30px; }
 .marginTB20 { margin: 20px 0; }
 .marginTB30 { margin: 30px 0; }
+
+.width100Pct { width: 100%; }
