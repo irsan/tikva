@@ -73,10 +73,11 @@ app.directive('afterRender', ['$timeout', function ($timeout) {
         restrict: 'A',
         scope: {
             afterRender: '&'
-        }
+        },
         terminal: true,
         transclude: false,
-        link: function (scope, element, attrs) {
+        link: function (scope, $element, attrs) {
+            var element = $element[0];
             var expression = scope.afterRender();
             $timeout(expression(element), 0);  //Calling a scoped method
         }
