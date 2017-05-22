@@ -27,8 +27,9 @@ md-content(flex, layout="column", layout-align="start center")
             div Di assign pleaseeee
         div(id="profileImageWrapper", class="profileImageWrapper")
             div(class="profileImage", ng-style="{ 'background-image' : data.followUp ? 'url(' + data.followUp.profileImage + ')' : 'none' }")
-            div(class="detail")
+            div(class="detail", layout, layout-align="start center")
                 md-truncate {{data.followUp.name}}
+                div FTV, Keputusan
         //div(layout="row", layout-align="start start", class="marginB30")
         //    div(class="insertPhoto", layout, layout-align="center center")
         //        md-icon person
