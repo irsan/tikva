@@ -10,12 +10,14 @@
 
 .followUp .profileImageWrapper {
     position: relative;
+    background-color: #CEE2E8;
     width: 100%;
     padding-bottom: 75%;
 }
 
 .followUp .profileImage {
-    background-color: #CEE2E8;
+    width: auto;
+    height: 100%;
 }
 
 .followUp, .followUpEdit {
