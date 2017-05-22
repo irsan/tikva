@@ -52,6 +52,7 @@ app.directive('onSizeChanged', ['$window', function ($window) {
             $window.addEventListener('resize', onWindowResize);
 
             function cacheElementSize(scope, element) {
+                console.log("CACHEEEEE");
                 scope.cachedElementWidth = element.offsetWidth;
                 scope.cachedElementHeight = element.offsetHeight;
             }
