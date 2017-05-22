@@ -40,7 +40,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
 
     $scope.actions.init();
 
-    $scope.logResize = function () {
-        console.log('element resized');
+    $scope.logResize = function (height) {
+        console.log('element resized', height);
     };
 });
