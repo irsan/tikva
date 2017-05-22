@@ -43,7 +43,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
 
     $scope.actions.init();
 
-    $scope.missionCompled = function() {
-        $log.info("missionCompled");
+    $scope.missionCompled = function(element) {
+        $log.info("missionCompled", element);
     }
 });

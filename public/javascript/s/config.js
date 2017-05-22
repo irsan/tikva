@@ -74,9 +74,8 @@ app.directive('afterRender', ['$timeout', function ($timeout) {
         terminal: true,
         transclude: false,
         link: function (scope, element, attrs) {
-            $timeout(function() {
-                scope.$eval(attrs.afterRender)
-            }, 0);  //Calling a scoped method
+            var expression = scope.afterRender;
+            $timeout(expression(element), 0);  //Calling a scoped method
         }
     };
     return def;
