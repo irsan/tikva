@@ -52,7 +52,6 @@ app.directive('onSizeChanged', ['$window', function ($window) {
             $window.addEventListener('resize', onWindowResize);
 
             function cacheElementSize(scope, element) {
-                console.log("CACHEEEEE");
                 scope.cachedElementWidth = element.offsetWidth;
                 scope.cachedElementHeight = element.offsetHeight;
             }
@@ -75,8 +74,9 @@ app.directive('postRender', [ '$timeout', function($timeout) {
         terminal : true,
         transclude : true,
         link : function(scope, element, attrs) {
-            console.log("hello world");
-            // $timeout(scope.resize, 0);  //Calling a scoped method
+            $timeout(function() {
+                console.log("hello world");
+            }, 0);  //Calling a scoped method
         }
     };
     return def;
