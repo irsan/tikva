@@ -43,5 +43,5 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
 
     $scope.actions.init();
 
-    console.log(document.getElementById('profileImageWrapper').clientWidth, document.getElementById('profileImageWrapper').clientHeight);
+    console.log(document.getElementById('profileImageWrapper').offsetWidth, document.getElementById('profileImageWrapper').offsetHeight);
 });
