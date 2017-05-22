@@ -21,7 +21,7 @@ md-toolbar(class="topBar")
 md-content(flex, layout="column", layout-align="start center")
     div(class="followUp", layout="column", layout-align="start start", ng-hide="show.edit")
         div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
-        div(id="profileImageWrapper", class="profileImageWrapper", on-size-changed="actions.onProfileImageResized", style="background-image: url({{data.followUp.profileImage}})") hello
+        div(id="profileImageWrapper", class="profileImageWrapper", on-size-changed="actions.onProfileImageResized", style="background-image: url({{data.followUp.profileImage}})", ng-click="test($element)") hello
             //div(class="profileImage", style="background-image: url({{data.followUp.profileImage}})")
 
         //div(layout="row", layout-align="start start", class="marginB30")

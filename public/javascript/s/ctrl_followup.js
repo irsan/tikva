@@ -43,4 +43,8 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     };
 
     $scope.actions.init();
+
+    $scope.test = function(element) {
+        $log.info("TEST", element);
+    }
 });
