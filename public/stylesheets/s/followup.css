@@ -22,6 +22,11 @@
     background: no-repeat center center;
 }
 
+.followUp .profileImageWrapper .detail {
+    left: 0; bottom: 0; right: 0;
+    background-color: #000000;
+}
+
 .followUp, .followUpEdit {
     flex-shrink: 0;
     padding: 25px 20px;
