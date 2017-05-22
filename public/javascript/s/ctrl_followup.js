@@ -24,11 +24,14 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 }
             });
         },
-        get : function() {
+        get : function(init) {
             rest.followUp.get($routeParams.uuid, function(response) {
                 $log.info("GOT FOLLOW UP", response);
                 if(response.status == 'Ok') {
                     $scope.data.followUp = response.data.followUp;
+                    if(init) {
+                        $scope.actions.onProfileImageResized(document.getElementById('profileImageWrapper'));
+                    }
                 }
             });
         },
@@ -38,14 +41,9 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
         },
         init : function() {
             this.listCarecells();
-            this.get();
+            this.get(true);
         }
     };
 
     $scope.actions.init();
-
-    $scope.test = function($event) {
-        var element = $event.currentTarget;
-        element.style.backgroundSize = element.offsetWidth + "px " + element.offsetHeight + "px";
-    }
 });

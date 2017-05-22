@@ -56,16 +56,14 @@ app.directive('onSizeChanged', function ($window, $timeout) {
                 scope.cachedElementHeight = element.offsetHeight;
             }
 
-            function onWindowResize(init) {
+            function onWindowResize() {
                 var isSizeChanged = scope.cachedElementWidth != element.offsetWidth || scope.cachedElementHeight != element.offsetHeight;
-                if (isSizeChanged || init) {
+                if (isSizeChanged) {
                     cacheElementSize(scope, element);
                     var expression = scope.onSizeChanged();
                     expression(element);
                 }
             };
-
-            $timeout(function() { onWindowResize(true) }, 10000);
         }
     }
 });
