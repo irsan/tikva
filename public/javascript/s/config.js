@@ -68,3 +68,16 @@ app.directive('onSizeChanged', ['$window', function ($window) {
         }
     }
 }]);
+
+app.directive('postRender', [ '$timeout', function($timeout) {
+    var def = {
+        restrict : 'A',
+        terminal : true,
+        transclude : true,
+        link : function(scope, element, attrs) {
+            console.log("hello world");
+            // $timeout(scope.resize, 0);  //Calling a scoped method
+        }
+    };
+    return def;
+}])
