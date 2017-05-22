@@ -14,12 +14,9 @@
     padding-bottom: 75%;
 }
 
-/*.followUp .profileImage {*/
-    /*position: absolute;*/
-    /*top: 0; bottom: 0; left: 0; right: 0;*/
-    /*background-color: #CEE2E8;*/
-    /*background-size: cover;*/
-/*}*/
+.followUp .profileImage {
+    background-color: #CEE2E8;
+}
 
 .followUp, .followUpEdit {
     flex-shrink: 0;
