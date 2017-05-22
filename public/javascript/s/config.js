@@ -39,7 +39,7 @@ app.config([
     }
 ]);
 
-app.directive('onSizeChanged', ['$window', function ($window) {
+app.directive('onSizeChanged', function ($window, $timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -66,21 +66,4 @@ app.directive('onSizeChanged', ['$window', function ($window) {
             };
         }
     }
-}]);
-
-app.directive('afterRender', ['$timeout', function ($timeout) {
-    var def = {
-        restrict: 'A',
-        scope: {
-            afterRender: '&'
-        },
-        terminal: true,
-        transclude: false,
-        link: function (scope, $element, attrs) {
-            var element = $element[0];
-            var expression = scope.afterRender();
-            $timeout(expression(element), 0);  //Calling a scoped method
-        }
-    };
-    return def;
-}]);
+});
