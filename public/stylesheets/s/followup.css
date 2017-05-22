@@ -8,11 +8,9 @@
     margin-bottom: 20px;
 }
 
-.followUp .noPhoto {
-    background-color: #CEE2E8;
-    background-size: cover;
+.followUp img.profileImage {
     width: 100%;
-    height: 256px;
+    height: auto;
 }
 
 .followUp, .followUpEdit {
