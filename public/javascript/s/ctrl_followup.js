@@ -34,6 +34,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
         },
         onProfileImageResized : function(element) {
             $log.info("ON PROFILE IMAGE RESIZED", element.offsetWidth, element.offsetHeight);
+            element.style.backgroundSize = element.offsetWidth + "px " + element.offsetHeight + "px";
         },
         init : function() {
             this.listCarecells();
@@ -42,6 +43,4 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     };
 
     $scope.actions.init();
-
-    console.log(document.getElementById('profileImageWrapper').offsetWidth, document.getElementById('profileImageWrapper').offsetHeight);
 });
