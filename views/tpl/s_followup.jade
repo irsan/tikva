@@ -20,7 +20,7 @@ md-toolbar(class="topBar")
 
 md-content(flex, layout="column")
     div(class="followUp", layout="column", ng-hide="show.edit")
-        div(class="marginB20") {{data.followUp.serviceDate | date : 'dd MMMM yyyy'}}
+        div(class="marginB20") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
         div(layout="row", layout-align="start start", class="marginB30")
             div(class="insertPhoto", layout, layout-align="center center")
                 md-icon person
