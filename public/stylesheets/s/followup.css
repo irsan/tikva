@@ -33,6 +33,17 @@
     left: 0; bottom: 0; right: 0;
 }
 
+.followUp .userCommentInput {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.followUp .userCommentInput .profileImage {
+    width: 72px; height: 72px;
+    background-size: cover;
+    overflow: hidden;
+}
+
 .followUp, .followUpEdit {
     flex-shrink: 0;
     padding: 25px 20px;
