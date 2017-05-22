@@ -21,22 +21,25 @@ md-toolbar(class="topBar")
 md-content(flex, layout="column", layout-align="start center")
     div(class="followUp", layout="column", layout-align="start start", ng-hide="show.edit")
         div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
-        div(layout="row", layout-align="start start", class="marginB30")
-            div(class="insertPhoto", layout, layout-align="center center")
-                md-icon person
-            div(layout="column", layout-align="start start", class="marginL20", flex)
-                div
-                    span(ng-show="data.followUp.ftv") FTV
-                    span(ng-show="data.followUp.ftv && followUp.decision")
-                        =" "
-                        span &
-                        =" "
-                    span(ng-show="data.followUp.decision") Keputusan
-                div(class="marginT10") {{data.followUp.name}}
-                div(class="marginT10", layout="row", layout-align="start center")
-                    div
-                        md-icon(class="phoneIcon") phone
-                    div {{data.followUp.phone}}
+        div(class="noPhoto", ng-hide="data.followUp.profileImage", layout, layout-align="center center") hello
+
+
+        //div(layout="row", layout-align="start start", class="marginB30")
+        //    div(class="insertPhoto", layout, layout-align="center center")
+        //        md-icon person
+        //    div(layout="column", layout-align="start start", class="marginL20", flex)
+        //        div
+        //            span(ng-show="data.followUp.ftv") FTV
+        //            span(ng-show="data.followUp.ftv && followUp.decision")
+        //                =" "
+        //                span &
+        //                =" "
+        //            span(ng-show="data.followUp.decision") Keputusan
+        //        div(class="marginT10") {{data.followUp.name}}
+        //        div(class="marginT10", layout="row", layout-align="start center")
+        //            div
+        //                md-icon(class="phoneIcon") phone
+        //            div {{data.followUp.phone}}
 
         div(class="marginT10", layout="row", layout-align="start center", style="border-top: 1px solid #D6D4D6; border-bottom: 1px solid #D6D4D6; padding: 5px 0;")
             div

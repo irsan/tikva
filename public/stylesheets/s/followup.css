@@ -8,6 +8,12 @@
     margin-bottom: 20px;
 }
 
+.followUp .noPhoto {
+    background-color: #717171;
+    width: 100%;
+    min-height: 357px;
+}
+
 .followUp, .followUpEdit {
     flex-shrink: 0;
     padding: 25px 20px;
