@@ -5,6 +5,11 @@
     flex-shrink: 0;
 }
 
+.followUp .assignment {
+    width: 100%; margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
 .followUp .profileImageWrapper {
     position: relative;
     background-color: #CEE2E8;
