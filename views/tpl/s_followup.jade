@@ -52,7 +52,8 @@ md-content(flex, layout="column", layout-align="start center")
             div(class="field", ng-show="data.followUp.comments") {{data.followUp.comments}}
 
             div(class="marginT10 label") Catatan:
-            div(class="userCommentInput", layout="row") profile image:x
+            div(class="userCommentInput", layout="row")
+                div(class="profileImage", style="background-image: url({{me.profileImage}})") test
 
         div(flex="25", hide, show-gt-sm)
         div(flex="10", hide, show-sm)
