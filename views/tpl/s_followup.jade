@@ -55,7 +55,10 @@ md-content(flex, layout="column", layout-align="start center")
                 div(class="profileImage", style="background-image: url({{note.sp.profileImage}})")
                 div(class="width10")
                 div(layout="column", flex)
-                    div(class="entry") {{note.sp.name}} - {{note.entry}}
+                    div(class="entry")
+                        strong {{note.sp.name}}
+                        =" "
+                        span {{note.entry}}
                     div(class="date") {{note.createdAt | date : 'EEEE, d MMMM yyyy HH:mm'}}
 
             div(class="userCommentInput", layout="row", layout-align="start start")
