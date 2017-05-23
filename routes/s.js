@@ -17,7 +17,10 @@ var router = Express.Router();
 /* GET home page. */
 router.get('/', (req, res) => {
     log.info("S USER", req.user);
-    res.render('s_index', {title: 'Tikva'});
+    res.render('s_index', {
+        title: 'Tikva',
+        me: JSON.stringify(req.user)
+    });
 });
 
 router.get('/followups', (req, res) => {
