@@ -25,7 +25,11 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
             });
         },
         onNoteKeyEnter : function() {
-            $log.info("ON ENTERERERERERERERE");
+            if($scope.data.note.trim().length > 0) {
+                rest.followUp.addNote($scope.data.followUp.uuid, { note : $scope.data.note }, function(response) {
+                    $log.info("THE RESPONSE ADD NOTE", response);
+                });
+            }
         },
         get : function() {
             rest.followUp.get($routeParams.uuid, function(response) {

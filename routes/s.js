@@ -372,4 +372,60 @@ router.get('/rest/followup/:uuid', (req, res) => {
     });
 });
 
+router.post('/rest/followup/:uuid/add_note', (req, res) => {
+    let { uuid } = req.params;
+    let { note } = req.body;
+    let { user } = req;
+
+    let condition = {
+        uuid,
+        status : 'active'
+    };
+
+    Vasync.waterfall([
+        (callback) => {
+            if(!note) {
+                return callback("Invalid note");
+            }
+
+            if(!user.administrator) {
+                condition['$or'] = [
+                    { carecell : user.carecell }
+                ];
+            }
+
+            Model.FollowUp.findOne(condition, callback);
+        },
+        (followUp, callback) => {
+            if(!followUp) {
+                return callback("Invalid Follow Up");
+            }
+
+            new Model.FollowUpNote({
+                entry : note,
+                followUp,
+                sp : user,
+                creator : user.username,
+                updater : user.username
+            }).save((error, followUpNote) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { followUpNote });
+            });
+
+            callback(null, { followUp });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
+});
+
 module.exports = router;

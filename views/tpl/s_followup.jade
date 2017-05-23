@@ -57,7 +57,7 @@ md-content(flex, layout="column", layout-align="start center")
                     div {{me.name}}
                     div(class="noteInput", layout, layout-align="start end", flex)
                         md-input-container(md-no-float, class="md-block", flex)
-                            textarea(ng-model="data.catatan", on-enter="actions.onNoteKeyEnter()", placeholder="Catatan")
+                            textarea(ng-model="data.note", on-enter="actions.onNoteKeyEnter()", placeholder="Catatan")
 
         div(flex="25", hide, show-gt-sm)
         div(flex="10", hide, show-sm)
