@@ -39,31 +39,16 @@ app.config([
     }
 ]);
 
-app.directive('onSizeChanged', function ($window, $timeout) {
-    return {
-        restrict: 'A',
-        scope: {
-            onSizeChanged: '&'
-        },
-        link: function (scope, $element, attr) {
-            var element = $element[0];
+app.directive('onEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
 
-            cacheElementSize(scope, element);
-            $window.addEventListener('resize', onWindowResize);
-
-            function cacheElementSize(scope, element) {
-                scope.cachedElementWidth = element.offsetWidth;
-                scope.cachedElementHeight = element.offsetHeight;
+                event.preventDefault();
             }
-
-            function onWindowResize() {
-                var isSizeChanged = scope.cachedElementWidth != element.offsetWidth || scope.cachedElementHeight != element.offsetHeight;
-                if (isSizeChanged) {
-                    cacheElementSize(scope, element);
-                    var expression = scope.onSizeChanged();
-                    expression(element);
-                }
-            };
-        }
-    }
+        });
+    };
 });

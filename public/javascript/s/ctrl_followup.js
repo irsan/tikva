@@ -24,6 +24,9 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 }
             });
         },
+        onNoteKeyEnter : function() {
+            $log.info("ON ENTERERERERERERERE");
+        },
         get : function() {
             rest.followUp.get($routeParams.uuid, function(response) {
                 $log.info("GOT FOLLOW UP", response);
