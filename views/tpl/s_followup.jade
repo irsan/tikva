@@ -59,5 +59,11 @@ md-content(flex, layout="column", layout-align="start center")
                         md-input-container(md-no-float, class="md-block", flex)
                             textarea(ng-model="data.note", on-enter="actions.onNoteKeyEnter()", placeholder="Catatan")
 
-        div(flex="25", hide, show-gt-sm)
+            div(class="userCommentInput", layout="row", layout-align="start start", ng-repeat="note in data.followUpNotes")
+                div(class="profileImage", style="background-image: url({{note.sp.profileImage}})")
+                div(class="width10")
+                div(layout="column", flex)
+
+
+    div(flex="25", hide, show-gt-sm)
         div(flex="10", hide, show-sm)

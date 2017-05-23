@@ -28,6 +28,9 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
             if($scope.data.note.trim().length > 0) {
                 rest.followUp.addNote($scope.data.followUp.uuid, { note : $scope.data.note }, function(response) {
                     $log.info("THE RESPONSE ADD NOTE", response);
+                    if(response.status == "Ok") {
+                        $scope.data.followUpNotes.splice(0, 0, response.data.followUpNote);
+                    }
                 });
             }
         },
@@ -36,6 +39,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 $log.info("GOT FOLLOW UP", response);
                 if(response.status == 'Ok') {
                     $scope.data.followUp = response.data.followUp;
+                    $scope.data.followUpNotes = response.data.followUpNotes;
                 }
             });
         },

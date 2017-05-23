@@ -362,6 +362,9 @@ router.get('/rest/followup/:uuid', (req, res) => {
             Model.FollowUpNote.find({
                 followUp,
                 status : 'active'
+            }).populate({
+                path : 'sp',
+                select : '-_id'
             }).sort('-createdAt').exec((error, followUpNotes) => {
                 if(error) {
                     return callback(error);
