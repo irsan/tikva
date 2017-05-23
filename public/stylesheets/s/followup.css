@@ -54,6 +54,16 @@
     display: none;
 }
 
+.followUp .userCommentInput .entry {
+    font-size: 0.9em;
+}
+
+.followUp .userCommentInput .date {
+    color: #90949c;
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+
 .followUp, .followUpEdit {
     flex-shrink: 0;
     padding: 25px 20px;
