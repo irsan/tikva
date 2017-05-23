@@ -55,6 +55,11 @@ md-content(flex, layout="column", layout-align="start center")
                 div(class="width10")
                 div(layout="column", flex)
                     div {{me.name}}
+                    div(layout, layout-align="start end", flex)
+                        md-input-container
+                            label Kasih catatan
+                            textarea(ng-model="data.catatan")
+                        md-button add
 
         div(flex="25", hide, show-gt-sm)
         div(flex="10", hide, show-sm)
