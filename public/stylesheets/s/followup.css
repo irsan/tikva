@@ -47,7 +47,11 @@
 
 .followUp .userCommentInput .noteInput md-input-container {
     flex-shrink: 0;
-    margin-bottom : 0;
+    margin: 0;
+}
+
+.followUp .userCommentInput .noteInput md-input-container label {
+    display: none;
 }
 
 .followUp .userCommentInput .noteInput md-input-container  .md-errors-spacer {
