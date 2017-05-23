@@ -414,8 +414,6 @@ router.post('/rest/followup/:uuid/add_note', (req, res) => {
 
                 callback(null, { followUpNote });
             });
-
-            callback(null, { followUp });
         }
     ], (error, data) => {
         var response = new Response();
