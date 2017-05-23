@@ -359,7 +359,19 @@ router.get('/rest/followup/:uuid', (req, res) => {
                 return callback("Invalid Follow Up");
             }
 
-            callback(null, { followUp });
+            Model.FollowUpNote.find({
+                followUp,
+                status : 'active'
+            }).sort('-createdAt').exec((error, followUpNotes) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                let followUp = followUp.toJSON();
+                followUp.notes = followUpNotes;
+
+                callback(null, { followUp });
+            });
         }
     ], (error, data) => {
         var response = new Response();
