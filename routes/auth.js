@@ -21,7 +21,10 @@ router.get('/authorized/:authorizedId', (req, res) => {
         _id : req.params.authorizedId,
         status : 'active'
     }, (error, authorizedLink) => {
-        if(error) {
+        if(error || !authorizedLink) {
+            if(!authorizedLink) {
+                error = "Not found";
+            }
             log.error("Autorization S error", error);
             let status = error == "Not found" ? 404 : 500;
             return res.status(status).send(error);
