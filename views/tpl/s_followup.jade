@@ -56,7 +56,7 @@ md-content(flex, layout="column", layout-align="start center")
                 div(layout="column", flex)
                     div {{me.name}}
                     div(class="noteInput", layout, layout-align="start end", flex)
-                        md-input-container(md-no-float, flex)
+                        md-input-container(md-no-float, class="md-block", flex)
                             textarea(ng-model="data.catatan", placeholder="Catatan")
                         md-button(class="md-primary md-fab md-mini marginL10")
                             md-icon send
