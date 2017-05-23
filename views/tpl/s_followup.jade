@@ -55,8 +55,8 @@ md-content(flex, layout="column", layout-align="start center")
                 div(class="profileImage", style="background-image: url({{note.sp.profileImage}})")
                 div(class="width10")
                 div(layout="column", flex)
-                    //div(class="entry") {{note.entry}}
-                    //div(class="date") {{note.createdAt | date : 'EEEE, d MMMM yyyy HH:mm'}}
+                    div(class="entry") {{note.entry}}
+                    div(class="date") {{note.createdAt | date : 'EEEE, d MMMM yyyy HH:mm'}}
 
             div(class="userCommentInput", layout="row", layout-align="start start")
                 div(class="profileImage", style="background-image: url({{me.profileImage}})")
@@ -69,4 +69,4 @@ md-content(flex, layout="column", layout-align="start center")
 
 
     div(flex="25", hide, show-gt-sm)
-        div(flex="10", hide, show-sm)
+    div(flex="10", hide, show-sm)
