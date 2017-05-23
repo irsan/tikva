@@ -365,7 +365,7 @@ router.get('/rest/followup/:uuid', (req, res) => {
             }).populate({
                 path : 'sp',
                 select : '-_id'
-            }).sort('-createdAt').exec((error, followUpNotes) => {
+            }).sort('createdAt').exec((error, followUpNotes) => {
                 if(error) {
                     return callback(error);
                 }
