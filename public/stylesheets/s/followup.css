@@ -45,6 +45,14 @@
     overflow: hidden;
 }
 
+.followUp .userCommentInput .noteInput md-input-container {
+    margin-top : 0;
+}
+
+.followUp .userCommentInput .noteInput md-input-container  md-errors-spacer {
+    display: none;
+}
+
 .followUp, .followUpEdit {
     flex-shrink: 0;
     padding: 25px 20px;
