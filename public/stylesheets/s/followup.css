@@ -40,7 +40,7 @@
 }
 
 .followUp .userCommentInput .profileImage {
-    width: 64px; height: 64px;
+    width: 50px; height: 50px;
     background-size: cover;
     overflow: hidden;
 }
@@ -55,12 +55,12 @@
 }
 
 .followUp .userCommentInput .entry {
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .followUp .userCommentInput .date {
     color: #90949c;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin-top: 10px;
 }
 
