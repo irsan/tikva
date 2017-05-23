@@ -367,10 +367,7 @@ router.get('/rest/followup/:uuid', (req, res) => {
                     return callback(error);
                 }
 
-                let followUp = followUp.toJSON();
-                followUp.notes = followUpNotes;
-
-                callback(null, { followUp });
+                callback(null, { followUp, followUpNotes });
             });
         }
     ], (error, data) => {
