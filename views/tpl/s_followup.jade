@@ -36,6 +36,45 @@ div(layout="row", flex)
                         =" "
                     span(ng-show="data.followUp.decision") Keputusan
 
+        div(class="marginT10 label") Telepon:
+        div(class="field") {{data.followUp.phone}}
+
+        div(class="marginT10 label") Alamat:
+        div(class="field") {{data.followUp.address}}
+
+        div(class="marginT10 label") Yang membawa:
+        div(class="field") {{data.followUp.oikosOf}}
+
+        div(class="marginT10 label", ng-show="data.followUp.dob") Tanggal Lahir:
+        div(class="field", ng-show="data.followUp.dob") {{data.followUp.dob | date : 'dd MMM yyyy'}}
+
+        div(class="marginT10 label", ng-show="data.followUp.comments") Keterangan:
+        div(class="field", ng-show="data.followUp.comments") {{data.followUp.comments}}
+
+        div(class="marginT10 label") Catatan:
+
+        div(class="userCommentInput", layout="row", layout-align="start start", ng-repeat="note in data.followUpNotes")
+            div(class="profileImage", style="background-image: url({{note.sp.profileImage}})")
+            div(class="width10")
+            div(layout="column", flex)
+                div(class="entry")
+                    strong {{note.sp.name}}
+                    =" "
+                    span -
+                    =" "
+                    span {{note.entry}}
+                div(class="date") {{note.createdAt | date : 'EEEE, d MMMM yyyy HH:mm'}}
+
+        div(class="userCommentInput", layout="row", layout-align="start start")
+            div(class="profileImage", style="background-image: url({{me.profileImage}})")
+            div(class="width10")
+            div(layout="column", flex)
+                div {{me.name}}
+                div(class="noteInput", layout, layout-align="start end", flex)
+                    md-input-container(md-no-float, class="md-block", flex)
+                        textarea(ng-model="data.note", on-enter="actions.onNoteKeyEnter()", placeholder="Catatan")
+
+        div(class="marginB30")
 
     div(flex, hide, show-gt-sm)
     //div(layout="row", class="width100Pct")
