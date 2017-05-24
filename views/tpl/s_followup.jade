@@ -16,44 +16,64 @@ md-toolbar(class="topBar")
 
 md-content(flex, layout="column", layout-align="start center")
     div(layout="row") hello
-        //div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-sm="10", flex-offset-gt-sm="25")
-        //    div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
-        //    div(layout="row", layout-align="start center", class="assignment")
-        //        div
-        //            md-icon assignment_ind
-        //        div(class="marginL10") Di assign pleaseeee
-        //    div(id="profileImageWrapper", class="profileImageWrapper")
-        //        div(class="profileImage", ng-style="{ 'background-image' : data.followUp ? 'url(' + data.followUp.profileImage + ')' : 'none' }")
-        //        div(class="detail", layout, layout-align="start center")
-        //            div(flex)
-        //                md-truncate {{data.followUp.name}}
-        //
-        //            div
-        //                span(ng-show="data.followUp.ftv") FTV
-        //                span(ng-show="data.followUp.ftv && followUp.decision")
-        //                    =" "
-        //                    span &
-        //                    =" "
-        //                span(ng-show="data.followUp.decision") Keputusan
-        //
-        //    div(class="marginT10 label") Telepon:
-        //    div(class="field") {{data.followUp.phone}}
-        //
-        //    div(class="marginT10 label") Alamat:
-        //    div(class="field") {{data.followUp.address}}
-        //
-        //    div(class="marginT10 label") Yang membawa:
-        //    div(class="field") {{data.followUp.oikosOf}}
-        //
-        //    div(class="marginT10 label", ng-show="data.followUp.dob") Tanggal Lahir:
-        //    div(class="field", ng-show="data.followUp.dob") {{data.followUp.dob | date : 'dd MMM yyyy'}}
-        //
-        //    div(class="marginT10 label", ng-show="data.followUp.comments") Keterangan:
-        //    div(class="field", ng-show="data.followUp.comments") {{data.followUp.comments}}
-        //
-        //    div(class="marginT10 label") Catatan:
-        //    div(class="userCommentInput", layout="row")
-        //        div(class="profileImage", style="background-image: url({{me.profileImage}})") test
-        //
-        //div(flex="25", hide, show-gt-sm)
-        //div(flex="10", hide, show-sm)
+    //div(layout="row", class="width100Pct")
+    //    div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-sm="10", flex-offset-gt-sm="25")
+    //        div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
+    //        div(layout="row", layout-align="start center", class="assignment")
+    //            div
+    //                md-icon assignment_ind
+    //            div(class="marginL10") Di assign pleaseeee
+    //        div(class="profileImageWrapper")
+    //            div(class="profileImage", ng-style="{ 'background-image' : data.followUp ? 'url(' + data.followUp.profileImage + ')' : 'none' }")
+    //            div(class="detail", layout, layout-align="start center")
+    //                div(flex) {{data.followUp.name}}
+    //                div(class="marginL10")
+    //                    span(ng-show="data.followUp.ftv") FTV
+    //                    span(ng-show="data.followUp.ftv && followUp.decision")
+    //                        =" "
+    //                        span &
+    //                        =" "
+    //                    span(ng-show="data.followUp.decision") Keputusan
+    //
+    //        div(class="marginT10 label") Telepon:
+    //        div(class="field") {{data.followUp.phone}}
+    //
+    //        div(class="marginT10 label") Alamat:
+    //        div(class="field") {{data.followUp.address}}
+    //
+    //        div(class="marginT10 label") Yang membawa:
+    //        div(class="field") {{data.followUp.oikosOf}}
+    //
+    //        div(class="marginT10 label", ng-show="data.followUp.dob") Tanggal Lahir:
+    //        div(class="field", ng-show="data.followUp.dob") {{data.followUp.dob | date : 'dd MMM yyyy'}}
+    //
+    //        div(class="marginT10 label", ng-show="data.followUp.comments") Keterangan:
+    //        div(class="field", ng-show="data.followUp.comments") {{data.followUp.comments}}
+    //
+    //        div(class="marginT10 label") Catatan:
+    //
+    //        div(class="userCommentInput", layout="row", layout-align="start start", ng-repeat="note in data.followUpNotes")
+    //            div(class="profileImage", style="background-image: url({{note.sp.profileImage}})")
+    //            div(class="width10")
+    //            div(layout="column", flex)
+    //                div(class="entry")
+    //                    strong {{note.sp.name}}
+    //                    =" "
+    //                    span -
+    //                    =" "
+    //                    span {{note.entry}}
+    //                div(class="date") {{note.createdAt | date : 'EEEE, d MMMM yyyy HH:mm'}}
+    //
+    //        div(class="userCommentInput", layout="row", layout-align="start start")
+    //            div(class="profileImage", style="background-image: url({{me.profileImage}})")
+    //            div(class="width10")
+    //            div(layout="column", flex)
+    //                div {{me.name}}
+    //                div(class="noteInput", layout, layout-align="start end", flex)
+    //                    md-input-container(md-no-float, class="md-block", flex)
+    //                        textarea(ng-model="data.note", on-enter="actions.onNoteKeyEnter()", placeholder="Catatan")
+    //
+    //        div(class="marginB30")
+    //
+    //    div(flex="25", hide, show-gt-sm)
+    //    div(flex="10", hide, show-sm)

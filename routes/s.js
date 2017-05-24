@@ -17,7 +17,10 @@ var router = Express.Router();
 /* GET home page. */
 router.get('/', (req, res) => {
     log.info("S USER", req.user);
-    res.render('s_index', {title: 'Tikva'});
+    res.render('s_index', {
+        title: 'Tikva',
+        me: JSON.stringify(req.user)
+    });
 });
 
 router.get('/followups', (req, res) => {
@@ -356,7 +359,73 @@ router.get('/rest/followup/:uuid', (req, res) => {
                 return callback("Invalid Follow Up");
             }
 
-            callback(null, { followUp });
+            Model.FollowUpNote.find({
+                followUp,
+                status : 'active'
+            }).populate({
+                path : 'sp',
+                select : '-_id'
+            }).sort('createdAt').exec((error, followUpNotes) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { followUp, followUpNotes });
+            });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
+});
+
+router.post('/rest/followup/:uuid/add_note', (req, res) => {
+    let { uuid } = req.params;
+    let { note } = req.body;
+    let { user } = req;
+
+    let condition = {
+        uuid,
+        status : 'active'
+    };
+
+    Vasync.waterfall([
+        (callback) => {
+            if(!note) {
+                return callback("Invalid note");
+            }
+
+            if(!user.administrator) {
+                condition['$or'] = [
+                    { carecell : user.carecell }
+                ];
+            }
+
+            Model.FollowUp.findOne(condition, callback);
+        },
+        (followUp, callback) => {
+            if(!followUp) {
+                return callback("Invalid Follow Up");
+            }
+
+            new Model.FollowUpNote({
+                entry : note,
+                followUp,
+                sp : user,
+                creator : user.username,
+                updater : user.username
+            }).save((error, followUpNote) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                callback(null, { followUpNote });
+            });
         }
     ], (error, data) => {
         var response = new Response();

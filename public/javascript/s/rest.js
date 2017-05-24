@@ -51,6 +51,15 @@ app.factory('rest', function($http) {
                         //TODO handle error
                     }
                 });
+            },
+            addNote : function(uuid, params, onSuccess) {
+                $http.post("/s/rest/followup/" + uuid + "/add_note", params).then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
             }
         }
     };
