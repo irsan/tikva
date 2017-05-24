@@ -29,7 +29,8 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 rest.followUp.addNote($scope.data.followUp.uuid, { note : $scope.data.note }, function(response) {
                     $log.info("THE RESPONSE ADD NOTE", response);
                     if(response.status == "Ok") {
-                        $scope.data.followUpNotes.splice(0, 0, response.data.followUpNote);
+                        $scope.data.followUpNotes.push(response.data.followUpNote);
+                        delete $scope.data.note;
                     }
                 });
             }
