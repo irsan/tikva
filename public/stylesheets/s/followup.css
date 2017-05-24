@@ -1,5 +1,6 @@
 .followUp {
     flex-shrink: 0;
+    padding: 8px;
 }
 
 .followUp .serviceDate {
