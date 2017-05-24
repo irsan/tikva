@@ -15,10 +15,10 @@ md-toolbar(class="topBar")
 
 
 div(layout="row", flex)
-    div(flex)
-    md-content(flex, layout="column", layout-align="start center", layout-fill)
-        div hello
-    div(flex)
+    div(flex, hide, show-gt-sm)
+    md-content(class="followUp", flex, layout="column", layout-align="start start", layout-fill)
+        div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
+    div(flex, hide, show-gt-sm)
     //div(layout="row", class="width100Pct")
     //    div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-sm="10", flex-offset-gt-sm="25")
     //        div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
