@@ -14,8 +14,11 @@ md-toolbar(class="topBar")
                     md-button hapus
 
 
-md-content(flex, layout="column", layout-align="start center")
-    div(layout="row") hello
+div(layout="row", flex)
+    div(flex)
+    md-content(flex, layout="column", layout-align="start center", layout-fill)
+        div hello
+    div(flex)
     //div(layout="row", class="width100Pct")
     //    div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-sm="10", flex-offset-gt-sm="25")
     //        div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
