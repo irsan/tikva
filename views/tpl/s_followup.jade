@@ -16,6 +16,7 @@ md-toolbar(class="topBar")
 
 div(layout="row", flex)
     div(flex, hide-xs)
+    div(flex="20", hide, show-sm)
 
     md-content(class="followUp", flex, layout="column", layout-align="start start", layout-fill)
         div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
@@ -77,6 +78,7 @@ div(layout="row", flex)
         div(class="marginB30")
 
     div(flex, hide-xs)
+    div(flex="20", hide, show-sm)
     //div(layout="row", class="width100Pct")
     //    div(class="followUp", layout="column", layout-align="start start", flex, flex-offset="0", flex-offset-sm="10", flex-offset-gt-sm="25")
     //        div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
