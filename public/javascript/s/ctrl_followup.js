@@ -44,7 +44,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDi
                 }
             });
         },
-        assignSP : function() {
+        assignSP : function(ev) {
             $mdDialog.show({
                 controller : 'followUpAssignDialogCtrl',
                 templateUrl: '/tpl/s_dialog_followup_assign',

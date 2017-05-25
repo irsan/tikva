@@ -20,7 +20,7 @@ div(layout="row", flex, style="background-color: #F3F3F3;")
 
     md-content(class="followUp", flex, layout="column", layout-align="start start", layout-fill)
         div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
-        div(layout="row", layout-align="start center", class="assignment", ng-click="actions.assignSP()")
+        div(layout="row", layout-align="start center", class="assignment", ng-click="actions.assignSP($event)")
             div
                 md-icon assignment_ind
             div(class="marginL10") Di assign pleaseeee
