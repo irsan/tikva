@@ -1,0 +1,16 @@
+md-dialog(aria-label="assign sp dialog")
+    form(ng-cloak)
+        md-toolbar(class="topBar")
+            div(class="md-toolbar-tools")
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.back()")
+                    md-icon chevron_left
+                h2 Assign Carecell & SP
+                div(flex)
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.close()")
+                    md-icon close
+                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.done()")
+                    md-icon check
+
+        md-dialog-content
+            div(class="md-dialog-content", layout="column")
+                div assign sp

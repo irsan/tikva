@@ -1,6 +1,6 @@
 var app = angular.module('TikvaApp');
 
-app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $location, $log, rest) {
+app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDialog, $location, $log, rest) {
     $rootScope.selectedMenu = 'followups';
     $rootScope.hideMainMenu = true;
 
@@ -44,6 +44,23 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
                 }
             });
         },
+        assignSP : function() {
+            $mdDialog.show({
+                controller : 'followUpAssignDialogCtrl',
+                templateUrl: '/tpl/s_dialog_followup_assign',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen : true,
+                locals : {
+                    sp : 'yes'
+                }
+            }).then(function(data) {
+                $log.info("ASSIGNMENT DATA", data);
+            }, function() {
+                $log.info("CANCEL FILTER");
+            });
+        },
         init : function() {
             this.listCarecells();
             this.get();
@@ -51,4 +68,8 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $loca
     };
 
     $scope.actions.init();
+});
+
+app.controller('followUpAssignDialogCtrl', function($scope, $log, sp) {
+    $log.info("ASSIGN SP", sp);
 });
