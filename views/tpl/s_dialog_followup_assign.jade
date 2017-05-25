@@ -14,6 +14,11 @@ md-dialog(aria-label="assign sp dialog")
                 h4 Assign Carecell & SP untuk {{data.followUp.name}}
 
                 md-input-container
-                    label Carecell
+                    label Pilih Carecell
                     md-select(ng-model="data.carecell")
                         md-option(ng-value="carecell._id", ng-repeat="carecell in data.carecells") {{carecell.name}}
+
+                md-input-container(ng-disabled="data.carecell")
+                    label Pilih SP
+                    md-select(ng-model="data.sp")
+                        md-option(ng-value="sp._id", ng-repeat="sp in data.sps") {{sp.name}}
