@@ -13,7 +13,7 @@ md-dialog(aria-label="assign sp dialog")
             div(class="md-dialog-content", layout="column")
                 h4 Assign Carecell & SP untuk {{data.followUp.name}}
 
-                md-input-container(ng-show="!data.filter.allCarecells")
+                md-input-container
                     label Carecell
-                    md-select(ng-model="data.filter.carecells", multiple="true")
+                    md-select(ng-model="data.carecell")
                         md-option(ng-value="carecell._id", ng-repeat="carecell in data.carecells") {{carecell.name}}

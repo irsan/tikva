@@ -70,7 +70,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDi
     $scope.actions.init();
 });
 
-app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, followUp) {
+app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, rest, followUp) {
     $log.info("ASSIGN SP", followUp);
 
     $scope.data = {
@@ -89,7 +89,7 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, fol
             });
         },
         listSPs : function() {
-            $log.info("THE CARECELLLLLSSSS", $scope.data.filter.carecells, $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0);
+            $log.info("THE CARECELLLLLSSSS", $scope.data.carecell, $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0);
             let queries = $scope.data.filter.carecells.length > 0 ? {
                 carecells : $scope.data.filter.carecells
             } : {};
