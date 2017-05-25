@@ -73,6 +73,10 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDi
 app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, followUp) {
     $log.info("ASSIGN SP", followUp);
 
+    $scope.data = {
+        followUp : followUp
+    };
+
     $scope.actions = {
         back : function() {
             $mdDialog.cancel();
