@@ -53,7 +53,7 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDi
                 clickOutsideToClose:true,
                 fullscreen : true,
                 locals : {
-                    sp : 'yes'
+                    followUp : $scope.data.followUp
                 }
             }).then(function(data) {
                 $log.info("ASSIGNMENT DATA", data);
@@ -70,6 +70,12 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDi
     $scope.actions.init();
 });
 
-app.controller('followUpAssignDialogCtrl', function($scope, $log, sp) {
-    $log.info("ASSIGN SP", sp);
+app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, followUp) {
+    $log.info("ASSIGN SP", followUp);
+
+    $scope.actions = {
+        back : function() {
+            $mdDialog.cancel();
+        }
+    }
 });
