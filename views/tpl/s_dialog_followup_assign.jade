@@ -6,11 +6,14 @@ md-dialog(aria-label="assign sp dialog")
                     md-icon chevron_left
                 h2 Assign Carecell & SP
                 div(flex)
-                md-button(class="md-icon-button", aria-label="Done", ng-click="actions.close()")
-                    md-icon close
                 md-button(class="md-icon-button", aria-label="Done", ng-click="actions.done()")
                     md-icon check
 
         md-dialog-content
             div(class="md-dialog-content", layout="column")
                 h4 Assign Carecell & SP untuk {{data.followUp.name}}
+
+                md-input-container(ng-show="!data.filter.allCarecells")
+                    label Carecell
+                    md-select(ng-model="data.filter.carecells", multiple="true")
+                        md-option(ng-value="carecell._id", ng-repeat="carecell in data.carecells") {{carecell.name}}
