@@ -91,7 +91,7 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, res
         listSPs : function() {
             if($scope.data.carecell) {
                 let queries = {
-                    carecells : [ $scope.data.carecell._id ]
+                    carecells : [ $scope.data.carecell ]
                 };
                 $log.info("CACEEEEEEEEEEE", $scope.data.carecell, queries);
                 rest.sp.list(queries, function (response) {
