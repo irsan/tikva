@@ -13,6 +13,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
 
     $scope.data = {
         sunday : moment().startOf('week'),
+        filter : {},
         followUps : {
             count : 0,
             lastPage : 0,
