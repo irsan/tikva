@@ -105,7 +105,7 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, res
         init : function() {
             this.listCarecells();
         }
-    }
+    };
 
     $scope.actions.init();
 });
