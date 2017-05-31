@@ -24,6 +24,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
     $scope.actions = {
         listFollowUps : function(page, noScroll, reset) {
             $scope.show.loading = true;
+            $log.info("LIST FOLLOW UPS: ", $scope.data.filter);
             rest.followUp.list($scope.data.filter, page, function(response) {
                 $log.info("LIST FOLLOWUPS", response);
                 if(response.status == "Ok") {
