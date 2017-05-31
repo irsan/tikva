@@ -233,6 +233,8 @@ router.post('/rest/followups/:page', (req, res) => {
 
     let { search, ftv, decision, noCarecells, allCarecells, carecells } = req.body;
 
+    log.info("THE BODDDDYYYY", req.body);
+
     let condition = {
         status : 'active'
     };
