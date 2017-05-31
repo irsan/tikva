@@ -90,7 +90,7 @@ class CommandController {
                 // add sp .+ to carecell .+
                 let input = text.split(" to carecell ");
                 if(input.length < 2) {
-                    return callback(null, "Please specify SP and Carecell");
+                    return callback("Please specify SP and Carecell");
                 }
 
                 callback(null, input);
@@ -116,6 +116,11 @@ class CommandController {
             },
             ({ spInfo, carecell }, callback) => {
                 log.info("SP INFO IS", spInfo, carecell);
+                spInfo = spInfo.split(',');
+                if(spInfo.length < 2) {
+                    callback("Please provide with name,email for the SP info when you add.");
+                }
+
                 callback(null, "SP ADDED");
             }
         ], (error, message) => {
