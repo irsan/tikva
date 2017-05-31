@@ -118,7 +118,7 @@ class CommandController {
                 log.info("SP INFO IS", spInfo, carecell);
                 spInfo = spInfo.split(',');
                 if(spInfo.length < 2) {
-                    callback("Please provide with name,email for the SP info when you add.");
+                    return callback("Please provide with name,email for the SP info when you add.");
                 }
 
                 callback(null, "SP ADDED");
