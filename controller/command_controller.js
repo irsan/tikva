@@ -121,7 +121,8 @@ class CommandController {
                     return callback("you need to provide name,email for the SP info.");
                 }
 
-                let [ name, email ] = spInfo;
+                let name = spInfo[0].trim();
+                let email = spInfo[1].trim();
 
                 new Model.User({
                     name, email, carecell,
