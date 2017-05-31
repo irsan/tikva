@@ -102,7 +102,7 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, res
                 });
             }
         },
-        set : function() {
+        done : function() {
             $mdDialog.hide({
                 carecell : $scope.data.carecell,
                 sp : $scope.data.sp
