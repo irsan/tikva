@@ -102,6 +102,12 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, res
                 });
             }
         },
+        set : function() {
+            $mdDialog.hide({
+                carecell : $scope.data.carecell,
+                sp : $scope.data.sp
+            });
+        },
         init : function() {
             this.listCarecells();
         }

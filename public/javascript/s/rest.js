@@ -60,6 +60,15 @@ app.factory('rest', function($http) {
                         //TODO handle error
                     }
                 });
+            },
+            assign : function(uuid, params, onSuccess) {
+                $http.post("/s/rest/followup/" + uuid + "/assign", params).then(function(response) {
+                    if(response.status == 200) {
+                        onSuccess(response.data);
+                    } else {
+                        //TODO handle error
+                    }
+                });
             }
         }
     };

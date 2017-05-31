@@ -384,6 +384,89 @@ router.get('/rest/followup/:uuid', (req, res) => {
     });
 });
 
+router.post('/rest/followup/:uuid/assign', (req, res) => {
+    let { uuid } = req.params;
+    let { user } = req;
+
+    let condition = {
+        uuid,
+        status : 'active'
+    };
+
+    Vasync.waterfall([
+        (callback) => {
+            if(!req.body.carecell) {
+                return callback("Invalid carecell");
+            }
+
+            if(!user.administrator) {
+                condition['$or'] = [
+                    { carecell : user.carecell }
+                ];
+            }
+
+            Model.FollowUp.findOne(condition, callback);
+        },
+        (followUp, callback) => {
+            if(!followUp) {
+                return callback("Invalid Follow Up");
+            }
+
+            Model.Carecell.findOne({
+                _id : req.body.carecell,
+                status : 'active'
+            }, (error, carecell) => {
+                if(error) {
+                    return callback(error);
+                }
+
+                if(!carecell) {
+                    return callback("Invalid carecell");
+                }
+
+                if(!req.body.sp) {
+                    return callback(null, { followUp, carecell });
+                }
+
+                Model.User.findOne({
+                    _id : req.body.sp,
+                    carecell,
+                    status : 'active'
+                }, (error, sp) => {
+                    if(error) {
+                        return callback(error);
+                    }
+
+                    if(!sp) {
+                        return callback("Invalid SP");
+                    }
+
+                    callback(null, {
+                        followUp, carecell, sp
+                    });
+                });
+            });
+        },
+        ({ followUp, carecell, sp }, callback) => {
+            followUp.sp = sp;
+            followUp.carecell = carecell;
+            followUp.updatedAt = new Date();
+            followUp.updater = user.username;
+
+            followUp.save();
+            callback(null, { followUp });
+        }
+    ], (error, data) => {
+        var response = new Response();
+        if(error) {
+            response.fail(error);
+        } else {
+            response.data = data;
+        }
+        res.send(response);
+    });
+});
+
 router.post('/rest/followup/:uuid/add_note', (req, res) => {
     let { uuid } = req.params;
     let { note } = req.body;
