@@ -96,6 +96,7 @@ class CommandController {
                 callback(null, input);
             },
             (input, callback) => {
+                let spInfo = input[0].trim().replace("add sp ", "");
                 let carecellName = new RegExp(input[1].trim(), "i");
 
                 Model.Carecell.findOne({
@@ -107,11 +108,15 @@ class CommandController {
                     }
 
                     if(!carecell) {
-                        return callback(null, "Invalid Carecell");
+                        return callback("Invalid Carecell");
                     }
 
-                    callback(null, "DONE ADD SP");
+                    callback(null, { spInfo, carecell });
                 });
+            },
+            ({ spInfo, carecell }, callback) => {
+                log.info("SP INFO IS", spInfo, carecell);
+                callback(null, "SP ADDED");
             }
         ], (error, message) => {
             if(error) {
