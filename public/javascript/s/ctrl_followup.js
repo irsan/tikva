@@ -93,6 +93,7 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, res
                 let queries = {
                     carecells : [ $scope.data.carecell._id ]
                 };
+                $log.info("CACEEEEEEEEEEE", queries);
                 rest.sp.list(queries, function (response) {
                     $log.info("SP LIST RESPONSE", response);
                     // if (response.status == "Ok") {
