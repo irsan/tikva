@@ -89,18 +89,19 @@ app.controller('followUpAssignDialogCtrl', function($scope, $mdDialog, $log, res
             });
         },
         listSPs : function() {
-            $log.info("THE CARECELLLLLSSSS", $scope.data.carecell, $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0);
-            let queries = $scope.data.filter.carecells.length > 0 ? {
-                carecells : $scope.data.filter.carecells
-            } : {};
-            rest.sp.list(queries, function (response) {
-                $log.info("SP LIST RESPONSE", response);
-                if (response.status == "Ok") {
-                    $scope.data.sps = response.data.sps;
-                    $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0;
-                    $log.info($scope.show);
-                }
-            });
+            if($scope.data.carecell) {
+                let queries = {
+                    carecells : [ $scope.data.carecell._id ]
+                };
+                rest.sp.list(queries, function (response) {
+                    $log.info("SP LIST RESPONSE", response);
+                    // if (response.status == "Ok") {
+                    //     $scope.data.sps = response.data.sps;
+                    //     $scope.show.sps = $scope.data.filter.allCarecells || $scope.data.filter.carecells.length > 0;
+                    //     $log.info($scope.show);
+                    // }
+                });
+            }
         },
         init : function() {
             this.listCarecells();
