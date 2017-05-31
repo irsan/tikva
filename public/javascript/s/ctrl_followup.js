@@ -57,6 +57,9 @@ app.controller('followupCtrl', function ($scope, $rootScope, $routeParams, $mdDi
                 }
             }).then(function(data) {
                 $log.info("ASSIGNMENT DATA", data);
+                rest.followUp.assign($scope.data.followUp.uuid, data, function(response) {
+                    $log.info("ASSIGN SP", response);
+                });
             }, function() {
                 $log.info("CANCEL FILTER");
             });
