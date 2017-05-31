@@ -233,8 +233,6 @@ router.post('/rest/followups/:page', (req, res) => {
 
     let { search, ftv, decision, noCarecells, allCarecells, carecells } = req.body;
 
-    log.info("THE SELECTED CARECELLS", carecells);
-
     let condition = {
         status : 'active'
     };
@@ -280,7 +278,7 @@ router.post('/rest/followups/:page', (req, res) => {
                 condition.decision = decision;
             }
 
-            // log.info("THE CONDITION", condition);
+            log.info("THE CONDITION", condition);
             Model.FollowUp.count(condition, callback);
         },
         (count, callback) => {
