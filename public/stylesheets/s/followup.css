@@ -1,3 +1,8 @@
+.followUp {
+    flex-shrink: 0;
+    padding: 8px;
+}
+
 .followUp .serviceDate {
     color: #90949c;
     font-size: 0.9em;
@@ -6,7 +11,7 @@
 }
 
 .followUp .assignment {
-    width: 100%; margin-bottom: 10px;
+    margin-bottom: 10px;
     flex-shrink: 0;
     cursor: pointer;
 }
@@ -66,11 +71,6 @@
     color: #90949c;
     font-size: 0.95em;
     margin-top: 5px;
-}
-
-.followUp, .followUpEdit {
-    flex-shrink: 0;
-    padding: 25px 20px;
 }
 
 .followUp .insertPhoto, .followUpEdit .insertPhoto {
