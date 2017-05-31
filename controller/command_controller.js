@@ -18,7 +18,7 @@ class CommandController {
             let name = text.replace(/^set as carecell /i, '').trim();
             return this.setAsCarecell({ name, user, channel_id }, callback);
         } else if(text.match(/^add sp .+ to carecell .+$/i)) {
-            return this.addSP({ text }, callback);
+            return this.addSP({ text, user }, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -83,7 +83,7 @@ class CommandController {
         });
     }
 
-    addSP({ text }, callback) {
+    addSP({ text, user }, callback) {
 
         Vasync.waterfall([
             (callback) => {
@@ -118,10 +118,22 @@ class CommandController {
                 log.info("SP INFO IS", spInfo, carecell);
                 spInfo = spInfo.split(',');
                 if(spInfo.length < 2) {
-                    return callback("Please provide with name,email for the SP info when you add.");
+                    return callback("you need to provide name,email for the SP info.");
                 }
 
-                callback(null, "SP ADDED");
+                let [ name, email ] = spInfo;
+
+                new Model.User({
+                    name, email, carecell,
+                    creator : user.email,
+                    updater : user.email
+                }).save((error, sp) => {
+                    if(error) {
+                        return callback(error);
+                    }
+
+                    callback(null, sp.name + " has been added as SP in Carecell " + carecell.name + ".");
+                });
             }
         ], (error, message) => {
             if(error) {
