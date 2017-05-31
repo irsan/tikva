@@ -16,8 +16,9 @@ class CommandController {
             return this.start(user, callback);
         } else if(text.match(/^set as carecell .+$/i)) {
             let name = text.replace(/^set as carecell /i, '').trim();
-            log.info("THE NAME", name);
             return this.setAsCarecell({ name, user, channel_id }, callback);
+        } else if(text.match(/^add sp .+ to carecell .+$/i)) {
+            return this.addSP({ text }, callback);
         }
         callback(null, "Ok, your command is " + command);
     }
@@ -79,6 +80,45 @@ class CommandController {
             }
 
             callback(null, "This group is now a Carecell '" + carecell.name + "'.");
+        });
+    }
+
+    addSP({ text }, callback) {
+
+        Vasync.waterfall([
+            (callback) => {
+                // add sp .+ to carecell .+
+                let input = text.split(" to carecell ");
+                if(input.length < 2) {
+                    return callback(null, "Please specify SP and Carecell");
+                }
+
+                callback(null, input);
+            },
+            (input, callback) => {
+                let carecellName = new RegExp(input[1].trim(), "i");
+
+                Model.Carecell.findOne({
+                    name : { $regex : carecellName },
+                    status : 'active'
+                }, (error, carecell) => {
+                    if(error) {
+                        return callback(error);
+                    }
+
+                    if(!carecell) {
+                        return callback(null, "Invalid Carecell");
+                    }
+
+                    callback(null, "DONE ADD SP");
+                });
+            }
+        ], (error, message) => {
+            if(error) {
+                return callback(error);
+            }
+
+            callback(null, message);
         });
     }
 }
