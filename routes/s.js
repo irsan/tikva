@@ -277,12 +277,12 @@ router.post('/rest/followups/:page', (req, res) => {
             let followUpType = [];
 
             if(typeof ftv == 'boolean') {
-                followUpType.push()
+                followUpType.push(ftv);
                 condition.ftv = ftv;
             }
 
             if(typeof decision == 'boolean') {
-                condition.decision = decision;
+                followUpType.push(decision);
             }
 
             if(carecellOr.length > 0 && followUpType.length > 0) {
