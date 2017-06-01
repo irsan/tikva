@@ -23,7 +23,11 @@ div(layout="row", flex, style="background-color: #F3F3F3;")
         div(layout="row", layout-align="start center", class="assignment", ng-click="actions.assignSP($event)")
             div
                 md-icon assignment_ind
-            div(class="marginL10") Di assign pleaseeee
+            div(class="marginL10", flex) Di assign pleaseeee
+            div
+                md-icon phone
+            div
+                md-icon home
 
         div(class="profileImageWrapper")
             div(class="profileImage", ng-style="{ 'background-image' : data.followUp ? 'url(' + data.followUp.profileImage + ')' : 'none' }")
