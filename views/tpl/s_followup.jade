@@ -20,10 +20,10 @@ div(layout="row", flex, style="background-color: #F3F3F3;")
 
     md-content(class="followUp", flex, layout="column", layout-align="start start", layout-fill)
         div(class="serviceDate") {{data.followUp.serviceDate | date : 'EEEE, dd MMMM yyyy'}}
-        div(layout="row", layout-align="start center", class="assignment", ng-click="actions.assignSP($event)")
-            div
+        div(layout="row", layout-align="start center", class="assignment")
+            div(ng-click="actions.assignSP($event)")
                 md-icon assignment_ind
-            div(class="marginL10", flex) Di assign pleaseeee
+            div(class="marginL10", flex, ng-click="actions.assignSP($event)") Di assign pleaseeee
             div
                 md-icon phone
             div
