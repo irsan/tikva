@@ -285,13 +285,13 @@ router.post('/rest/followups/:page', (req, res) => {
                 condition.decision = decision;
             }
 
-            if(carecellOr && followUpType) {
+            if(carecellOr.length > 0 && followUpType.length > 0) {
                 condition['$and'] = [
                     carecellOr, followUpType
                 ];
-            } else if(carecellOr) {
+            } else if(carecellOr.length > 0) {
                 condition['$or'] = carecellOr;
-            } else if(followUpType) {
+            } else if(followUpType.length > 0) {
                 condition['$or'] = followUpType;
             }
 
