@@ -64,7 +64,7 @@
     display: none;
 }
 
-.followUp .userCommentInput .noteInput md-button {
+.followUp .userCommentInput .noteInput .md-button {
     font-size: 0.8em;
 }
 
