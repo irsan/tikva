@@ -278,7 +278,6 @@ router.post('/rest/followups/:page', (req, res) => {
 
             if(typeof ftv == 'boolean') {
                 followUpType.push(ftv);
-                condition.ftv = ftv;
             }
 
             if(typeof decision == 'boolean') {
