@@ -13,7 +13,13 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
 
     $scope.data = {
         sunday : moment().startOf('week'),
-        filter : {},
+        filter : {
+            ftv : true,
+            decision : true,
+            noCarecells : true,
+            allCarecells : true,
+            carecells : []
+        },
         followUps : {
             count : 0,
             lastPage : 0,
@@ -63,7 +69,10 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true,
-                fullscreen : true
+                fullscreen : true,
+                locals : {
+                    filter : $scope.data.filter
+                }
             }).then(function(data) {
                 $log.info("FILTER DATA", data);
                 $scope.data.filter = data;
@@ -89,7 +98,7 @@ app.controller('followupsCtrl', function ($scope, $rootScope, $routeParams, $mdD
     $scope.actions.init();
 });
 
-app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
+app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest, filter) {
     $log.info("FILTER FOLLOW UPS");
 
     $scope.show = {
@@ -98,13 +107,7 @@ app.controller('filterFollowUpsCtrl', function($scope, $mdDialog, $log, rest) {
     };
 
     $scope.data = {
-        filter : {
-            ftv : true,
-            decision : true,
-            noCarecells : true,
-            allCarecells : true,
-            carecells : []
-        }
+        filter : filter
     };
 
     $scope.actions = {

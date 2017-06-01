@@ -263,7 +263,7 @@ router.post('/rest/followups/:page', (req, res) => {
 
                 if(allCarecells) {
                     or.push({ carecell : { $exists : true } });
-                } else {
+                } else if(carecells) {
                     or.push({ carecell : { $in : carecells }});
                 }
 
