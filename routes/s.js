@@ -245,8 +245,10 @@ router.post('/rest/followups/:page', (req, res) => {
                 return callback("Invalid page");
             }
 
+            let carecellOr = {};
+
             if(!user.administrator) {
-                condition['$or'] = [
+                carecellOr = [
                     { carecell : { $exists : false } },
                     { carecell : null },
                     { carecell : user.carecell }
@@ -268,16 +270,29 @@ router.post('/rest/followups/:page', (req, res) => {
                 if(or.length == 1) {
                     condition.carecell = or[0].carecell;
                 } else {
-                    condition['$or'] = or;
+                    carecellOr = or;
                 }
             }
 
+            let followUpType = [];
+
             if(typeof ftv == 'boolean') {
+                followUpType.push()
                 condition.ftv = ftv;
             }
 
             if(typeof decision == 'boolean') {
                 condition.decision = decision;
+            }
+
+            if(carecellOr && followUpType) {
+                condition['$and'] = [
+                    carecellOr, followUpType
+                ];
+            } else if(carecellOr) {
+                condition['$or'] = carecellOr;
+            } else if(followUpType) {
+                condition['$or'] = followUpType;
             }
 
             log.info("THE CONDITION", condition);
