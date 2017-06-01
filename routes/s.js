@@ -294,7 +294,7 @@ router.post('/rest/followups/:page', (req, res) => {
                 condition['$or'] = followUpType;
             }
 
-            log.info("THE CONDITION", condition);
+            log.info("THE CONDITION", condition , JSON.stringify(condition));
             Model.FollowUp.count(condition, callback);
         },
         (count, callback) => {
